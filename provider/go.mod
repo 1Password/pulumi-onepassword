@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-xyz/provider
+module github.com/1Password/pulumi-provider-onepassword/provider
 
 go 1.21
 

@@ -359,7 +359,7 @@ before:
   hooks:
   - make tfgen
 builds:
-- binary: pulumi-resource-xyz
+- binary: pulumi-resource-onepassword
   dir: provider
   goarch:
   - amd64
@@ -370,8 +370,8 @@ builds:
   - linux
   ignore: []
   ldflags:
-  - -X github.com/pulumi/pulumi-xyz/provider/pkg/version.Version={{.Tag}}
-  main: ./cmd/pulumi-resource-xyz/
+  - -X github.com/pulumi/pulumi-onepassword/provider/pkg/version.Version={{.Tag}}
+  main: ./cmd/pulumi-resource-onepassword/
   sort: asc
   use: git
 release:
@@ -396,18 +396,18 @@ dist
 ├── artifacts.json
 ├── config.yaml
 ├── metadata.json
-├── pulumi-xyz_darwin_amd64_v1
-│   └── pulumi-resource-xyz
-├── pulumi-xyz_darwin_arm64
-│   └── pulumi-resource-xyz
-├── pulumi-xyz_linux_amd64_v1
-│   └── pulumi-resource-xyz
-├── pulumi-xyz_linux_arm64
-│   └── pulumi-resource-xyz
-├── pulumi-xyz_windows_amd64_v1
-│   └── pulumi-resource-xyz.exe
-└── pulumi-xyz_windows_arm64
-    └── pulumi-resource-xyz.exe
+├── pulumi-onepassword_darwin_amd64_v1
+│   └── pulumi-resource-onepassword
+├── pulumi-onepassword_darwin_arm64
+│   └── pulumi-resource-onepassword
+├── pulumi-onepassword_linux_amd64_v1
+│   └── pulumi-resource-onepassword
+├── pulumi-onepassword_linux_arm64
+│   └── pulumi-resource-onepassword
+├── pulumi-onepassword_windows_amd64_v1
+│   └── pulumi-resource-onepassword.exe
+└── pulumi-onepassword_windows_arm64
+    └── pulumi-resource-onepassword.exe
 ```
 
 Any of the provider binaries can be used to target the correct machine architecture
