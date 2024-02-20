@@ -30,7 +30,7 @@ import (
 	// Replace this provider with the provider you are bridging.
 	onepassword "github.com/1Password/terraform-provider-onepassword/onepassword"
 
-	"github.com/1Password/pulumi-provider-onepassword/provider/pkg/version"
+	"github.com/1Password/pulumi-onepassword/provider/pkg/version"
 )
 
 // all of the token components used below.
@@ -77,7 +77,7 @@ func Provider() tfbridge.ProviderInfo {
 		// PluginDownloadURL is an optional URL used to download the Provider
 		// for use in Pulumi programs
 		// e.g github://api.github.com/org/pulumi-provider-name
-		PluginDownloadURL: "github://api.github.com/1Password/pulumi-provider-onepassword"
+		PluginDownloadURL: "github://api.github.com/1Password/pulumi-onepassword"
 		Description:       "Use the 1Password Pulumi provider to access and manage items in your 1Password vaults.",
 		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
 		// For all available categories, see `Keywords` in
@@ -85,7 +85,7 @@ func Provider() tfbridge.ProviderInfo {
 		Keywords:   []string{"pulumi", "onepassword", "1Password", "category/cloud"},
 		License:    "Apache-2.0",
 		Homepage:   "https://www.pulumi.com",
-		Repository: "https://github.com/1Password/pulumi-provider-onepassword",
+		Repository: "https://github.com/1Password/pulumi-onepassword",
 		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this
 		// should match the TF provider module's require directive, not any replace directives.
 		GitHubOrg:    "1Password",

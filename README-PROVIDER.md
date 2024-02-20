@@ -11,13 +11,13 @@ This package is available for several languages/platforms:
 To use from JavaScript or TypeScript in Node.js, install using either `npm`:
 
 ```bash
-npm install @1password/pulumi-provider-onepassword
+npm install @1password/pulumi-onepassword
 ```
 
 or `yarn`:
 
 ```bash
-yarn add @1password/pulumi-provider-onepassword
+yarn add @1password/pulumi-onepassword
 ```
 
 ### Python
@@ -27,7 +27,7 @@ To use from Python, install using `pip`:
 <!-- TODO: Confirm that this namespace and package name are correct for Python. -->
 
 ```bash
-pip install 1password_pulumi-provider-onepassword
+pip install 1password_pulumi-onepassword
 ```
 
 ### Go
@@ -38,7 +38,7 @@ To use from Go, use `go get` to grab the latest version of the library:
 <!-- This should be straightforward to confirm once we build out everything to the sdk/ directory. -->
 
 ```bash
-go get github.com/1Password/pulumi-provider-onepassword/sdk/go/...
+go get github.com/1Password/pulumi-onepassword/sdk/go/...
 ```
 
 ### .NET
@@ -48,7 +48,7 @@ To use from .NET, install using `dotnet add package`:
 <!-- TODO: Confirm that this namespace and package name are correct for .NET. -->
 
 ```bash
-dotnet add package 1Password.Pulumi-Provider-OnePassword
+dotnet add package 1Password.Pulumi-OnePassword
 ```
 
 ## Configuration

@@ -19,8 +19,8 @@ package main
 import (
 	_ "embed"
 
-	onepassword "github.com/1Password/pulumi-provider-onepassword/provider"
-	"github.com/1Password/pulumi-provider-onepassword/provider/pkg/version"
+	onepassword "github.com/1Password/pulumi-onepassword/provider"
+	"github.com/1Password/pulumi-onepassword/provider/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 )
 
