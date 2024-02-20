@@ -24,10 +24,10 @@ yarn add @1password/pulumi-onepassword
 
 To use from Python, install using `pip`:
 
-<!-- TODO: Confirm that this namespace and package name are correct for Python. -->
+<!-- TODO: Confirm whether or not 1) we need a namespace here, and 2) the package name is correct. -->
 
 ```bash
-pip install 1password_pulumi-onepassword
+pip install pulumi-onepassword
 ```
 
 ### Go
