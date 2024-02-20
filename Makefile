@@ -2,7 +2,7 @@ PROJECT_NAME := onepassword Package
 
 SHELL            := /bin/bash
 PACK             := onepassword
-ORG              := pulumi
+ORG              := 1Password
 PROJECT          := github.com/${ORG}/pulumi-${PACK}
 NODE_MODULE_NAME := @pulumi/${PACK}
 TF_NAME          := ${PACK}
