@@ -77,7 +77,7 @@ func Provider() tfbridge.ProviderInfo {
 		// PluginDownloadURL is an optional URL used to download the Provider
 		// for use in Pulumi programs
 		// e.g github://api.github.com/org/pulumi-provider-name
-		PluginDownloadURL: "github://api.github.com/1Password/pulumi-onepassword"
+		PluginDownloadURL: "github://api.github.com/1Password/pulumi-onepassword",
 		Description:       "Use the 1Password Pulumi provider to access and manage items in your 1Password vaults.",
 		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
 		// For all available categories, see `Keywords` in
