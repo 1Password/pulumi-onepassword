@@ -1,1 +1,94 @@
-{}
+{
+    "auto-aliasing": {
+        "resources": {
+            "onepassword_item": {
+                "current": "onepassword:index/item:Item",
+                "fields": {
+                    "password_recipe": {
+                        "maxItemsOne": true
+                    },
+                    "section": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "field": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "password_recipe": {
+                                                "maxItemsOne": true
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            }
+        },
+        "datasources": {
+            "onepassword_item": {
+                "current": "onepassword:index/getItem:getItem",
+                "fields": {
+                    "section": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "field": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "onepassword_vault": {
+                "current": "onepassword:index/getVault:getVault"
+            }
+        }
+    },
+    "auto-settings": {},
+    "renames": {
+        "resources": {
+            "onepassword:index/item:Item": "onepassword_item"
+        },
+        "functions": {
+            "onepassword:index/getItem:getItem": "onepassword_item",
+            "onepassword:index/getVault:getVault": "onepassword_vault"
+        },
+        "renamedProperties": {
+            "onepassword:index/ItemSection:ItemSection": {
+                "fields": "field"
+            },
+            "onepassword:index/ItemSectionField:ItemSectionField": {
+                "passwordRecipe": "password_recipe"
+            },
+            "onepassword:index/getItem:getItem": {
+                "noteValue": "note_value",
+                "sections": "section"
+            },
+            "onepassword:index/getItemSection:getItemSection": {
+                "fields": "field"
+            },
+            "onepassword:index/item:Item": {
+                "passwordRecipe": "password_recipe",
+                "sections": "section"
+            },
+            "onepassword:index:Provider": {
+                "opCliPath": "op_cli_path",
+                "serviceAccountToken": "service_account_token"
+            }
+        },
+        "renamedConfigProperties": {
+            "opCliPath": "op_cli_path",
+            "serviceAccountToken": "service_account_token"
+        }
+    }
+}
