@@ -109,9 +109,10 @@ func Provider() tfbridge.ProviderInfo {
 			"onepassword_item": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Item")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
-			// Map each resource in the Terraform provider to a Pulumi function. An example
-			// is below.
-			// "aws_ami": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getAmi")},
+			// Excerpt from https://github.com/pulumi/pulumi-tf-provider-boilerplate
+			// > Note the 'get' prefix for data sources.
+			"onepassword_vault": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getVault")},
+			"onepassword_item":  {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getItem")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
