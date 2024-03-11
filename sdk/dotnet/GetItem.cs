@@ -14,10 +14,9 @@ namespace Pulumi.Onepassword
         /// <summary>
         /// Use this data source to get details of an item by its vault uuid and either the title or the uuid of the item.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -34,8 +33,7 @@ namespace Pulumi.Onepassword
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetItemResult> InvokeAsync(GetItemArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetItemResult>("onepassword:index/getItem:getItem", args ?? new GetItemArgs(), options.WithDefaults());
@@ -43,10 +41,9 @@ namespace Pulumi.Onepassword
         /// <summary>
         /// Use this data source to get details of an item by its vault uuid and either the title or the uuid of the item.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -63,8 +60,7 @@ namespace Pulumi.Onepassword
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetItemResult> Invoke(GetItemInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetItemResult>("onepassword:index/getItem:getItem", args ?? new GetItemInvokeArgs(), options.WithDefaults());

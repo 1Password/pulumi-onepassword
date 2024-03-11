@@ -11,6 +11,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as onepassword from "@pulumi/onepassword";
@@ -20,6 +21,7 @@ import * as utilities from "./utilities";
  *     uuid: onepassword_item.demo_sections.uuid,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getItem(args: GetItemArgs, opts?: pulumi.InvokeOptions): Promise<GetItemResult> {
 
@@ -121,6 +123,7 @@ export interface GetItemResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as onepassword from "@pulumi/onepassword";
@@ -130,6 +133,7 @@ export interface GetItemResult {
  *     uuid: onepassword_item.demo_sections.uuid,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getItemOutput(args: GetItemOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetItemResult> {
     return pulumi.output(args).apply((a: any) => getItem(a, opts))

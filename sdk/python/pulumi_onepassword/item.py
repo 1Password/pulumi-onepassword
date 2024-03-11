@@ -484,6 +484,7 @@ class Item(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_onepassword as onepassword
@@ -519,13 +520,14 @@ class Item(pulumi.CustomResource):
             hostname="localhost",
             port="3306")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         import an existing 1Password item
 
         ```sh
-         $ pulumi import onepassword:index/item:Item myitem vaults/<vault uuid>/items/<item uuid>
+        $ pulumi import onepassword:index/item:Item myitem vaults/<vault uuid>/items/<item uuid>
         ```
 
         :param str resource_name: The name of the resource.
@@ -555,6 +557,7 @@ class Item(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_onepassword as onepassword
@@ -590,13 +593,14 @@ class Item(pulumi.CustomResource):
             hostname="localhost",
             port="3306")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         import an existing 1Password item
 
         ```sh
-         $ pulumi import onepassword:index/item:Item myitem vaults/<vault uuid>/items/<item uuid>
+        $ pulumi import onepassword:index/item:Item myitem vaults/<vault uuid>/items/<item uuid>
         ```
 
         :param str resource_name: The name of the resource.

@@ -13,8 +13,17 @@ namespace Pulumi.Onepassword.Outputs
     [OutputType]
     public sealed class GetItemSectionResult
     {
+        /// <summary>
+        /// A list of custom fields in the section.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetItemSectionFieldResult> Fields;
+        /// <summary>
+        /// A unique identifier for the section.
+        /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The label for the section.
+        /// </summary>
         public readonly string Label;
 
         [OutputConstructor]

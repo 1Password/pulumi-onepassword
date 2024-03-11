@@ -14,6 +14,7 @@ namespace Pulumi.Onepassword
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -72,13 +73,14 @@ namespace Pulumi.Onepassword
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// import an existing 1Password item
     /// 
     /// ```sh
-    ///  $ pulumi import onepassword:index/item:Item myitem vaults/&lt;vault uuid&gt;/items/&lt;item uuid&gt;
+    /// $ pulumi import onepassword:index/item:Item myitem vaults/&lt;vault uuid&gt;/items/&lt;item uuid&gt;
     /// ```
     /// </summary>
     [OnepasswordResourceType("onepassword:index/item:Item")]

@@ -16,6 +16,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -79,15 +80,14 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // import an existing 1Password item
 //
 // ```sh
-//
-//	$ pulumi import onepassword:index/item:Item myitem vaults/<vault uuid>/items/<item uuid>
-//
+// $ pulumi import onepassword:index/item:Item myitem vaults/<vault uuid>/items/<item uuid>
 // ```
 type Item struct {
 	pulumi.CustomResourceState

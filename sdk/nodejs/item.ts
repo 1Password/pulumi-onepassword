@@ -11,6 +11,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as onepassword from "@pulumi/onepassword";
@@ -49,13 +50,14 @@ import * as utilities from "./utilities";
  *     port: "3306",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * import an existing 1Password item
  *
  * ```sh
- *  $ pulumi import onepassword:index/item:Item myitem vaults/<vault uuid>/items/<item uuid>
+ * $ pulumi import onepassword:index/item:Item myitem vaults/<vault uuid>/items/<item uuid>
  * ```
  */
 export class Item extends pulumi.CustomResource {

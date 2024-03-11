@@ -659,9 +659,12 @@ func (o ItemSectionFieldPasswordRecipePtrOutput) Symbols() pulumi.BoolPtrOutput 
 }
 
 type GetItemSection struct {
+	// A list of custom fields in the section.
 	Fields []GetItemSectionField `pulumi:"fields"`
-	Id     string                `pulumi:"id"`
-	Label  string                `pulumi:"label"`
+	// A unique identifier for the section.
+	Id string `pulumi:"id"`
+	// The label for the section.
+	Label string `pulumi:"label"`
 }
 
 // GetItemSectionInput is an input type that accepts GetItemSectionArgs and GetItemSectionOutput values.
@@ -676,9 +679,12 @@ type GetItemSectionInput interface {
 }
 
 type GetItemSectionArgs struct {
+	// A list of custom fields in the section.
 	Fields GetItemSectionFieldArrayInput `pulumi:"fields"`
-	Id     pulumi.StringInput            `pulumi:"id"`
-	Label  pulumi.StringInput            `pulumi:"label"`
+	// A unique identifier for the section.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The label for the section.
+	Label pulumi.StringInput `pulumi:"label"`
 }
 
 func (GetItemSectionArgs) ElementType() reflect.Type {
@@ -732,14 +738,17 @@ func (o GetItemSectionOutput) ToGetItemSectionOutputWithContext(ctx context.Cont
 	return o
 }
 
+// A list of custom fields in the section.
 func (o GetItemSectionOutput) Fields() GetItemSectionFieldArrayOutput {
 	return o.ApplyT(func(v GetItemSection) []GetItemSectionField { return v.Fields }).(GetItemSectionFieldArrayOutput)
 }
 
+// A unique identifier for the section.
 func (o GetItemSectionOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetItemSection) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The label for the section.
 func (o GetItemSectionOutput) Label() pulumi.StringOutput {
 	return o.ApplyT(func(v GetItemSection) string { return v.Label }).(pulumi.StringOutput)
 }
@@ -765,11 +774,16 @@ func (o GetItemSectionArrayOutput) Index(i pulumi.IntInput) GetItemSectionOutput
 }
 
 type GetItemSectionField struct {
-	Id      string `pulumi:"id"`
-	Label   string `pulumi:"label"`
+	// A unique identifier for the field.
+	Id string `pulumi:"id"`
+	// The label for the field.
+	Label string `pulumi:"label"`
+	// Purpose indicates this is a special field: a username, password, or notes field. One of ["USERNAME" "PASSWORD" "NOTES"]
 	Purpose string `pulumi:"purpose"`
-	Type    string `pulumi:"type"`
-	Value   string `pulumi:"value"`
+	// The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+	Type string `pulumi:"type"`
+	// The value of the field.
+	Value string `pulumi:"value"`
 }
 
 // GetItemSectionFieldInput is an input type that accepts GetItemSectionFieldArgs and GetItemSectionFieldOutput values.
@@ -784,11 +798,16 @@ type GetItemSectionFieldInput interface {
 }
 
 type GetItemSectionFieldArgs struct {
-	Id      pulumi.StringInput `pulumi:"id"`
-	Label   pulumi.StringInput `pulumi:"label"`
+	// A unique identifier for the field.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The label for the field.
+	Label pulumi.StringInput `pulumi:"label"`
+	// Purpose indicates this is a special field: a username, password, or notes field. One of ["USERNAME" "PASSWORD" "NOTES"]
 	Purpose pulumi.StringInput `pulumi:"purpose"`
-	Type    pulumi.StringInput `pulumi:"type"`
-	Value   pulumi.StringInput `pulumi:"value"`
+	// The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+	Type pulumi.StringInput `pulumi:"type"`
+	// The value of the field.
+	Value pulumi.StringInput `pulumi:"value"`
 }
 
 func (GetItemSectionFieldArgs) ElementType() reflect.Type {
@@ -842,22 +861,27 @@ func (o GetItemSectionFieldOutput) ToGetItemSectionFieldOutputWithContext(ctx co
 	return o
 }
 
+// A unique identifier for the field.
 func (o GetItemSectionFieldOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetItemSectionField) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The label for the field.
 func (o GetItemSectionFieldOutput) Label() pulumi.StringOutput {
 	return o.ApplyT(func(v GetItemSectionField) string { return v.Label }).(pulumi.StringOutput)
 }
 
+// Purpose indicates this is a special field: a username, password, or notes field. One of ["USERNAME" "PASSWORD" "NOTES"]
 func (o GetItemSectionFieldOutput) Purpose() pulumi.StringOutput {
 	return o.ApplyT(func(v GetItemSectionField) string { return v.Purpose }).(pulumi.StringOutput)
 }
 
+// The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
 func (o GetItemSectionFieldOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetItemSectionField) string { return v.Type }).(pulumi.StringOutput)
 }
 
+// The value of the field.
 func (o GetItemSectionFieldOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetItemSectionField) string { return v.Value }).(pulumi.StringOutput)
 }

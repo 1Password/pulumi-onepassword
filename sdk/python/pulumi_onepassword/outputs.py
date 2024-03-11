@@ -272,6 +272,11 @@ class GetItemSectionResult(dict):
                  fields: Sequence['outputs.GetItemSectionFieldResult'],
                  id: str,
                  label: str):
+        """
+        :param Sequence['GetItemSectionFieldArgs'] fields: A list of custom fields in the section.
+        :param str id: A unique identifier for the section.
+        :param str label: The label for the section.
+        """
         pulumi.set(__self__, "fields", fields)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "label", label)
@@ -279,16 +284,25 @@ class GetItemSectionResult(dict):
     @property
     @pulumi.getter
     def fields(self) -> Sequence['outputs.GetItemSectionFieldResult']:
+        """
+        A list of custom fields in the section.
+        """
         return pulumi.get(self, "fields")
 
     @property
     @pulumi.getter
     def id(self) -> str:
+        """
+        A unique identifier for the section.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def label(self) -> str:
+        """
+        The label for the section.
+        """
         return pulumi.get(self, "label")
 
 
@@ -300,6 +314,13 @@ class GetItemSectionFieldResult(dict):
                  purpose: str,
                  type: str,
                  value: str):
+        """
+        :param str id: A unique identifier for the field.
+        :param str label: The label for the field.
+        :param str purpose: Purpose indicates this is a special field: a username, password, or notes field. One of ["USERNAME" "PASSWORD" "NOTES"]
+        :param str type: The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+        :param str value: The value of the field.
+        """
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "label", label)
         pulumi.set(__self__, "purpose", purpose)
@@ -309,26 +330,41 @@ class GetItemSectionFieldResult(dict):
     @property
     @pulumi.getter
     def id(self) -> str:
+        """
+        A unique identifier for the field.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def label(self) -> str:
+        """
+        The label for the field.
+        """
         return pulumi.get(self, "label")
 
     @property
     @pulumi.getter
     def purpose(self) -> str:
+        """
+        Purpose indicates this is a special field: a username, password, or notes field. One of ["USERNAME" "PASSWORD" "NOTES"]
+        """
         return pulumi.get(self, "purpose")
 
     @property
     @pulumi.getter
     def type(self) -> str:
+        """
+        The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
     def value(self) -> str:
+        """
+        The value of the field.
+        """
         return pulumi.get(self, "value")
 
 

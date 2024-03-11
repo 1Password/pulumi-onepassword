@@ -6,16 +6,40 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
 export interface GetItemSection {
+    /**
+     * A list of custom fields in the section.
+     */
     fields: outputs.GetItemSectionField[];
+    /**
+     * A unique identifier for the section.
+     */
     id: string;
+    /**
+     * The label for the section.
+     */
     label: string;
 }
 
 export interface GetItemSectionField {
+    /**
+     * A unique identifier for the field.
+     */
     id: string;
+    /**
+     * The label for the field.
+     */
     label: string;
+    /**
+     * Purpose indicates this is a special field: a username, password, or notes field. One of ["USERNAME" "PASSWORD" "NOTES"]
+     */
     purpose: string;
+    /**
+     * The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+     */
     type: string;
+    /**
+     * The value of the field.
+     */
     value: string;
 }
 

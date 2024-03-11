@@ -220,6 +220,7 @@ def get_item(note_value: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_onepassword as onepassword
@@ -227,6 +228,7 @@ def get_item(note_value: Optional[str] = None,
     example = onepassword.get_item(vault=var["demo_vault"],
         uuid=onepassword_item["demo_sections"]["uuid"])
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str note_value: Secure Note value.
@@ -271,6 +273,7 @@ def get_item_output(note_value: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_onepassword as onepassword
@@ -278,6 +281,7 @@ def get_item_output(note_value: Optional[pulumi.Input[Optional[str]]] = None,
     example = onepassword.get_item(vault=var["demo_vault"],
         uuid=onepassword_item["demo_sections"]["uuid"])
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str note_value: Secure Note value.
