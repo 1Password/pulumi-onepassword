@@ -2,8 +2,9 @@ module github.com/1Password/pulumi-onepassword/provider
 
 go 1.21
 
-// Old: v2.0.0-20230912190043-e6d96b3b8f7e
-// New: v2.0.0-20240229143312-4f60ee4e2975
+// Note: The `version` string below is comprised of a commit datetime+hash,
+//       the latest of which can be found on the `upstream-v2.33.0` branch.
+// https://github.com/pulumi/terraform-plugin-sdk/commits/upstream-v2.33.0/
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20240229143312-4f60ee4e2975
 
 require (
