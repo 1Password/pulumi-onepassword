@@ -2,9 +2,11 @@ module github.com/1Password/pulumi-onepassword/provider
 
 go 1.21
 
-// Note: The `version` string below is comprised of a commit datetime+hash,
-//       the latest of which can be found on the `upstream-v2.33.0` branch.
+// Note 1: The `version` string below is comprised of a commit datetime+hash, the latest of which can be found on the `upstream-v2.33.0` branch.
 // https://github.com/pulumi/terraform-plugin-sdk/commits/upstream-v2.33.0/
+//
+// Note 2: The `version` string below should match the `replace ...` line from the `go.mod` file in the `pulumi/terraform-plugin-sdk` repo.
+// https://github.com/pulumi/pulumi-terraform-bridge/blob/v3.77.0/go.mod#L249
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20240229143312-4f60ee4e2975
 
 require (
