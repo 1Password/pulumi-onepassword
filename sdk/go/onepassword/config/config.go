@@ -14,28 +14,68 @@ var _ = internal.GetEnvOrDefault
 // A valid account's sign-in address or ID to use biometrics unlock. Can also be sourced from `OP_ACCOUNT` environment
 // variable. Provider will use the 1Password CLI if set.
 func GetAccount(ctx *pulumi.Context) string {
-	return config.Get(ctx, "onepassword:account")
+	v, err := config.Try(ctx, "onepassword:account")
+	if err == nil {
+		return v
+	}
+	var value string
+	if d := internal.GetEnvOrDefault(nil, nil, "OP_ACCOUNT"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // The path to the 1Password CLI binary. Can also be sourced from `OP_CLI_PATH` environment variable. Defaults to `op`.
 func GetOpCliPath(ctx *pulumi.Context) string {
-	return config.Get(ctx, "onepassword:opCliPath")
+	v, err := config.Try(ctx, "onepassword:opCliPath")
+	if err == nil {
+		return v
+	}
+	var value string
+	if d := internal.GetEnvOrDefault(nil, nil, "OP_CLI_PATH"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // A valid 1Password service account token. Can also be sourced from `OP_SERVICE_ACCOUNT_TOKEN` environment variable.
 // Provider will use the 1Password CLI if set.
 func GetServiceAccountToken(ctx *pulumi.Context) string {
-	return config.Get(ctx, "onepassword:serviceAccountToken")
+	v, err := config.Try(ctx, "onepassword:serviceAccountToken")
+	if err == nil {
+		return v
+	}
+	var value string
+	if d := internal.GetEnvOrDefault(nil, nil, "OP_SERVICE_ACCOUNT_TOKEN"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // A valid token for your 1Password Connect server. Can also be sourced from `OP_CONNECT_TOKEN` environment variable.
 // Provider will use 1Password Connect server if set.
 func GetToken(ctx *pulumi.Context) string {
-	return config.Get(ctx, "onepassword:token")
+	v, err := config.Try(ctx, "onepassword:token")
+	if err == nil {
+		return v
+	}
+	var value string
+	if d := internal.GetEnvOrDefault(nil, nil, "OP_CONNECT_TOKEN"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // The HTTP(S) URL where your 1Password Connect server can be found. Can also be sourced `OP_CONNECT_HOST` environment
 // variable. Provider will use 1Password Connect server if set.
 func GetUrl(ctx *pulumi.Context) string {
-	return config.Get(ctx, "onepassword:url")
+	v, err := config.Try(ctx, "onepassword:url")
+	if err == nil {
+		return v
+	}
+	var value string
+	if d := internal.GetEnvOrDefault(nil, nil, "OP_CONNECT_HOST"); d != nil {
+		value = d.(string)
+	}
+	return value
 }

@@ -14,7 +14,7 @@ const __config = new pulumi.Config("onepassword");
 export declare const account: string | undefined;
 Object.defineProperty(exports, "account", {
     get() {
-        return __config.get("account");
+        return __config.get("account") ?? utilities.getEnv("OP_ACCOUNT");
     },
     enumerable: true,
 });
@@ -25,7 +25,7 @@ Object.defineProperty(exports, "account", {
 export declare const opCliPath: string | undefined;
 Object.defineProperty(exports, "opCliPath", {
     get() {
-        return __config.get("opCliPath");
+        return __config.get("opCliPath") ?? utilities.getEnv("OP_CLI_PATH");
     },
     enumerable: true,
 });
@@ -37,7 +37,7 @@ Object.defineProperty(exports, "opCliPath", {
 export declare const serviceAccountToken: string | undefined;
 Object.defineProperty(exports, "serviceAccountToken", {
     get() {
-        return __config.get("serviceAccountToken");
+        return __config.get("serviceAccountToken") ?? utilities.getEnv("OP_SERVICE_ACCOUNT_TOKEN");
     },
     enumerable: true,
 });
@@ -49,7 +49,7 @@ Object.defineProperty(exports, "serviceAccountToken", {
 export declare const token: string | undefined;
 Object.defineProperty(exports, "token", {
     get() {
-        return __config.get("token");
+        return __config.get("token") ?? utilities.getEnv("OP_CONNECT_TOKEN");
     },
     enumerable: true,
 });
@@ -61,7 +61,7 @@ Object.defineProperty(exports, "token", {
 export declare const url: string | undefined;
 Object.defineProperty(exports, "url", {
     get() {
-        return __config.get("url");
+        return __config.get("url") ?? utilities.getEnv("OP_CONNECT_HOST");
     },
     enumerable: true,
 });

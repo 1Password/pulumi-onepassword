@@ -54,23 +54,48 @@
         "variables": {
             "account": {
                 "type": "string",
-                "description": "A valid account's sign-in address or ID to use biometrics unlock. Can also be sourced from `OP_ACCOUNT` environment\nvariable. Provider will use the 1Password CLI if set.\n"
+                "description": "A valid account's sign-in address or ID to use biometrics unlock. Can also be sourced from `OP_ACCOUNT` environment\nvariable. Provider will use the 1Password CLI if set.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "OP_ACCOUNT"
+                    ]
+                }
             },
             "opCliPath": {
                 "type": "string",
-                "description": "The path to the 1Password CLI binary. Can also be sourced from `OP_CLI_PATH` environment variable. Defaults to `op`.\n"
+                "description": "The path to the 1Password CLI binary. Can also be sourced from `OP_CLI_PATH` environment variable. Defaults to `op`.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "OP_CLI_PATH"
+                    ]
+                }
             },
             "serviceAccountToken": {
                 "type": "string",
-                "description": "A valid 1Password service account token. Can also be sourced from `OP_SERVICE_ACCOUNT_TOKEN` environment variable.\nProvider will use the 1Password CLI if set.\n"
+                "description": "A valid 1Password service account token. Can also be sourced from `OP_SERVICE_ACCOUNT_TOKEN` environment variable.\nProvider will use the 1Password CLI if set.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "OP_SERVICE_ACCOUNT_TOKEN"
+                    ]
+                }
             },
             "token": {
                 "type": "string",
-                "description": "A valid token for your 1Password Connect server. Can also be sourced from `OP_CONNECT_TOKEN` environment variable.\nProvider will use 1Password Connect server if set.\n"
+                "description": "A valid token for your 1Password Connect server. Can also be sourced from `OP_CONNECT_TOKEN` environment variable.\nProvider will use 1Password Connect server if set.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "OP_CONNECT_TOKEN"
+                    ]
+                }
             },
             "url": {
                 "type": "string",
-                "description": "The HTTP(S) URL where your 1Password Connect server can be found. Can also be sourced `OP_CONNECT_HOST` environment\nvariable. Provider will use 1Password Connect server if set.\n"
+                "description": "The HTTP(S) URL where your 1Password Connect server can be found. Can also be sourced `OP_CONNECT_HOST` environment\nvariable. Provider will use 1Password Connect server if set.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "OP_CONNECT_HOST"
+                    ]
+                }
             }
         }
     },
@@ -286,23 +311,48 @@
         "inputProperties": {
             "account": {
                 "type": "string",
-                "description": "A valid account's sign-in address or ID to use biometrics unlock. Can also be sourced from `OP_ACCOUNT` environment\nvariable. Provider will use the 1Password CLI if set.\n"
+                "description": "A valid account's sign-in address or ID to use biometrics unlock. Can also be sourced from `OP_ACCOUNT` environment\nvariable. Provider will use the 1Password CLI if set.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "OP_ACCOUNT"
+                    ]
+                }
             },
             "opCliPath": {
                 "type": "string",
-                "description": "The path to the 1Password CLI binary. Can also be sourced from `OP_CLI_PATH` environment variable. Defaults to `op`.\n"
+                "description": "The path to the 1Password CLI binary. Can also be sourced from `OP_CLI_PATH` environment variable. Defaults to `op`.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "OP_CLI_PATH"
+                    ]
+                }
             },
             "serviceAccountToken": {
                 "type": "string",
-                "description": "A valid 1Password service account token. Can also be sourced from `OP_SERVICE_ACCOUNT_TOKEN` environment variable.\nProvider will use the 1Password CLI if set.\n"
+                "description": "A valid 1Password service account token. Can also be sourced from `OP_SERVICE_ACCOUNT_TOKEN` environment variable.\nProvider will use the 1Password CLI if set.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "OP_SERVICE_ACCOUNT_TOKEN"
+                    ]
+                }
             },
             "token": {
                 "type": "string",
-                "description": "A valid token for your 1Password Connect server. Can also be sourced from `OP_CONNECT_TOKEN` environment variable.\nProvider will use 1Password Connect server if set.\n"
+                "description": "A valid token for your 1Password Connect server. Can also be sourced from `OP_CONNECT_TOKEN` environment variable.\nProvider will use 1Password Connect server if set.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "OP_CONNECT_TOKEN"
+                    ]
+                }
             },
             "url": {
                 "type": "string",
-                "description": "The HTTP(S) URL where your 1Password Connect server can be found. Can also be sourced `OP_CONNECT_HOST` environment\nvariable. Provider will use 1Password Connect server if set.\n"
+                "description": "The HTTP(S) URL where your 1Password Connect server can be found. Can also be sourced `OP_CONNECT_HOST` environment\nvariable. Provider will use 1Password Connect server if set.\n",
+                "defaultInfo": {
+                    "environment": [
+                        "OP_CONNECT_HOST"
+                    ]
+                }
             }
         }
     },

@@ -32,7 +32,7 @@ namespace Pulumi.Onepassword
 
         private static readonly global::Pulumi.Config __config = new global::Pulumi.Config("onepassword");
 
-        private static readonly __Value<string?> _account = new __Value<string?>(() => __config.Get("account"));
+        private static readonly __Value<string?> _account = new __Value<string?>(() => __config.Get("account") ?? Utilities.GetEnv("OP_ACCOUNT"));
         /// <summary>
         /// A valid account's sign-in address or ID to use biometrics unlock. Can also be sourced from `OP_ACCOUNT` environment
         /// variable. Provider will use the 1Password CLI if set.
@@ -43,7 +43,7 @@ namespace Pulumi.Onepassword
             set => _account.Set(value);
         }
 
-        private static readonly __Value<string?> _opCliPath = new __Value<string?>(() => __config.Get("opCliPath"));
+        private static readonly __Value<string?> _opCliPath = new __Value<string?>(() => __config.Get("opCliPath") ?? Utilities.GetEnv("OP_CLI_PATH"));
         /// <summary>
         /// The path to the 1Password CLI binary. Can also be sourced from `OP_CLI_PATH` environment variable. Defaults to `op`.
         /// </summary>
@@ -53,7 +53,7 @@ namespace Pulumi.Onepassword
             set => _opCliPath.Set(value);
         }
 
-        private static readonly __Value<string?> _serviceAccountToken = new __Value<string?>(() => __config.Get("serviceAccountToken"));
+        private static readonly __Value<string?> _serviceAccountToken = new __Value<string?>(() => __config.Get("serviceAccountToken") ?? Utilities.GetEnv("OP_SERVICE_ACCOUNT_TOKEN"));
         /// <summary>
         /// A valid 1Password service account token. Can also be sourced from `OP_SERVICE_ACCOUNT_TOKEN` environment variable.
         /// Provider will use the 1Password CLI if set.
@@ -64,7 +64,7 @@ namespace Pulumi.Onepassword
             set => _serviceAccountToken.Set(value);
         }
 
-        private static readonly __Value<string?> _token = new __Value<string?>(() => __config.Get("token"));
+        private static readonly __Value<string?> _token = new __Value<string?>(() => __config.Get("token") ?? Utilities.GetEnv("OP_CONNECT_TOKEN"));
         /// <summary>
         /// A valid token for your 1Password Connect server. Can also be sourced from `OP_CONNECT_TOKEN` environment variable.
         /// Provider will use 1Password Connect server if set.
@@ -75,7 +75,7 @@ namespace Pulumi.Onepassword
             set => _token.Set(value);
         }
 
-        private static readonly __Value<string?> _url = new __Value<string?>(() => __config.Get("url"));
+        private static readonly __Value<string?> _url = new __Value<string?>(() => __config.Get("url") ?? Utilities.GetEnv("OP_CONNECT_HOST"));
         /// <summary>
         /// The HTTP(S) URL where your 1Password Connect server can be found. Can also be sourced `OP_CONNECT_HOST` environment
         /// variable. Provider will use 1Password Connect server if set.

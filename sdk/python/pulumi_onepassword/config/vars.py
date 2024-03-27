@@ -21,14 +21,14 @@ class _ExportableConfig(types.ModuleType):
         A valid account's sign-in address or ID to use biometrics unlock. Can also be sourced from `OP_ACCOUNT` environment
         variable. Provider will use the 1Password CLI if set.
         """
-        return __config__.get('account')
+        return __config__.get('account') or _utilities.get_env('OP_ACCOUNT')
 
     @property
     def op_cli_path(self) -> Optional[str]:
         """
         The path to the 1Password CLI binary. Can also be sourced from `OP_CLI_PATH` environment variable. Defaults to `op`.
         """
-        return __config__.get('opCliPath')
+        return __config__.get('opCliPath') or _utilities.get_env('OP_CLI_PATH')
 
     @property
     def service_account_token(self) -> Optional[str]:
@@ -36,7 +36,7 @@ class _ExportableConfig(types.ModuleType):
         A valid 1Password service account token. Can also be sourced from `OP_SERVICE_ACCOUNT_TOKEN` environment variable.
         Provider will use the 1Password CLI if set.
         """
-        return __config__.get('serviceAccountToken')
+        return __config__.get('serviceAccountToken') or _utilities.get_env('OP_SERVICE_ACCOUNT_TOKEN')
 
     @property
     def token(self) -> Optional[str]:
@@ -44,7 +44,7 @@ class _ExportableConfig(types.ModuleType):
         A valid token for your 1Password Connect server. Can also be sourced from `OP_CONNECT_TOKEN` environment variable.
         Provider will use 1Password Connect server if set.
         """
-        return __config__.get('token')
+        return __config__.get('token') or _utilities.get_env('OP_CONNECT_TOKEN')
 
     @property
     def url(self) -> Optional[str]:
@@ -52,5 +52,5 @@ class _ExportableConfig(types.ModuleType):
         The HTTP(S) URL where your 1Password Connect server can be found. Can also be sourced `OP_CONNECT_HOST` environment
         variable. Provider will use 1Password Connect server if set.
         """
-        return __config__.get('url')
+        return __config__.get('url') or _utilities.get_env('OP_CONNECT_HOST')
 
