@@ -91,9 +91,10 @@ func Provider() tfbridge.ProviderInfo {
 		GitHubOrg:    "1Password",
 		Version:      version.Version,
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
-		// Map the environment variables used in the 1Password Terraform provider schema (see link below) to the Pulumi provider configuration.
+		// Map the environment variables used in the 1Password Terraform provider schema
+		// (see link below) to the Pulumi provider configuration.
 		// https://github.com/1Password/terraform-provider-onepassword/blob/main/onepassword/provider.go#L40-L71
-		Config:       map[string]*tfbridge.SchemaInfo{
+		Config: map[string]*tfbridge.SchemaInfo{
 			"url": {
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"OP_CONNECT_HOST"},
