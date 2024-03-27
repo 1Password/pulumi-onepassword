@@ -91,15 +91,34 @@ func Provider() tfbridge.ProviderInfo {
 		GitHubOrg:    "1Password",
 		Version:      version.Version,
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
+		// Map the environment variables used in the 1Password Terraform provider schema (see link below) to the Pulumi provider configuration.
+		// https://github.com/1Password/terraform-provider-onepassword/blob/main/onepassword/provider.go#L40-L71
 		Config:       map[string]*tfbridge.SchemaInfo{
-			// Add any required configuration here, or remove the example below if
-			// no additional points are required.
-			// "region": {
-			// 	Type: tfbridge.MakeType("region", "Region"),
-			// 	Default: &tfbridge.DefaultInfo{
-			// 		EnvVars: []string{"AWS_REGION", "AWS_DEFAULT_REGION"},
-			// 	},
-			// },
+			"url": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"OP_CONNECT_HOST"},
+				},
+			},
+			"token": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"OP_CONNECT_TOKEN"},
+				},
+			},
+			"service_account_token": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"OP_SERVICE_ACCOUNT_TOKEN"},
+				},
+			},
+			"account": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"OP_ACCOUNT"},
+				},
+			},
+			"op_cli_path": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"OP_CLI_PATH"},
+				},
+			},
 		},
 		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
