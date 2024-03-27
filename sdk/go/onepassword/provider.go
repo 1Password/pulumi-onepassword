@@ -41,6 +41,31 @@ func NewProvider(ctx *pulumi.Context,
 		args = &ProviderArgs{}
 	}
 
+	if args.Account == nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "OP_ACCOUNT"); d != nil {
+			args.Account = pulumi.StringPtr(d.(string))
+		}
+	}
+	if args.OpCliPath == nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "OP_CLI_PATH"); d != nil {
+			args.OpCliPath = pulumi.StringPtr(d.(string))
+		}
+	}
+	if args.ServiceAccountToken == nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "OP_SERVICE_ACCOUNT_TOKEN"); d != nil {
+			args.ServiceAccountToken = pulumi.StringPtr(d.(string))
+		}
+	}
+	if args.Token == nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "OP_CONNECT_TOKEN"); d != nil {
+			args.Token = pulumi.StringPtr(d.(string))
+		}
+	}
+	if args.Url == nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "OP_CONNECT_HOST"); d != nil {
+			args.Url = pulumi.StringPtr(d.(string))
+		}
+	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:onepassword", name, args, &resource, opts...)

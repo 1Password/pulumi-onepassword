@@ -61,11 +61,11 @@ export class Provider extends pulumi.ProviderResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            resourceInputs["account"] = args ? args.account : undefined;
-            resourceInputs["opCliPath"] = args ? args.opCliPath : undefined;
-            resourceInputs["serviceAccountToken"] = args ? args.serviceAccountToken : undefined;
-            resourceInputs["token"] = args ? args.token : undefined;
-            resourceInputs["url"] = args ? args.url : undefined;
+            resourceInputs["account"] = (args ? args.account : undefined) ?? utilities.getEnv("OP_ACCOUNT");
+            resourceInputs["opCliPath"] = (args ? args.opCliPath : undefined) ?? utilities.getEnv("OP_CLI_PATH");
+            resourceInputs["serviceAccountToken"] = (args ? args.serviceAccountToken : undefined) ?? utilities.getEnv("OP_SERVICE_ACCOUNT_TOKEN");
+            resourceInputs["token"] = (args ? args.token : undefined) ?? utilities.getEnv("OP_CONNECT_TOKEN");
+            resourceInputs["url"] = (args ? args.url : undefined) ?? utilities.getEnv("OP_CONNECT_HOST");
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Provider.__pulumiType, name, resourceInputs, opts);

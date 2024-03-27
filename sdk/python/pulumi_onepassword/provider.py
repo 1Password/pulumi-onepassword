@@ -31,14 +31,24 @@ class ProviderArgs:
         :param pulumi.Input[str] url: The HTTP(S) URL where your 1Password Connect server can be found. Can also be sourced `OP_CONNECT_HOST` environment
                variable. Provider will use 1Password Connect server if set.
         """
+        if account is None:
+            account = _utilities.get_env('OP_ACCOUNT')
         if account is not None:
             pulumi.set(__self__, "account", account)
+        if op_cli_path is None:
+            op_cli_path = _utilities.get_env('OP_CLI_PATH')
         if op_cli_path is not None:
             pulumi.set(__self__, "op_cli_path", op_cli_path)
+        if service_account_token is None:
+            service_account_token = _utilities.get_env('OP_SERVICE_ACCOUNT_TOKEN')
         if service_account_token is not None:
             pulumi.set(__self__, "service_account_token", service_account_token)
+        if token is None:
+            token = _utilities.get_env('OP_CONNECT_TOKEN')
         if token is not None:
             pulumi.set(__self__, "token", token)
+        if url is None:
+            url = _utilities.get_env('OP_CONNECT_HOST')
         if url is not None:
             pulumi.set(__self__, "url", url)
 
@@ -177,10 +187,20 @@ class Provider(pulumi.ProviderResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ProviderArgs.__new__(ProviderArgs)
 
+            if account is None:
+                account = _utilities.get_env('OP_ACCOUNT')
             __props__.__dict__["account"] = account
+            if op_cli_path is None:
+                op_cli_path = _utilities.get_env('OP_CLI_PATH')
             __props__.__dict__["op_cli_path"] = op_cli_path
+            if service_account_token is None:
+                service_account_token = _utilities.get_env('OP_SERVICE_ACCOUNT_TOKEN')
             __props__.__dict__["service_account_token"] = service_account_token
+            if token is None:
+                token = _utilities.get_env('OP_CONNECT_TOKEN')
             __props__.__dict__["token"] = token
+            if url is None:
+                url = _utilities.get_env('OP_CONNECT_HOST')
             __props__.__dict__["url"] = url
         super(Provider, __self__).__init__(
             'onepassword',

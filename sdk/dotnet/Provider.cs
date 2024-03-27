@@ -117,6 +117,11 @@ namespace Pulumi.Onepassword
 
         public ProviderArgs()
         {
+            Account = Utilities.GetEnv("OP_ACCOUNT");
+            OpCliPath = Utilities.GetEnv("OP_CLI_PATH");
+            ServiceAccountToken = Utilities.GetEnv("OP_SERVICE_ACCOUNT_TOKEN");
+            Token = Utilities.GetEnv("OP_CONNECT_TOKEN");
+            Url = Utilities.GetEnv("OP_CONNECT_HOST");
         }
         public static new ProviderArgs Empty => new ProviderArgs();
     }
