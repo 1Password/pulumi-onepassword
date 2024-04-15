@@ -1,5 +1,5 @@
 import * as pulumi from "@pulumi/pulumi";
-import * as onepassword from "@pulumi/onepassword";
+import * as onepassword from "@1password/pulumi-onepassword";
 
 // Fetching login details
 onepassword

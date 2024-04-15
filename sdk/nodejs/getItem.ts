@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as onepassword from "@pulumi/onepassword";
+ * import * as onepassword from "@1password/pulumi-onepassword";
  *
  * const example = onepassword.getItem({
  *     vault: _var.demo_vault,
@@ -126,7 +126,7 @@ export interface GetItemResult {
  * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as onepassword from "@pulumi/onepassword";
+ * import * as onepassword from "@1password/pulumi-onepassword";
  *
  * const example = onepassword.getItem({
  *     vault: _var.demo_vault,

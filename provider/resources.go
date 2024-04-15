@@ -135,6 +135,7 @@ func Provider() tfbridge.ProviderInfo {
 			"onepassword_item":  {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getItem")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
+			PackageName: "@1password/pulumi-onepassword",
 			// List any npm dependencies and their versions
 			Dependencies: map[string]string{
 				"@pulumi/pulumi": "^3.0.0",
