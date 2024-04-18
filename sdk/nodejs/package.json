@@ -1,5 +1,5 @@
 {
-    "name": "@pulumi/onepassword",
+    "name": "@1password/pulumi-onepassword",
     "version": "${VERSION}",
     "description": "Use the 1Password Pulumi provider to access and manage items in your 1Password vaults.",
     "keywords": [
