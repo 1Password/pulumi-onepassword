@@ -14,8 +14,8 @@ builds:
       - arm64
     goos:
       - darwin
-      - windows
       - linux
+      - windows
     ldflags:
       # Below line *must* align with the module in the provider/go.mod file.
       - -X github.com/1Password/pulumi-onepassword/provider/pkg/version.Version={{ .Tag }}
