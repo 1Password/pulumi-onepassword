@@ -487,7 +487,7 @@ class Item(pulumi.CustomResource):
         <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
-        import pulumi_onepassword as onepassword
+        import pulumi-onepassword as onepassword
 
         demo_password = onepassword.Item("demoPassword",
             vault=var["demo_vault"],
@@ -560,7 +560,7 @@ class Item(pulumi.CustomResource):
         <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
-        import pulumi_onepassword as onepassword
+        import pulumi-onepassword as onepassword
 
         demo_password = onepassword.Item("demoPassword",
             vault=var["demo_vault"],
