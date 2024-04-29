@@ -38,7 +38,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v5
         with:
-          go-version: ${{matrix.goversion}}
+          go-version: ${{ matrix.goversion }}
       - name: Install pulumictl
         uses: jaxxstorm/action-install-gh-release@v1
         with:
