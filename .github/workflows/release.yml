@@ -13,12 +13,12 @@ env:
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   PUBLISH_NPM: true
   NPM_REGISTRY_URL: https://registry.npmjs.org
+  # Skip NuGet publishing for now.
   # IF YOU NEED TO PUBLISH A NUGET PACKAGE THEN ENSURE AN NUGET_PUBLISH_KEY
   # SECRET IS SET AND PUBLISH_NUGET: TRUE. IF YOU WANT TO PUBLISH TO AN ALTERNATIVE
-  # NPM REGISTRY THEN ENSURE THE NPM_REGISTRY_URL IS CHANGED
-  NUGET_PUBLISH_KEY: ${{ YOUR NUGET PUBLISH KEY HERE }}
+  # NUGET FEED THEN ENSURE THE NUGET_FEED_URL IS CHANGED.
+  # NUGET_PUBLISH_KEY: ${{ YOUR NUGET PUBLISH KEY HERE }}
   NUGET_FEED_URL: https://api.nuget.org/v3/index.json
-  # Skip NuGet publishing for now.
   PUBLISH_NUGET: false
   # IF YOU NEED TO PUBLISH A PYPI PACKAGE SET PUBLISH_PYPI: TRUE AND CHANGE PYPI_PASSWORD, PYPI_USERNAME TO YOUR CREDENTIALS.
   # IF YOU WANT TO PUBLISH TO AN ALTERNATIVE PYPI REGISTRY THEN ENSURE THE PYPI_REPOSITORY_URL IS SET.
@@ -38,7 +38,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v5
         with:
-          go-version: ${{matrix.goversion}}
+          go-version: ${{ matrix.goversion }}
       - name: Install pulumictl
         uses: jaxxstorm/action-install-gh-release@v1
         with:
