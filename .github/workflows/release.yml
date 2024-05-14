@@ -98,7 +98,7 @@ jobs:
       - name: Build SDK
         run: make build_${{ matrix.language }}
 
-      # Skip checking that the Git worktree is clean for now since the `make tfgen` and `make build_sdks` commands  produce small
+      # Skip checking that the Git worktree is clean for now since the `make tfgen` and `make build_sdks` commands produce small
       # Git diffs due to a bug in the Pulumi code generation process where the custom package name is not being used:
       # https://github.com/pulumi/pulumi/issues/15979
       #
