@@ -115,7 +115,7 @@ jobs:
           fi
 
       - if: ${{ matrix.language == 'python' && env.PUBLISH_PYPI == 'true' }}
-        name: Publish package to PyPI
+        name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           user: ${{ env.PYPI_USERNAME }}
@@ -123,6 +123,7 @@ jobs:
           packages-dir: ${{github.workspace}}/sdk/python/bin/dist
 
       - if: ${{ matrix.language == 'nodejs' && env.PUBLISH_NPM == 'true' }}
+        name: Publish to NPM
         uses: JS-DevTools/npm-publish@v1
         with:
           access: "public"
@@ -130,7 +131,7 @@ jobs:
           package: ${{github.workspace}}/sdk/nodejs/bin/package.json
 
       - if: ${{ matrix.language == 'dotnet' && env.PUBLISH_NUGET == 'true' }}
-        name: publish nuget package
+        name: Publish to NuGet
         run: |
           dotnet nuget push ${{github.workspace}}/sdk/dotnet/bin/Debug/*.nupkg -s ${{ env.NUGET_FEED_URL }} -k ${{ env.NUGET_PUBLISH_KEY }}
           echo "done publishing packages"
