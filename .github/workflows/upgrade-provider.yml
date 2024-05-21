@@ -1,4 +1,4 @@
-name: Upgrade bridge
+name: upgrade_provider
 
 on:
   workflow_dispatch:
@@ -7,8 +7,8 @@ on:
     - cron: 0 5 * * 1
 
 jobs:
-  upgrade_bridge:
-    name: upgrade-bridge
+  upgrade_provider:
+    name: upgrade_provider
     runs-on: ubuntu-latest
     permissions:
       contents: write
