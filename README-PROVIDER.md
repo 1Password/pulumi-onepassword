@@ -39,15 +39,19 @@ To use from Go, use `go get` to grab the latest version of the library:
 go get github.com/1Password/pulumi-onepassword/sdk/go/...
 ```
 
+<!--
+
 ### .NET
 
 To use from .NET, install using `dotnet add package`:
 
-<!-- TODO: Confirm that this namespace and package name are correct for .NET. -->
+TODO: Confirm that this namespace and package name are correct for .NET.
 
 ```bash
 dotnet add package 1Password.Pulumi-OnePassword
 ```
+
+-->
 
 ## Configuration
 
