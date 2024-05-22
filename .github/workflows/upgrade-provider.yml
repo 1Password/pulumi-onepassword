@@ -1,0 +1,21 @@
+name: upgrade_provider
+
+on:
+  workflow_dispatch:
+  schedule:
+    # https://crontab.guru/#0_20_*_*_WED = "At 20:00 (UTC) on Wednesday."
+    - cron: 0 20 * * WED
+
+jobs:
+  upgrade_provider:
+    name: upgrade_provider
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+    steps:
+      - name: Call upgrade provider action
+        uses: pulumi/pulumi-upgrade-provider-action@v0.0.12
+        env:
+          GH_TOKEN: ${{ secrets.PULUMI_1P_UPGRADE_PROVIDER_GH_TOKEN }}
