@@ -1,0 +1,4 @@
+# Upstream provider links:
+# - GitHub repo: https://github.com/1Password/terraform-provider-onepassword
+# - Terraform registry: https://registry.terraform.io/providers/1Password/onepassword
+upstream-provider-name: terraform-provider-onepassword
