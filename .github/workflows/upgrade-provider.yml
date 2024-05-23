@@ -3,8 +3,8 @@ name: upgrade_provider
 on:
   workflow_dispatch:
   schedule:
-    # https://crontab.guru/#0_20_*_*_WED = "At 20:00 (UTC) on Wednesday."
-    - cron: 0 20 * * WED
+    # https://crontab.guru/#45_18_*_*_THU = "At 18:45 (UTC) on Thursday."
+    - cron: 45 18 * * THU
 
 jobs:
   upgrade_provider:
