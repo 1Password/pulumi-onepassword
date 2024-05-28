@@ -73,7 +73,7 @@ class GetItemResult:
     @pulumi.getter
     def category(self) -> str:
         """
-        The category of the item. One of ["login" "password" "database"]
+        The category of the item. One of ["login" "password" "database" "secure_note"]
         """
         return pulumi.get(self, "category")
 
@@ -220,15 +220,13 @@ def get_item(note_value: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_onepassword as onepassword
 
-    example = onepassword.get_item(vault=var["demo_vault"],
+    example = onepassword.get_item(vault=data["onepassword_vault"]["example"]["uuid"],
         uuid=onepassword_item["demo_sections"]["uuid"])
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str note_value: Secure Note value.
@@ -273,15 +271,13 @@ def get_item_output(note_value: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_onepassword as onepassword
 
-    example = onepassword.get_item(vault=var["demo_vault"],
+    example = onepassword.get_item(vault=data["onepassword_vault"]["example"]["uuid"],
         uuid=onepassword_item["demo_sections"]["uuid"])
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str note_value: Secure Note value.

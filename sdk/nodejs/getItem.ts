@@ -11,17 +11,15 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as onepassword from "@1password/pulumi-onepassword";
+ * import * as onepassword from "@pulumi/onepassword";
  *
  * const example = onepassword.getItem({
- *     vault: _var.demo_vault,
+ *     vault: data.onepassword_vault.example.uuid,
  *     uuid: onepassword_item.demo_sections.uuid,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getItem(args: GetItemArgs, opts?: pulumi.InvokeOptions): Promise<GetItemResult> {
 
@@ -61,7 +59,7 @@ export interface GetItemArgs {
  */
 export interface GetItemResult {
     /**
-     * The category of the item. One of ["login" "password" "database"]
+     * The category of the item. One of ["login" "password" "database" "secureNote"]
      */
     readonly category: string;
     /**
@@ -123,17 +121,15 @@ export interface GetItemResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as onepassword from "@1password/pulumi-onepassword";
+ * import * as onepassword from "@pulumi/onepassword";
  *
  * const example = onepassword.getItem({
- *     vault: _var.demo_vault,
+ *     vault: data.onepassword_vault.example.uuid,
  *     uuid: onepassword_item.demo_sections.uuid,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getItemOutput(args: GetItemOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetItemResult> {
     return pulumi.output(args).apply((a: any) => getItem(a, opts))

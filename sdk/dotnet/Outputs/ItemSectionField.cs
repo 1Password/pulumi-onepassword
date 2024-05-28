@@ -22,7 +22,7 @@ namespace Pulumi.Onepassword.Outputs
         /// </summary>
         public readonly string Label;
         /// <summary>
-        /// Password for this item.
+        /// The recipe used to generate a new value for a password.
         /// </summary>
         public readonly Outputs.ItemSectionFieldPasswordRecipe? PasswordRecipe;
         /// <summary>
@@ -30,7 +30,7 @@ namespace Pulumi.Onepassword.Outputs
         /// </summary>
         public readonly string? Purpose;
         /// <summary>
-        /// The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+        /// The type of value stored in the field. One of ["STRING" "CONCEALED" "EMAIL" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
         /// </summary>
         public readonly string? Type;
         /// <summary>

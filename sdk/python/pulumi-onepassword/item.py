@@ -32,16 +32,16 @@ class ItemArgs:
         """
         The set of arguments for constructing a Item resource.
         :param pulumi.Input[str] vault: The UUID of the vault the item is in.
-        :param pulumi.Input[str] category: The category of the item. One of ["login" "password" "database"]
+        :param pulumi.Input[str] category: The category of the item. One of ["login" "password" "database" "secure_note"]
         :param pulumi.Input[str] database: (Only applies to the database category) The name of the database.
         :param pulumi.Input[str] hostname: (Only applies to the database category) The address where the database can be found
         :param pulumi.Input[str] password: Password for this item.
-        :param pulumi.Input['ItemPasswordRecipeArgs'] password_recipe: Password for this item.
+        :param pulumi.Input['ItemPasswordRecipeArgs'] password_recipe: The recipe used to generate a new value for a password.
         :param pulumi.Input[str] port: (Only applies to the database category) The port the database is listening on.
         :param pulumi.Input[Sequence[pulumi.Input['ItemSectionArgs']]] sections: A list of custom sections in an item
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: An array of strings of the tags assigned to the item.
         :param pulumi.Input[str] title: The title of the item.
-        :param pulumi.Input[str] type: The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+        :param pulumi.Input[str] type: (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
         :param pulumi.Input[str] url: The primary URL for the item.
         :param pulumi.Input[str] username: Username for this item.
         """
@@ -87,7 +87,7 @@ class ItemArgs:
     @pulumi.getter
     def category(self) -> Optional[pulumi.Input[str]]:
         """
-        The category of the item. One of ["login" "password" "database"]
+        The category of the item. One of ["login" "password" "database" "secure_note"]
         """
         return pulumi.get(self, "category")
 
@@ -135,7 +135,7 @@ class ItemArgs:
     @pulumi.getter(name="passwordRecipe")
     def password_recipe(self) -> Optional[pulumi.Input['ItemPasswordRecipeArgs']]:
         """
-        Password for this item.
+        The recipe used to generate a new value for a password.
         """
         return pulumi.get(self, "password_recipe")
 
@@ -195,7 +195,7 @@ class ItemArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+        (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
         """
         return pulumi.get(self, "type")
 
@@ -247,16 +247,16 @@ class _ItemState:
                  vault: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Item resources.
-        :param pulumi.Input[str] category: The category of the item. One of ["login" "password" "database"]
+        :param pulumi.Input[str] category: The category of the item. One of ["login" "password" "database" "secure_note"]
         :param pulumi.Input[str] database: (Only applies to the database category) The name of the database.
         :param pulumi.Input[str] hostname: (Only applies to the database category) The address where the database can be found
         :param pulumi.Input[str] password: Password for this item.
-        :param pulumi.Input['ItemPasswordRecipeArgs'] password_recipe: Password for this item.
+        :param pulumi.Input['ItemPasswordRecipeArgs'] password_recipe: The recipe used to generate a new value for a password.
         :param pulumi.Input[str] port: (Only applies to the database category) The port the database is listening on.
         :param pulumi.Input[Sequence[pulumi.Input['ItemSectionArgs']]] sections: A list of custom sections in an item
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: An array of strings of the tags assigned to the item.
         :param pulumi.Input[str] title: The title of the item.
-        :param pulumi.Input[str] type: The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+        :param pulumi.Input[str] type: (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
         :param pulumi.Input[str] url: The primary URL for the item.
         :param pulumi.Input[str] username: Username for this item.
         :param pulumi.Input[str] uuid: The UUID of the item. Item identifiers are unique within a specific vault.
@@ -295,7 +295,7 @@ class _ItemState:
     @pulumi.getter
     def category(self) -> Optional[pulumi.Input[str]]:
         """
-        The category of the item. One of ["login" "password" "database"]
+        The category of the item. One of ["login" "password" "database" "secure_note"]
         """
         return pulumi.get(self, "category")
 
@@ -343,7 +343,7 @@ class _ItemState:
     @pulumi.getter(name="passwordRecipe")
     def password_recipe(self) -> Optional[pulumi.Input['ItemPasswordRecipeArgs']]:
         """
-        Password for this item.
+        The recipe used to generate a new value for a password.
         """
         return pulumi.get(self, "password_recipe")
 
@@ -403,7 +403,7 @@ class _ItemState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+        (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
         """
         return pulumi.get(self, "type")
 
@@ -480,11 +480,10 @@ class Item(pulumi.CustomResource):
                  vault: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        A 1Password item.
+        A 1Password Item.
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi-onepassword as onepassword
@@ -520,7 +519,6 @@ class Item(pulumi.CustomResource):
             hostname="localhost",
             port="3306")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -532,16 +530,16 @@ class Item(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] category: The category of the item. One of ["login" "password" "database"]
+        :param pulumi.Input[str] category: The category of the item. One of ["login" "password" "database" "secure_note"]
         :param pulumi.Input[str] database: (Only applies to the database category) The name of the database.
         :param pulumi.Input[str] hostname: (Only applies to the database category) The address where the database can be found
         :param pulumi.Input[str] password: Password for this item.
-        :param pulumi.Input[pulumi.InputType['ItemPasswordRecipeArgs']] password_recipe: Password for this item.
+        :param pulumi.Input[pulumi.InputType['ItemPasswordRecipeArgs']] password_recipe: The recipe used to generate a new value for a password.
         :param pulumi.Input[str] port: (Only applies to the database category) The port the database is listening on.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ItemSectionArgs']]]] sections: A list of custom sections in an item
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: An array of strings of the tags assigned to the item.
         :param pulumi.Input[str] title: The title of the item.
-        :param pulumi.Input[str] type: The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+        :param pulumi.Input[str] type: (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
         :param pulumi.Input[str] url: The primary URL for the item.
         :param pulumi.Input[str] username: Username for this item.
         :param pulumi.Input[str] vault: The UUID of the vault the item is in.
@@ -553,11 +551,10 @@ class Item(pulumi.CustomResource):
                  args: ItemArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        A 1Password item.
+        A 1Password Item.
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi-onepassword as onepassword
@@ -593,7 +590,6 @@ class Item(pulumi.CustomResource):
             hostname="localhost",
             port="3306")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -689,16 +685,16 @@ class Item(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] category: The category of the item. One of ["login" "password" "database"]
+        :param pulumi.Input[str] category: The category of the item. One of ["login" "password" "database" "secure_note"]
         :param pulumi.Input[str] database: (Only applies to the database category) The name of the database.
         :param pulumi.Input[str] hostname: (Only applies to the database category) The address where the database can be found
         :param pulumi.Input[str] password: Password for this item.
-        :param pulumi.Input[pulumi.InputType['ItemPasswordRecipeArgs']] password_recipe: Password for this item.
+        :param pulumi.Input[pulumi.InputType['ItemPasswordRecipeArgs']] password_recipe: The recipe used to generate a new value for a password.
         :param pulumi.Input[str] port: (Only applies to the database category) The port the database is listening on.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ItemSectionArgs']]]] sections: A list of custom sections in an item
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: An array of strings of the tags assigned to the item.
         :param pulumi.Input[str] title: The title of the item.
-        :param pulumi.Input[str] type: The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+        :param pulumi.Input[str] type: (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
         :param pulumi.Input[str] url: The primary URL for the item.
         :param pulumi.Input[str] username: Username for this item.
         :param pulumi.Input[str] uuid: The UUID of the item. Item identifiers are unique within a specific vault.
@@ -728,7 +724,7 @@ class Item(pulumi.CustomResource):
     @pulumi.getter
     def category(self) -> pulumi.Output[Optional[str]]:
         """
-        The category of the item. One of ["login" "password" "database"]
+        The category of the item. One of ["login" "password" "database" "secure_note"]
         """
         return pulumi.get(self, "category")
 
@@ -760,7 +756,7 @@ class Item(pulumi.CustomResource):
     @pulumi.getter(name="passwordRecipe")
     def password_recipe(self) -> pulumi.Output[Optional['outputs.ItemPasswordRecipe']]:
         """
-        Password for this item.
+        The recipe used to generate a new value for a password.
         """
         return pulumi.get(self, "password_recipe")
 
@@ -800,7 +796,7 @@ class Item(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[Optional[str]]:
         """
-        The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+        (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
         """
         return pulumi.get(self, "type")
 
