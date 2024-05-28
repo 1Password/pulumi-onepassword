@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as onepassword from "@pulumi/onepassword";
+ * import * as onepassword from "@1password/pulumi-onepassword";
  *
  * const example = onepassword.getVault({
  *     name: _var.demo_vault,
@@ -67,7 +67,7 @@ export interface GetVaultResult {
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as onepassword from "@pulumi/onepassword";
+ * import * as onepassword from "@1password/pulumi-onepassword";
  *
  * const example = onepassword.getVault({
  *     name: _var.demo_vault,

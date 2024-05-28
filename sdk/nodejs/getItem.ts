@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as onepassword from "@pulumi/onepassword";
+ * import * as onepassword from "@1password/pulumi-onepassword";
  *
  * const example = onepassword.getItem({
  *     vault: data.onepassword_vault.example.uuid,
@@ -123,7 +123,7 @@ export interface GetItemResult {
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as onepassword from "@pulumi/onepassword";
+ * import * as onepassword from "@1password/pulumi-onepassword";
  *
  * const example = onepassword.getItem({
  *     vault: data.onepassword_vault.example.uuid,
