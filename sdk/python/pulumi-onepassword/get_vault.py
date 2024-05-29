@@ -83,6 +83,15 @@ def get_vault(name: Optional[str] = None,
     """
     Use this data source to get details of a vault by either its name or uuid.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_onepassword as onepassword
+
+    example = onepassword.get_vault(name=var["demo_vault"])
+    ```
+
 
     :param str name: The name of the vault to retrieve. This field will be populated with the name of the vault if the vault it looked up by its UUID.
     :param str uuid: The UUID of the vault to retrieve. This field will be populated with the UUID of the vault if the vault it looked up by its name.
@@ -106,6 +115,15 @@ def get_vault_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVaultResult]:
     """
     Use this data source to get details of a vault by either its name or uuid.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_onepassword as onepassword
+
+    example = onepassword.get_vault(name=var["demo_vault"])
+    ```
 
 
     :param str name: The name of the vault to retrieve. This field will be populated with the name of the vault if the vault it looked up by its UUID.

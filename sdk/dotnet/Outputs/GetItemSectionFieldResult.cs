@@ -22,11 +22,11 @@ namespace Pulumi.Onepassword.Outputs
         /// </summary>
         public readonly string Label;
         /// <summary>
-        /// Purpose indicates this is a special field: a username, password, or notes field. One of ["USERNAME" "PASSWORD" "NOTES"]
+        /// Purpose indicates this is a special field: a username, password, or notes field.
         /// </summary>
         public readonly string Purpose;
         /// <summary>
-        /// The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+        /// The type of value stored in the field.
         /// </summary>
         public readonly string Type;
         /// <summary>

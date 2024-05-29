@@ -7,11 +7,10 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * A 1Password item.
+ * A 1Password Item.
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as onepassword from "@1password/pulumi-onepassword";
@@ -50,7 +49,6 @@ import * as utilities from "./utilities";
  *     port: "3306",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
@@ -89,7 +87,7 @@ export class Item extends pulumi.CustomResource {
     }
 
     /**
-     * The category of the item. One of ["login" "password" "database"]
+     * The category of the item. One of ["login" "password" "database" "secureNote"]
      */
     public readonly category!: pulumi.Output<string | undefined>;
     /**
@@ -105,7 +103,7 @@ export class Item extends pulumi.CustomResource {
      */
     public readonly password!: pulumi.Output<string>;
     /**
-     * Password for this item.
+     * The recipe used to generate a new value for a password.
      */
     public readonly passwordRecipe!: pulumi.Output<outputs.ItemPasswordRecipe | undefined>;
     /**
@@ -125,7 +123,7 @@ export class Item extends pulumi.CustomResource {
      */
     public readonly title!: pulumi.Output<string | undefined>;
     /**
-     * The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+     * (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
      */
     public readonly type!: pulumi.Output<string | undefined>;
     /**
@@ -204,7 +202,7 @@ export class Item extends pulumi.CustomResource {
  */
 export interface ItemState {
     /**
-     * The category of the item. One of ["login" "password" "database"]
+     * The category of the item. One of ["login" "password" "database" "secureNote"]
      */
     category?: pulumi.Input<string>;
     /**
@@ -220,7 +218,7 @@ export interface ItemState {
      */
     password?: pulumi.Input<string>;
     /**
-     * Password for this item.
+     * The recipe used to generate a new value for a password.
      */
     passwordRecipe?: pulumi.Input<inputs.ItemPasswordRecipe>;
     /**
@@ -240,7 +238,7 @@ export interface ItemState {
      */
     title?: pulumi.Input<string>;
     /**
-     * The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+     * (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
      */
     type?: pulumi.Input<string>;
     /**
@@ -266,7 +264,7 @@ export interface ItemState {
  */
 export interface ItemArgs {
     /**
-     * The category of the item. One of ["login" "password" "database"]
+     * The category of the item. One of ["login" "password" "database" "secureNote"]
      */
     category?: pulumi.Input<string>;
     /**
@@ -282,7 +280,7 @@ export interface ItemArgs {
      */
     password?: pulumi.Input<string>;
     /**
-     * Password for this item.
+     * The recipe used to generate a new value for a password.
      */
     passwordRecipe?: pulumi.Input<inputs.ItemPasswordRecipe>;
     /**
@@ -302,7 +300,7 @@ export interface ItemArgs {
      */
     title?: pulumi.Input<string>;
     /**
-     * The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+     * (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
      */
     type?: pulumi.Input<string>;
     /**

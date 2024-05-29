@@ -30,11 +30,11 @@ export interface GetItemSectionField {
      */
     label: string;
     /**
-     * Purpose indicates this is a special field: a username, password, or notes field. One of ["USERNAME" "PASSWORD" "NOTES"]
+     * Purpose indicates this is a special field: a username, password, or notes field.
      */
     purpose: string;
     /**
-     * The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+     * The type of value stored in the field.
      */
     type: string;
     /**
@@ -87,7 +87,7 @@ export interface ItemSectionField {
      */
     label: string;
     /**
-     * Password for this item.
+     * The recipe used to generate a new value for a password.
      */
     passwordRecipe?: outputs.ItemSectionFieldPasswordRecipe;
     /**
@@ -95,7 +95,7 @@ export interface ItemSectionField {
      */
     purpose?: string;
     /**
-     * The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+     * The type of value stored in the field. One of ["STRING" "CONCEALED" "EMAIL" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
      */
     type?: string;
     /**

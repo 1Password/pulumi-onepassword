@@ -49,7 +49,7 @@ export interface ItemSectionField {
      */
     label: pulumi.Input<string>;
     /**
-     * Password for this item.
+     * The recipe used to generate a new value for a password.
      */
     passwordRecipe?: pulumi.Input<inputs.ItemSectionFieldPasswordRecipe>;
     /**
@@ -57,7 +57,7 @@ export interface ItemSectionField {
      */
     purpose?: pulumi.Input<string>;
     /**
-     * The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+     * The type of value stored in the field. One of ["STRING" "CONCEALED" "EMAIL" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
      */
     type?: pulumi.Input<string>;
     /**

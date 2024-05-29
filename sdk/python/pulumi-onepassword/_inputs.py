@@ -153,9 +153,9 @@ class ItemSectionFieldArgs:
         """
         :param pulumi.Input[str] label: The label for the field.
         :param pulumi.Input[str] id: A unique identifier for the field.
-        :param pulumi.Input['ItemSectionFieldPasswordRecipeArgs'] password_recipe: Password for this item.
+        :param pulumi.Input['ItemSectionFieldPasswordRecipeArgs'] password_recipe: The recipe used to generate a new value for a password.
         :param pulumi.Input[str] purpose: Purpose indicates this is a special field: a username, password, or notes field. One of ["USERNAME" "PASSWORD" "NOTES"]
-        :param pulumi.Input[str] type: The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+        :param pulumi.Input[str] type: The type of value stored in the field. One of ["STRING" "CONCEALED" "EMAIL" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
         :param pulumi.Input[str] value: The value of the field.
         """
         pulumi.set(__self__, "label", label)
@@ -198,7 +198,7 @@ class ItemSectionFieldArgs:
     @pulumi.getter(name="passwordRecipe")
     def password_recipe(self) -> Optional[pulumi.Input['ItemSectionFieldPasswordRecipeArgs']]:
         """
-        Password for this item.
+        The recipe used to generate a new value for a password.
         """
         return pulumi.get(self, "password_recipe")
 
@@ -222,7 +222,7 @@ class ItemSectionFieldArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+        The type of value stored in the field. One of ["STRING" "CONCEALED" "EMAIL" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
         """
         return pulumi.get(self, "type")
 

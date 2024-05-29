@@ -12,11 +12,10 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// A 1Password item.
+// A 1Password Item.
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -80,7 +79,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
@@ -92,7 +90,7 @@ import (
 type Item struct {
 	pulumi.CustomResourceState
 
-	// The category of the item. One of ["login" "password" "database"]
+	// The category of the item. One of ["login" "password" "database" "secureNote"]
 	Category pulumi.StringPtrOutput `pulumi:"category"`
 	// (Only applies to the database category) The name of the database.
 	Database pulumi.StringPtrOutput `pulumi:"database"`
@@ -100,7 +98,7 @@ type Item struct {
 	Hostname pulumi.StringPtrOutput `pulumi:"hostname"`
 	// Password for this item.
 	Password pulumi.StringOutput `pulumi:"password"`
-	// Password for this item.
+	// The recipe used to generate a new value for a password.
 	PasswordRecipe ItemPasswordRecipePtrOutput `pulumi:"passwordRecipe"`
 	// (Only applies to the database category) The port the database is listening on.
 	Port pulumi.StringPtrOutput `pulumi:"port"`
@@ -110,7 +108,7 @@ type Item struct {
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The title of the item.
 	Title pulumi.StringPtrOutput `pulumi:"title"`
-	// The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+	// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
 	Type pulumi.StringPtrOutput `pulumi:"type"`
 	// The primary URL for the item.
 	Url pulumi.StringPtrOutput `pulumi:"url"`
@@ -162,7 +160,7 @@ func GetItem(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Item resources.
 type itemState struct {
-	// The category of the item. One of ["login" "password" "database"]
+	// The category of the item. One of ["login" "password" "database" "secureNote"]
 	Category *string `pulumi:"category"`
 	// (Only applies to the database category) The name of the database.
 	Database *string `pulumi:"database"`
@@ -170,7 +168,7 @@ type itemState struct {
 	Hostname *string `pulumi:"hostname"`
 	// Password for this item.
 	Password *string `pulumi:"password"`
-	// Password for this item.
+	// The recipe used to generate a new value for a password.
 	PasswordRecipe *ItemPasswordRecipe `pulumi:"passwordRecipe"`
 	// (Only applies to the database category) The port the database is listening on.
 	Port *string `pulumi:"port"`
@@ -180,7 +178,7 @@ type itemState struct {
 	Tags []string `pulumi:"tags"`
 	// The title of the item.
 	Title *string `pulumi:"title"`
-	// The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+	// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
 	Type *string `pulumi:"type"`
 	// The primary URL for the item.
 	Url *string `pulumi:"url"`
@@ -193,7 +191,7 @@ type itemState struct {
 }
 
 type ItemState struct {
-	// The category of the item. One of ["login" "password" "database"]
+	// The category of the item. One of ["login" "password" "database" "secureNote"]
 	Category pulumi.StringPtrInput
 	// (Only applies to the database category) The name of the database.
 	Database pulumi.StringPtrInput
@@ -201,7 +199,7 @@ type ItemState struct {
 	Hostname pulumi.StringPtrInput
 	// Password for this item.
 	Password pulumi.StringPtrInput
-	// Password for this item.
+	// The recipe used to generate a new value for a password.
 	PasswordRecipe ItemPasswordRecipePtrInput
 	// (Only applies to the database category) The port the database is listening on.
 	Port pulumi.StringPtrInput
@@ -211,7 +209,7 @@ type ItemState struct {
 	Tags pulumi.StringArrayInput
 	// The title of the item.
 	Title pulumi.StringPtrInput
-	// The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+	// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
 	Type pulumi.StringPtrInput
 	// The primary URL for the item.
 	Url pulumi.StringPtrInput
@@ -228,7 +226,7 @@ func (ItemState) ElementType() reflect.Type {
 }
 
 type itemArgs struct {
-	// The category of the item. One of ["login" "password" "database"]
+	// The category of the item. One of ["login" "password" "database" "secureNote"]
 	Category *string `pulumi:"category"`
 	// (Only applies to the database category) The name of the database.
 	Database *string `pulumi:"database"`
@@ -236,7 +234,7 @@ type itemArgs struct {
 	Hostname *string `pulumi:"hostname"`
 	// Password for this item.
 	Password *string `pulumi:"password"`
-	// Password for this item.
+	// The recipe used to generate a new value for a password.
 	PasswordRecipe *ItemPasswordRecipe `pulumi:"passwordRecipe"`
 	// (Only applies to the database category) The port the database is listening on.
 	Port *string `pulumi:"port"`
@@ -246,7 +244,7 @@ type itemArgs struct {
 	Tags []string `pulumi:"tags"`
 	// The title of the item.
 	Title *string `pulumi:"title"`
-	// The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+	// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
 	Type *string `pulumi:"type"`
 	// The primary URL for the item.
 	Url *string `pulumi:"url"`
@@ -258,7 +256,7 @@ type itemArgs struct {
 
 // The set of arguments for constructing a Item resource.
 type ItemArgs struct {
-	// The category of the item. One of ["login" "password" "database"]
+	// The category of the item. One of ["login" "password" "database" "secureNote"]
 	Category pulumi.StringPtrInput
 	// (Only applies to the database category) The name of the database.
 	Database pulumi.StringPtrInput
@@ -266,7 +264,7 @@ type ItemArgs struct {
 	Hostname pulumi.StringPtrInput
 	// Password for this item.
 	Password pulumi.StringPtrInput
-	// Password for this item.
+	// The recipe used to generate a new value for a password.
 	PasswordRecipe ItemPasswordRecipePtrInput
 	// (Only applies to the database category) The port the database is listening on.
 	Port pulumi.StringPtrInput
@@ -276,7 +274,7 @@ type ItemArgs struct {
 	Tags pulumi.StringArrayInput
 	// The title of the item.
 	Title pulumi.StringPtrInput
-	// The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+	// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
 	Type pulumi.StringPtrInput
 	// The primary URL for the item.
 	Url pulumi.StringPtrInput
@@ -373,7 +371,7 @@ func (o ItemOutput) ToItemOutputWithContext(ctx context.Context) ItemOutput {
 	return o
 }
 
-// The category of the item. One of ["login" "password" "database"]
+// The category of the item. One of ["login" "password" "database" "secureNote"]
 func (o ItemOutput) Category() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Item) pulumi.StringPtrOutput { return v.Category }).(pulumi.StringPtrOutput)
 }
@@ -393,7 +391,7 @@ func (o ItemOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v *Item) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
 }
 
-// Password for this item.
+// The recipe used to generate a new value for a password.
 func (o ItemOutput) PasswordRecipe() ItemPasswordRecipePtrOutput {
 	return o.ApplyT(func(v *Item) ItemPasswordRecipePtrOutput { return v.PasswordRecipe }).(ItemPasswordRecipePtrOutput)
 }
@@ -418,7 +416,7 @@ func (o ItemOutput) Title() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Item) pulumi.StringPtrOutput { return v.Title }).(pulumi.StringPtrOutput)
 }
 
-// The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
 func (o ItemOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Item) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
 }

@@ -16,7 +16,6 @@ namespace Pulumi.Onepassword
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -27,13 +26,12 @@ namespace Pulumi.Onepassword
         /// {
         ///     var example = Onepassword.GetItem.Invoke(new()
         ///     {
-        ///         Vault = @var.Demo_vault,
+        ///         Vault = data.Onepassword_vault.Example.Uuid,
         ///         Uuid = onepassword_item.Demo_sections.Uuid,
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetItemResult> InvokeAsync(GetItemArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetItemResult>("onepassword:index/getItem:getItem", args ?? new GetItemArgs(), options.WithDefaults());
@@ -43,7 +41,6 @@ namespace Pulumi.Onepassword
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -54,13 +51,12 @@ namespace Pulumi.Onepassword
         /// {
         ///     var example = Onepassword.GetItem.Invoke(new()
         ///     {
-        ///         Vault = @var.Demo_vault,
+        ///         Vault = data.Onepassword_vault.Example.Uuid,
         ///         Uuid = onepassword_item.Demo_sections.Uuid,
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetItemResult> Invoke(GetItemInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetItemResult>("onepassword:index/getItem:getItem", args ?? new GetItemInvokeArgs(), options.WithDefaults());
@@ -152,7 +148,7 @@ namespace Pulumi.Onepassword
     public sealed class GetItemResult
     {
         /// <summary>
-        /// The category of the item. One of ["login" "password" "database"]
+        /// The category of the item. One of ["login" "password" "database" "secure_note"]
         /// </summary>
         public readonly string Category;
         /// <summary>

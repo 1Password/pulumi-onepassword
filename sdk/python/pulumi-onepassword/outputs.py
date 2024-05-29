@@ -145,9 +145,9 @@ class ItemSectionField(dict):
         """
         :param str label: The label for the field.
         :param str id: A unique identifier for the field.
-        :param 'ItemSectionFieldPasswordRecipeArgs' password_recipe: Password for this item.
+        :param 'ItemSectionFieldPasswordRecipeArgs' password_recipe: The recipe used to generate a new value for a password.
         :param str purpose: Purpose indicates this is a special field: a username, password, or notes field. One of ["USERNAME" "PASSWORD" "NOTES"]
-        :param str type: The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+        :param str type: The type of value stored in the field. One of ["STRING" "CONCEALED" "EMAIL" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
         :param str value: The value of the field.
         """
         pulumi.set(__self__, "label", label)
@@ -182,7 +182,7 @@ class ItemSectionField(dict):
     @pulumi.getter(name="passwordRecipe")
     def password_recipe(self) -> Optional['outputs.ItemSectionFieldPasswordRecipe']:
         """
-        Password for this item.
+        The recipe used to generate a new value for a password.
         """
         return pulumi.get(self, "password_recipe")
 
@@ -198,7 +198,7 @@ class ItemSectionField(dict):
     @pulumi.getter
     def type(self) -> Optional[str]:
         """
-        The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+        The type of value stored in the field. One of ["STRING" "CONCEALED" "EMAIL" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
         """
         return pulumi.get(self, "type")
 
@@ -317,8 +317,8 @@ class GetItemSectionFieldResult(dict):
         """
         :param str id: A unique identifier for the field.
         :param str label: The label for the field.
-        :param str purpose: Purpose indicates this is a special field: a username, password, or notes field. One of ["USERNAME" "PASSWORD" "NOTES"]
-        :param str type: The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+        :param str purpose: Purpose indicates this is a special field: a username, password, or notes field.
+        :param str type: The type of value stored in the field.
         :param str value: The value of the field.
         """
         pulumi.set(__self__, "id", id)
@@ -347,7 +347,7 @@ class GetItemSectionFieldResult(dict):
     @pulumi.getter
     def purpose(self) -> str:
         """
-        Purpose indicates this is a special field: a username, password, or notes field. One of ["USERNAME" "PASSWORD" "NOTES"]
+        Purpose indicates this is a special field: a username, password, or notes field.
         """
         return pulumi.get(self, "purpose")
 
@@ -355,7 +355,7 @@ class GetItemSectionFieldResult(dict):
     @pulumi.getter
     def type(self) -> str:
         """
-        The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+        The type of value stored in the field.
         """
         return pulumi.get(self, "type")
 

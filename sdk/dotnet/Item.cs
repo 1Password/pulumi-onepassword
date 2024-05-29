@@ -10,11 +10,10 @@ using Pulumi.Serialization;
 namespace Pulumi.Onepassword
 {
     /// <summary>
-    /// A 1Password item.
+    /// A 1Password Item.
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -73,7 +72,6 @@ namespace Pulumi.Onepassword
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
@@ -87,7 +85,7 @@ namespace Pulumi.Onepassword
     public partial class Item : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The category of the item. One of ["login" "password" "database"]
+        /// The category of the item. One of ["login" "password" "database" "secure_note"]
         /// </summary>
         [Output("category")]
         public Output<string?> Category { get; private set; } = null!;
@@ -111,7 +109,7 @@ namespace Pulumi.Onepassword
         public Output<string> Password { get; private set; } = null!;
 
         /// <summary>
-        /// Password for this item.
+        /// The recipe used to generate a new value for a password.
         /// </summary>
         [Output("passwordRecipe")]
         public Output<Outputs.ItemPasswordRecipe?> PasswordRecipe { get; private set; } = null!;
@@ -141,7 +139,7 @@ namespace Pulumi.Onepassword
         public Output<string?> Title { get; private set; } = null!;
 
         /// <summary>
-        /// The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+        /// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
         /// </summary>
         [Output("type")]
         public Output<string?> Type { get; private set; } = null!;
@@ -222,7 +220,7 @@ namespace Pulumi.Onepassword
     public sealed class ItemArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The category of the item. One of ["login" "password" "database"]
+        /// The category of the item. One of ["login" "password" "database" "secure_note"]
         /// </summary>
         [Input("category")]
         public Input<string>? Category { get; set; }
@@ -256,7 +254,7 @@ namespace Pulumi.Onepassword
         }
 
         /// <summary>
-        /// Password for this item.
+        /// The recipe used to generate a new value for a password.
         /// </summary>
         [Input("passwordRecipe")]
         public Input<Inputs.ItemPasswordRecipeArgs>? PasswordRecipe { get; set; }
@@ -298,7 +296,7 @@ namespace Pulumi.Onepassword
         public Input<string>? Title { get; set; }
 
         /// <summary>
-        /// The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+        /// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -330,7 +328,7 @@ namespace Pulumi.Onepassword
     public sealed class ItemState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The category of the item. One of ["login" "password" "database"]
+        /// The category of the item. One of ["login" "password" "database" "secure_note"]
         /// </summary>
         [Input("category")]
         public Input<string>? Category { get; set; }
@@ -364,7 +362,7 @@ namespace Pulumi.Onepassword
         }
 
         /// <summary>
-        /// Password for this item.
+        /// The recipe used to generate a new value for a password.
         /// </summary>
         [Input("passwordRecipe")]
         public Input<Inputs.ItemPasswordRecipeGetArgs>? PasswordRecipe { get; set; }
@@ -406,7 +404,7 @@ namespace Pulumi.Onepassword
         public Input<string>? Title { get; set; }
 
         /// <summary>
-        /// The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+        /// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

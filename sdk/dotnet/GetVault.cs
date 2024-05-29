@@ -13,12 +13,48 @@ namespace Pulumi.Onepassword
     {
         /// <summary>
         /// Use this data source to get details of a vault by either its name or uuid.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Onepassword = Pulumi.Onepassword;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Onepassword.GetVault.Invoke(new()
+        ///     {
+        ///         Name = @var.Demo_vault,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetVaultResult> InvokeAsync(GetVaultArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetVaultResult>("onepassword:index/getVault:getVault", args ?? new GetVaultArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to get details of a vault by either its name or uuid.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Onepassword = Pulumi.Onepassword;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Onepassword.GetVault.Invoke(new()
+        ///     {
+        ///         Name = @var.Demo_vault,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetVaultResult> Invoke(GetVaultInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetVaultResult>("onepassword:index/getVault:getVault", args ?? new GetVaultInvokeArgs(), options.WithDefaults());
