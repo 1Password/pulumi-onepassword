@@ -3,6 +3,7 @@
         "resources": {
             "onepassword_item": {
                 "current": "onepassword:index/item:Item",
+                "majorVersion": 1,
                 "fields": {
                     "password_recipe": {
                         "maxItemsOne": true
@@ -33,6 +34,7 @@
         "datasources": {
             "onepassword_item": {
                 "current": "onepassword:index/getItem:getItem",
+                "majorVersion": 1,
                 "fields": {
                     "section": {
                         "maxItemsOne": false,
@@ -50,7 +52,8 @@
                 }
             },
             "onepassword_vault": {
-                "current": "onepassword:index/getVault:getVault"
+                "current": "onepassword:index/getVault:getVault",
+                "majorVersion": 1
             }
         }
     },
