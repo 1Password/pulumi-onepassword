@@ -17,7 +17,7 @@ def readme():
         return "onepassword Pulumi Package - Development Version"
 
 
-setup(name='pulumi-onepassword',
+setup(name='pulumi_onepassword',
       python_requires='>=3.8',
       version=VERSION,
       description="Use the 1Password Pulumi provider to access and manage items in your 1Password vaults.",
@@ -31,7 +31,7 @@ setup(name='pulumi-onepassword',
       license='Apache-2.0',
       packages=find_packages(),
       package_data={
-          'pulumi-onepassword': [
+          'pulumi_onepassword': [
               'py.typed',
               'pulumi-plugin.json',
           ]
