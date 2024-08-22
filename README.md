@@ -25,7 +25,7 @@ yarn add @1password/pulumi-onepassword
 To use from Python, install using `pip`:
 
 ```bash
-pip install pulumi-onepassword
+pip install pulumi_onepassword
 ```
 
 ### Go
