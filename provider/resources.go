@@ -21,16 +21,14 @@ import (
 	// Allow embedding bridge-metadata.json in the provider.
 	_ "embed"
 
+	pf "github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
-	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 
-	// Replace this provider with the provider you are bridging.
-	onepassword "github.com/1Password/terraform-provider-onepassword/onepassword"
-
 	"github.com/1Password/pulumi-onepassword/provider/pkg/version"
+	op "github.com/1Password/pulumi-onepassword/provider/shim"
 )
 
 // all of the token components used below.
@@ -58,7 +56,7 @@ func Provider() tfbridge.ProviderInfo {
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
 		// Instantiate the Terraform provider
-		P:    shimv2.NewProvider(onepassword.Provider()),
+		P:    pf.ShimProvider(op.NewProvider()),
 		Name: "onepassword",
 		// DisplayName is a way to be able to change the casing of the provider
 		// name when being displayed on the Pulumi registry
