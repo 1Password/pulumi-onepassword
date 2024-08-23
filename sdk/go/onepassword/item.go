@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// A 1Password Item.
+// A 1Password item.
 //
 // ## Example Usage
 //
@@ -90,7 +90,7 @@ import (
 type Item struct {
 	pulumi.CustomResourceState
 
-	// The category of the item. One of ["login" "password" "database" "secureNote"]
+	// The category of the item. One of ["login" "password" "database"]
 	Category pulumi.StringPtrOutput `pulumi:"category"`
 	// (Only applies to the database category) The name of the database.
 	Database pulumi.StringPtrOutput `pulumi:"database"`
@@ -98,7 +98,7 @@ type Item struct {
 	Hostname pulumi.StringPtrOutput `pulumi:"hostname"`
 	// Password for this item.
 	Password pulumi.StringOutput `pulumi:"password"`
-	// The recipe used to generate a new value for a password.
+	// Password for this item.
 	PasswordRecipe ItemPasswordRecipePtrOutput `pulumi:"passwordRecipe"`
 	// (Only applies to the database category) The port the database is listening on.
 	Port pulumi.StringPtrOutput `pulumi:"port"`
@@ -160,7 +160,7 @@ func GetItem(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Item resources.
 type itemState struct {
-	// The category of the item. One of ["login" "password" "database" "secureNote"]
+	// The category of the item. One of ["login" "password" "database"]
 	Category *string `pulumi:"category"`
 	// (Only applies to the database category) The name of the database.
 	Database *string `pulumi:"database"`
@@ -168,7 +168,7 @@ type itemState struct {
 	Hostname *string `pulumi:"hostname"`
 	// Password for this item.
 	Password *string `pulumi:"password"`
-	// The recipe used to generate a new value for a password.
+	// Password for this item.
 	PasswordRecipe *ItemPasswordRecipe `pulumi:"passwordRecipe"`
 	// (Only applies to the database category) The port the database is listening on.
 	Port *string `pulumi:"port"`
@@ -191,7 +191,7 @@ type itemState struct {
 }
 
 type ItemState struct {
-	// The category of the item. One of ["login" "password" "database" "secureNote"]
+	// The category of the item. One of ["login" "password" "database"]
 	Category pulumi.StringPtrInput
 	// (Only applies to the database category) The name of the database.
 	Database pulumi.StringPtrInput
@@ -199,7 +199,7 @@ type ItemState struct {
 	Hostname pulumi.StringPtrInput
 	// Password for this item.
 	Password pulumi.StringPtrInput
-	// The recipe used to generate a new value for a password.
+	// Password for this item.
 	PasswordRecipe ItemPasswordRecipePtrInput
 	// (Only applies to the database category) The port the database is listening on.
 	Port pulumi.StringPtrInput
@@ -226,7 +226,7 @@ func (ItemState) ElementType() reflect.Type {
 }
 
 type itemArgs struct {
-	// The category of the item. One of ["login" "password" "database" "secureNote"]
+	// The category of the item. One of ["login" "password" "database"]
 	Category *string `pulumi:"category"`
 	// (Only applies to the database category) The name of the database.
 	Database *string `pulumi:"database"`
@@ -234,7 +234,7 @@ type itemArgs struct {
 	Hostname *string `pulumi:"hostname"`
 	// Password for this item.
 	Password *string `pulumi:"password"`
-	// The recipe used to generate a new value for a password.
+	// Password for this item.
 	PasswordRecipe *ItemPasswordRecipe `pulumi:"passwordRecipe"`
 	// (Only applies to the database category) The port the database is listening on.
 	Port *string `pulumi:"port"`
@@ -256,7 +256,7 @@ type itemArgs struct {
 
 // The set of arguments for constructing a Item resource.
 type ItemArgs struct {
-	// The category of the item. One of ["login" "password" "database" "secureNote"]
+	// The category of the item. One of ["login" "password" "database"]
 	Category pulumi.StringPtrInput
 	// (Only applies to the database category) The name of the database.
 	Database pulumi.StringPtrInput
@@ -264,7 +264,7 @@ type ItemArgs struct {
 	Hostname pulumi.StringPtrInput
 	// Password for this item.
 	Password pulumi.StringPtrInput
-	// The recipe used to generate a new value for a password.
+	// Password for this item.
 	PasswordRecipe ItemPasswordRecipePtrInput
 	// (Only applies to the database category) The port the database is listening on.
 	Port pulumi.StringPtrInput
@@ -371,7 +371,7 @@ func (o ItemOutput) ToItemOutputWithContext(ctx context.Context) ItemOutput {
 	return o
 }
 
-// The category of the item. One of ["login" "password" "database" "secureNote"]
+// The category of the item. One of ["login" "password" "database"]
 func (o ItemOutput) Category() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Item) pulumi.StringPtrOutput { return v.Category }).(pulumi.StringPtrOutput)
 }
@@ -391,7 +391,7 @@ func (o ItemOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v *Item) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
 }
 
-// The recipe used to generate a new value for a password.
+// Password for this item.
 func (o ItemOutput) PasswordRecipe() ItemPasswordRecipePtrOutput {
 	return o.ApplyT(func(v *Item) ItemPasswordRecipePtrOutput { return v.PasswordRecipe }).(ItemPasswordRecipePtrOutput)
 }

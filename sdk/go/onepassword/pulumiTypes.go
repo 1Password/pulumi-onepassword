@@ -327,11 +327,11 @@ type ItemSectionField struct {
 	Id *string `pulumi:"id"`
 	// The label for the field.
 	Label string `pulumi:"label"`
-	// The recipe used to generate a new value for a password.
+	// Password for this item.
 	PasswordRecipe *ItemSectionFieldPasswordRecipe `pulumi:"passwordRecipe"`
 	// Purpose indicates this is a special field: a username, password, or notes field. One of ["USERNAME" "PASSWORD" "NOTES"]
 	Purpose *string `pulumi:"purpose"`
-	// The type of value stored in the field. One of ["STRING" "CONCEALED" "EMAIL" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+	// The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
 	Type *string `pulumi:"type"`
 	// The value of the field.
 	Value *string `pulumi:"value"`
@@ -353,11 +353,11 @@ type ItemSectionFieldArgs struct {
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// The label for the field.
 	Label pulumi.StringInput `pulumi:"label"`
-	// The recipe used to generate a new value for a password.
+	// Password for this item.
 	PasswordRecipe ItemSectionFieldPasswordRecipePtrInput `pulumi:"passwordRecipe"`
 	// Purpose indicates this is a special field: a username, password, or notes field. One of ["USERNAME" "PASSWORD" "NOTES"]
 	Purpose pulumi.StringPtrInput `pulumi:"purpose"`
-	// The type of value stored in the field. One of ["STRING" "CONCEALED" "EMAIL" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+	// The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
 	Type pulumi.StringPtrInput `pulumi:"type"`
 	// The value of the field.
 	Value pulumi.StringPtrInput `pulumi:"value"`
@@ -424,7 +424,7 @@ func (o ItemSectionFieldOutput) Label() pulumi.StringOutput {
 	return o.ApplyT(func(v ItemSectionField) string { return v.Label }).(pulumi.StringOutput)
 }
 
-// The recipe used to generate a new value for a password.
+// Password for this item.
 func (o ItemSectionFieldOutput) PasswordRecipe() ItemSectionFieldPasswordRecipePtrOutput {
 	return o.ApplyT(func(v ItemSectionField) *ItemSectionFieldPasswordRecipe { return v.PasswordRecipe }).(ItemSectionFieldPasswordRecipePtrOutput)
 }
@@ -434,7 +434,7 @@ func (o ItemSectionFieldOutput) Purpose() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ItemSectionField) *string { return v.Purpose }).(pulumi.StringPtrOutput)
 }
 
-// The type of value stored in the field. One of ["STRING" "CONCEALED" "EMAIL" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+// The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
 func (o ItemSectionFieldOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ItemSectionField) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
@@ -778,9 +778,9 @@ type GetItemSectionField struct {
 	Id string `pulumi:"id"`
 	// The label for the field.
 	Label string `pulumi:"label"`
-	// Purpose indicates this is a special field: a username, password, or notes field.
+	// Purpose indicates this is a special field: a username, password, or notes field. One of ["USERNAME" "PASSWORD" "NOTES"]
 	Purpose string `pulumi:"purpose"`
-	// The type of value stored in the field.
+	// The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
 	Type string `pulumi:"type"`
 	// The value of the field.
 	Value string `pulumi:"value"`
@@ -802,9 +802,9 @@ type GetItemSectionFieldArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// The label for the field.
 	Label pulumi.StringInput `pulumi:"label"`
-	// Purpose indicates this is a special field: a username, password, or notes field.
+	// Purpose indicates this is a special field: a username, password, or notes field. One of ["USERNAME" "PASSWORD" "NOTES"]
 	Purpose pulumi.StringInput `pulumi:"purpose"`
-	// The type of value stored in the field.
+	// The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
 	Type pulumi.StringInput `pulumi:"type"`
 	// The value of the field.
 	Value pulumi.StringInput `pulumi:"value"`
@@ -871,12 +871,12 @@ func (o GetItemSectionFieldOutput) Label() pulumi.StringOutput {
 	return o.ApplyT(func(v GetItemSectionField) string { return v.Label }).(pulumi.StringOutput)
 }
 
-// Purpose indicates this is a special field: a username, password, or notes field.
+// Purpose indicates this is a special field: a username, password, or notes field. One of ["USERNAME" "PASSWORD" "NOTES"]
 func (o GetItemSectionFieldOutput) Purpose() pulumi.StringOutput {
 	return o.ApplyT(func(v GetItemSectionField) string { return v.Purpose }).(pulumi.StringOutput)
 }
 
-// The type of value stored in the field.
+// The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
 func (o GetItemSectionFieldOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetItemSectionField) string { return v.Type }).(pulumi.StringOutput)
 }

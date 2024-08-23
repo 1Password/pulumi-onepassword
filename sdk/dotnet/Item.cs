@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Onepassword
 {
     /// <summary>
-    /// A 1Password Item.
+    /// A 1Password item.
     /// 
     /// ## Example Usage
     /// 
@@ -85,7 +85,7 @@ namespace Pulumi.Onepassword
     public partial class Item : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The category of the item. One of ["login" "password" "database" "secure_note"]
+        /// The category of the item. One of ["login" "password" "database"]
         /// </summary>
         [Output("category")]
         public Output<string?> Category { get; private set; } = null!;
@@ -109,7 +109,7 @@ namespace Pulumi.Onepassword
         public Output<string> Password { get; private set; } = null!;
 
         /// <summary>
-        /// The recipe used to generate a new value for a password.
+        /// Password for this item.
         /// </summary>
         [Output("passwordRecipe")]
         public Output<Outputs.ItemPasswordRecipe?> PasswordRecipe { get; private set; } = null!;
@@ -220,7 +220,7 @@ namespace Pulumi.Onepassword
     public sealed class ItemArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The category of the item. One of ["login" "password" "database" "secure_note"]
+        /// The category of the item. One of ["login" "password" "database"]
         /// </summary>
         [Input("category")]
         public Input<string>? Category { get; set; }
@@ -254,7 +254,7 @@ namespace Pulumi.Onepassword
         }
 
         /// <summary>
-        /// The recipe used to generate a new value for a password.
+        /// Password for this item.
         /// </summary>
         [Input("passwordRecipe")]
         public Input<Inputs.ItemPasswordRecipeArgs>? PasswordRecipe { get; set; }
@@ -328,7 +328,7 @@ namespace Pulumi.Onepassword
     public sealed class ItemState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The category of the item. One of ["login" "password" "database" "secure_note"]
+        /// The category of the item. One of ["login" "password" "database"]
         /// </summary>
         [Input("category")]
         public Input<string>? Category { get; set; }
@@ -362,7 +362,7 @@ namespace Pulumi.Onepassword
         }
 
         /// <summary>
-        /// The recipe used to generate a new value for a password.
+        /// Password for this item.
         /// </summary>
         [Input("passwordRecipe")]
         public Input<Inputs.ItemPasswordRecipeGetArgs>? PasswordRecipe { get; set; }

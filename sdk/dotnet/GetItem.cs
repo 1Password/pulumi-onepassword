@@ -26,7 +26,7 @@ namespace Pulumi.Onepassword
         /// {
         ///     var example = Onepassword.GetItem.Invoke(new()
         ///     {
-        ///         Vault = data.Onepassword_vault.Example.Uuid,
+        ///         Vault = @var.Demo_vault,
         ///         Uuid = onepassword_item.Demo_sections.Uuid,
         ///     });
         /// 
@@ -51,7 +51,7 @@ namespace Pulumi.Onepassword
         /// {
         ///     var example = Onepassword.GetItem.Invoke(new()
         ///     {
-        ///         Vault = data.Onepassword_vault.Example.Uuid,
+        ///         Vault = @var.Demo_vault,
         ///         Uuid = onepassword_item.Demo_sections.Uuid,
         ///     });
         /// 
@@ -148,7 +148,7 @@ namespace Pulumi.Onepassword
     public sealed class GetItemResult
     {
         /// <summary>
-        /// The category of the item. One of ["login" "password" "database" "secure_note"]
+        /// The category of the item. One of ["login" "password" "database"]
         /// </summary>
         public readonly string Category;
         /// <summary>

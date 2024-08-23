@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * A 1Password Item.
+ * A 1Password item.
  *
  * ## Example Usage
  *
@@ -87,7 +87,7 @@ export class Item extends pulumi.CustomResource {
     }
 
     /**
-     * The category of the item. One of ["login" "password" "database" "secureNote"]
+     * The category of the item. One of ["login" "password" "database"]
      */
     public readonly category!: pulumi.Output<string | undefined>;
     /**
@@ -103,7 +103,7 @@ export class Item extends pulumi.CustomResource {
      */
     public readonly password!: pulumi.Output<string>;
     /**
-     * The recipe used to generate a new value for a password.
+     * Password for this item.
      */
     public readonly passwordRecipe!: pulumi.Output<outputs.ItemPasswordRecipe | undefined>;
     /**
@@ -202,7 +202,7 @@ export class Item extends pulumi.CustomResource {
  */
 export interface ItemState {
     /**
-     * The category of the item. One of ["login" "password" "database" "secureNote"]
+     * The category of the item. One of ["login" "password" "database"]
      */
     category?: pulumi.Input<string>;
     /**
@@ -218,7 +218,7 @@ export interface ItemState {
      */
     password?: pulumi.Input<string>;
     /**
-     * The recipe used to generate a new value for a password.
+     * Password for this item.
      */
     passwordRecipe?: pulumi.Input<inputs.ItemPasswordRecipe>;
     /**
@@ -264,7 +264,7 @@ export interface ItemState {
  */
 export interface ItemArgs {
     /**
-     * The category of the item. One of ["login" "password" "database" "secureNote"]
+     * The category of the item. One of ["login" "password" "database"]
      */
     category?: pulumi.Input<string>;
     /**
@@ -280,7 +280,7 @@ export interface ItemArgs {
      */
     password?: pulumi.Input<string>;
     /**
-     * The recipe used to generate a new value for a password.
+     * Password for this item.
      */
     passwordRecipe?: pulumi.Input<inputs.ItemPasswordRecipe>;
     /**

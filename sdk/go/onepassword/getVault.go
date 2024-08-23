@@ -12,32 +12,6 @@ import (
 )
 
 // Use this data source to get details of a vault by either its name or uuid.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/1Password/pulumi-onepassword/sdk/go/onepassword"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := onepassword.GetVault(ctx, &onepassword.GetVaultArgs{
-//				Name: pulumi.StringRef(_var.Demo_vault),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func GetVault(ctx *pulumi.Context, args *GetVaultArgs, opts ...pulumi.InvokeOption) (*GetVaultResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetVaultResult

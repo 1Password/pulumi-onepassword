@@ -6,17 +6,6 @@ import * as utilities from "./utilities";
 
 /**
  * Use this data source to get details of a vault by either its name or uuid.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as onepassword from "@1password/pulumi-onepassword";
- *
- * const example = onepassword.getVault({
- *     name: _var.demo_vault,
- * });
- * ```
  */
 export function getVault(args?: GetVaultArgs, opts?: pulumi.InvokeOptions): Promise<GetVaultResult> {
     args = args || {};
@@ -62,17 +51,6 @@ export interface GetVaultResult {
 }
 /**
  * Use this data source to get details of a vault by either its name or uuid.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as onepassword from "@1password/pulumi-onepassword";
- *
- * const example = onepassword.getVault({
- *     name: _var.demo_vault,
- * });
- * ```
  */
 export function getVaultOutput(args?: GetVaultOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVaultResult> {
     return pulumi.output(args).apply((a: any) => getVault(a, opts))

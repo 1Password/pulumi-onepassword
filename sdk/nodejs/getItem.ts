@@ -13,10 +13,10 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as onepassword from "@1password/pulumi-onepassword";
+ * import * as onepassword from "@pulumi/onepassword";
  *
  * const example = onepassword.getItem({
- *     vault: data.onepassword_vault.example.uuid,
+ *     vault: _var.demo_vault,
  *     uuid: onepassword_item.demo_sections.uuid,
  * });
  * ```
@@ -59,7 +59,7 @@ export interface GetItemArgs {
  */
 export interface GetItemResult {
     /**
-     * The category of the item. One of ["login" "password" "database" "secureNote"]
+     * The category of the item. One of ["login" "password" "database"]
      */
     readonly category: string;
     /**
@@ -123,10 +123,10 @@ export interface GetItemResult {
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as onepassword from "@1password/pulumi-onepassword";
+ * import * as onepassword from "@pulumi/onepassword";
  *
  * const example = onepassword.getItem({
- *     vault: data.onepassword_vault.example.uuid,
+ *     vault: _var.demo_vault,
  *     uuid: onepassword_item.demo_sections.uuid,
  * });
  * ```

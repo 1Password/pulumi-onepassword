@@ -25,7 +25,7 @@ namespace Pulumi.Onepassword.Inputs
         public Input<string> Label { get; set; } = null!;
 
         /// <summary>
-        /// The recipe used to generate a new value for a password.
+        /// Password for this item.
         /// </summary>
         [Input("passwordRecipe")]
         public Input<Inputs.ItemSectionFieldPasswordRecipeGetArgs>? PasswordRecipe { get; set; }
@@ -37,7 +37,7 @@ namespace Pulumi.Onepassword.Inputs
         public Input<string>? Purpose { get; set; }
 
         /// <summary>
-        /// The type of value stored in the field. One of ["STRING" "CONCEALED" "EMAIL" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+        /// The type of value stored in the field. One of ["STRING" "EMAIL" "CONCEALED" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

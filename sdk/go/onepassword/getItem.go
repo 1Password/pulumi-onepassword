@@ -28,7 +28,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := onepassword.LookupItem(ctx, &onepassword.LookupItemArgs{
-//				Vault: data.Onepassword_vault.Example.Uuid,
+//				Vault: _var.Demo_vault,
 //				Uuid:  pulumi.StringRef(onepassword_item.Demo_sections.Uuid),
 //			}, nil)
 //			if err != nil {
@@ -63,7 +63,7 @@ type LookupItemArgs struct {
 
 // A collection of values returned by getItem.
 type LookupItemResult struct {
-	// The category of the item. One of ["login" "password" "database" "secureNote"]
+	// The category of the item. One of ["login" "password" "database"]
 	Category string `pulumi:"category"`
 	// (Only applies to the database category) The name of the database.
 	Database string `pulumi:"database"`
@@ -138,7 +138,7 @@ func (o LookupItemResultOutput) ToLookupItemResultOutputWithContext(ctx context.
 	return o
 }
 
-// The category of the item. One of ["login" "password" "database" "secureNote"]
+// The category of the item. One of ["login" "password" "database"]
 func (o LookupItemResultOutput) Category() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupItemResult) string { return v.Category }).(pulumi.StringOutput)
 }
