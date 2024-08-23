@@ -57,7 +57,7 @@ func Provider() tfbridge.ProviderInfo {
 	prov := tfbridge.ProviderInfo{
 		// Instantiate the Terraform provider
 		P:    pf.ShimProvider(op.NewProvider()),
-		Name: "onepassword",
+		Name: "onepassword/v2",
 		// DisplayName is a way to be able to change the casing of the provider
 		// name when being displayed on the Pulumi registry
 		DisplayName: "",

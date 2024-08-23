@@ -16,11 +16,10 @@ package main
 
 import (
 	onepassword "github.com/1Password/pulumi-onepassword/provider"
-	"github.com/1Password/pulumi-onepassword/provider/pkg/version"
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
+	"github.com/pulumi/pulumi-terraform-bridge/pf/tfgen"
 )
 
 func main() {
 	// Modify the path to point to the new provider
-	tfgen.Main("onepassword", version.Version, onepassword.Provider())
+	tfgen.Main("onepassword", onepassword.Provider())
 }
