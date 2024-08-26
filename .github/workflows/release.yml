@@ -61,37 +61,37 @@ jobs:
     needs: publish_binary
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Unshallow clone for tags
         run: git fetch --prune --unshallow --tags
 
       - name: Install Go
-        uses: actions/setup-go@v3
+        uses: actions/setup-go@v5
         with:
           go-version: ${{ matrix.goversion }}
 
       - name: Install pulumictl
-        uses: jaxxstorm/action-install-gh-release@v1.10.0
+        uses: jaxxstorm/action-install-gh-release@v1
         with:
           repo: pulumi/pulumictl
 
       - name: Install pulumi
-        uses: pulumi/actions@v4
+        uses: pulumi/actions@v5
 
       - name: Setup Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.nodeversion }}
           registry-url: ${{ env.NPM_REGISTRY_URL }}
 
       - name: Setup DotNet
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ matrix.dotnetverson }}
 
       - name: Setup Python
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.pythonversion }}
 
@@ -125,7 +125,7 @@ jobs:
 
       - if: ${{ matrix.language == 'nodejs' && env.PUBLISH_NPM == 'true' }}
         name: Publish to NPM
-        uses: JS-DevTools/npm-publish@v1
+        uses: JS-DevTools/npm-publish@v3
         with:
           access: "public"
           token: ${{ env.NPM_TOKEN }}
