@@ -9,7 +9,7 @@
     ],
     "homepage": "https://www.pulumi.com",
     "license": "Apache-2.0",
-    "attribution": "This Pulumi package is based on the [`onepassword/v2` Terraform Provider](https://github.com/1Password/terraform-provider-onepassword).",
+    "attribution": "This Pulumi package is based on the [`onepassword` Terraform Provider](https://github.com/1Password/terraform-provider-onepassword).",
     "repository": "https://github.com/1Password/pulumi-onepassword",
     "pluginDownloadURL": "github://api.github.com/1Password/pulumi-onepassword",
     "publisher": "Pulumi",
@@ -383,7 +383,7 @@
         }
     },
     "provider": {
-        "description": "The provider type for the onepassword/v2 package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
+        "description": "The provider type for the onepassword package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
         "properties": {
             "account": {
                 "type": "string",
@@ -460,6 +460,7 @@
     },
     "resources": {
         "onepassword:index/item:Item": {
+            "description": "A 1Password Item.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as onepassword from \"@1password/pulumi-onepassword\";\n\nconst example = new onepassword.Item(\"example\", {\n    category: \"login\",\n    passwordRecipe: {\n        length: 40,\n        symbols: false,\n    },\n    sections: [{\n        fields: [{\n            label: \"Example field\",\n            type: \"DATE\",\n            value: \"2024-01-31\",\n        }],\n        label: \"Example section\",\n    }],\n    title: \"Example Item Title\",\n    vault: \"your-vault-id\",\n});\n```\n```python\nimport pulumi\nimport pulumi_onepassword as onepassword\n\nexample = onepassword.Item(\"example\",\n    category=\"login\",\n    password_recipe={\n        \"length\": 40,\n        \"symbols\": False,\n    },\n    sections=[{\n        \"fields\": [{\n            \"label\": \"Example field\",\n            \"type\": \"DATE\",\n            \"value\": \"2024-01-31\",\n        }],\n        \"label\": \"Example section\",\n    }],\n    title=\"Example Item Title\",\n    vault=\"your-vault-id\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Onepassword = Pulumi.Onepassword;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Onepassword.Item(\"example\", new()\n    {\n        Category = \"login\",\n        PasswordRecipe = new Onepassword.Inputs.ItemPasswordRecipeArgs\n        {\n            Length = 40,\n            Symbols = false,\n        },\n        Sections = new[]\n        {\n            new Onepassword.Inputs.ItemSectionArgs\n            {\n                Fields = new[]\n                {\n                    new Onepassword.Inputs.ItemSectionFieldArgs\n                    {\n                        Label = \"Example field\",\n                        Type = \"DATE\",\n                        Value = \"2024-01-31\",\n                    },\n                },\n                Label = \"Example section\",\n            },\n        },\n        Title = \"Example Item Title\",\n        Vault = \"your-vault-id\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/1Password/pulumi-onepassword/sdk/go/onepassword\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := onepassword.NewItem(ctx, \"example\", \u0026onepassword.ItemArgs{\n\t\t\tCategory: pulumi.String(\"login\"),\n\t\t\tPasswordRecipe: \u0026onepassword.ItemPasswordRecipeArgs{\n\t\t\t\tLength:  pulumi.Int(40),\n\t\t\t\tSymbols: pulumi.Bool(false),\n\t\t\t},\n\t\t\tSections: onepassword.ItemSectionArray{\n\t\t\t\t\u0026onepassword.ItemSectionArgs{\n\t\t\t\t\tFields: onepassword.ItemSectionFieldArray{\n\t\t\t\t\t\t\u0026onepassword.ItemSectionFieldArgs{\n\t\t\t\t\t\t\tLabel: pulumi.String(\"Example field\"),\n\t\t\t\t\t\t\tType:  pulumi.String(\"DATE\"),\n\t\t\t\t\t\t\tValue: pulumi.String(\"2024-01-31\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\tLabel: pulumi.String(\"Example section\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tTitle: pulumi.String(\"Example Item Title\"),\n\t\t\tVault: pulumi.String(\"your-vault-id\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.onepassword.Item;\nimport com.pulumi.onepassword.ItemArgs;\nimport com.pulumi.onepassword.inputs.ItemPasswordRecipeArgs;\nimport com.pulumi.onepassword.inputs.ItemSectionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Item(\"example\", ItemArgs.builder()\n            .category(\"login\")\n            .passwordRecipe(ItemPasswordRecipeArgs.builder()\n                .length(40)\n                .symbols(false)\n                .build())\n            .sections(ItemSectionArgs.builder()\n                .fields(ItemSectionFieldArgs.builder()\n                    .label(\"Example field\")\n                    .type(\"DATE\")\n                    .value(\"2024-01-31\")\n                    .build())\n                .label(\"Example section\")\n                .build())\n            .title(\"Example Item Title\")\n            .vault(\"your-vault-id\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: onepassword:Item\n    properties:\n      category: login\n      passwordRecipe:\n        length: 40\n        symbols: false\n      sections:\n        - fields:\n            - label: Example field\n              type: DATE\n              value: 2024-01-31\n          label: Example section\n      title: Example Item Title\n      vault: your-vault-id\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nimport an existing 1Password item\n\n```sh\n$ pulumi import onepassword:index/item:Item myitem vaults/\u003cvault uuid\u003e/items/\u003citem uuid\u003e\n```\n\n",
             "properties": {
                 "category": {
                     "type": "string",
@@ -511,7 +512,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "(Only applies to the database category) The type of database. One of [\"db2\" \"filemaker\" \"msaccess\" \"mssql\" \"mysql\"\n\"oracle\" \"postgresql\" \"sqlite\" \"other\"]\n"
+                    "description": "(Only applies to the database category) The type of database. One of [\"db2\" \"filemaker\" \"msaccess\" \"mssql\" \"mysql\" \"oracle\" \"postgresql\" \"sqlite\" \"other\"]\n"
                 },
                 "url": {
                     "type": "string",
@@ -587,7 +588,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "(Only applies to the database category) The type of database. One of [\"db2\" \"filemaker\" \"msaccess\" \"mssql\" \"mysql\"\n\"oracle\" \"postgresql\" \"sqlite\" \"other\"]\n"
+                    "description": "(Only applies to the database category) The type of database. One of [\"db2\" \"filemaker\" \"msaccess\" \"mssql\" \"mysql\" \"oracle\" \"postgresql\" \"sqlite\" \"other\"]\n"
                 },
                 "url": {
                     "type": "string",
@@ -658,7 +659,7 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "(Only applies to the database category) The type of database. One of [\"db2\" \"filemaker\" \"msaccess\" \"mssql\" \"mysql\"\n\"oracle\" \"postgresql\" \"sqlite\" \"other\"]\n"
+                        "description": "(Only applies to the database category) The type of database. One of [\"db2\" \"filemaker\" \"msaccess\" \"mssql\" \"mysql\" \"oracle\" \"postgresql\" \"sqlite\" \"other\"]\n"
                     },
                     "url": {
                         "type": "string",
@@ -683,6 +684,7 @@
     },
     "functions": {
         "onepassword:index/getItem:getItem": {
+            "description": "Use this data source to get details of an item by its vault uuid and either the title or the uuid of the item.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as onepassword from \"@pulumi/onepassword\";\n\nconst example = onepassword.getItem({\n    title: \"your-item-title\",\n    vault: \"your-vault-id\",\n});\n```\n```python\nimport pulumi\nimport pulumi_onepassword as onepassword\n\nexample = onepassword.get_item(title=\"your-item-title\",\n    vault=\"your-vault-id\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Onepassword = Pulumi.Onepassword;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Onepassword.GetItem.Invoke(new()\n    {\n        Title = \"your-item-title\",\n        Vault = \"your-vault-id\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/1Password/pulumi-onepassword/sdk/go/onepassword\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := onepassword.LookupItem(ctx, \u0026onepassword.LookupItemArgs{\n\t\t\tTitle: pulumi.StringRef(\"your-item-title\"),\n\t\t\tVault: \"your-vault-id\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.onepassword.OnepasswordFunctions;\nimport com.pulumi.onepassword.inputs.GetItemArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = OnepasswordFunctions.getItem(GetItemArgs.builder()\n            .title(\"your-item-title\")\n            .vault(\"your-vault-id\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: onepassword:getItem\n      Arguments:\n        title: your-item-title\n        vault: your-vault-id\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getItem.\n",
                 "properties": {
@@ -690,26 +692,32 @@
                         "type": "array",
                         "items": {
                             "$ref": "#/types/onepassword:index/getItemFile:getItemFile"
-                        }
+                        },
+                        "description": "A list of files attached to the item.\n"
                     },
                     "noteValue": {
                         "type": "string",
+                        "description": "Secure Note value.\n",
                         "secret": true
                     },
                     "sections": {
                         "type": "array",
                         "items": {
                             "$ref": "#/types/onepassword:index/getItemSection:getItemSection"
-                        }
+                        },
+                        "description": "A list of custom sections in an item\n"
                     },
                     "title": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The title of the item to retrieve. This field will be populated with the title of the item if the item it looked up by its UUID.\n"
                     },
                     "uuid": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The UUID of the item to retrieve. This field will be populated with the UUID of the item if the item it looked up by its title.\n"
                     },
                     "vault": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The UUID of the vault the item is in.\n"
                     }
                 },
                 "type": "object",
@@ -721,74 +729,92 @@
                 "description": "A collection of values returned by getItem.\n",
                 "properties": {
                     "category": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The category of the item. One of [\"login\" \"password\" \"database\" \"secure*note\" \"document\" \"ssh*key\"]\n"
                     },
                     "credential": {
                         "type": "string",
+                        "description": "API credential for this item.\n",
                         "secret": true
                     },
                     "database": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "(Only applies to the database category) The name of the database.\n"
                     },
                     "files": {
                         "type": "array",
                         "items": {
                             "$ref": "#/types/onepassword:index/getItemFile:getItemFile"
-                        }
+                        },
+                        "description": "A list of files attached to the item.\n"
                     },
                     "hostname": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "(Only applies to the database category) The address where the database can be found\n"
                     },
                     "id": {
                         "type": "string"
                     },
                     "noteValue": {
                         "type": "string",
+                        "description": "Secure Note value.\n",
                         "secret": true
                     },
                     "password": {
                         "type": "string",
+                        "description": "Password for this item.\n",
                         "secret": true
                     },
                     "port": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "(Only applies to the database category) The port the database is listening on.\n"
                     },
                     "privateKey": {
                         "type": "string",
+                        "description": "SSH Private Key for this item.\n",
                         "secret": true
                     },
                     "publicKey": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "SSH Public Key for this item.\n"
                     },
                     "sections": {
                         "type": "array",
                         "items": {
                             "$ref": "#/types/onepassword:index/getItemSection:getItemSection"
-                        }
+                        },
+                        "description": "A list of custom sections in an item\n"
                     },
                     "tags": {
                         "type": "array",
                         "items": {
                             "type": "string"
-                        }
+                        },
+                        "description": "An array of strings of the tags assigned to the item.\n"
                     },
                     "title": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The title of the item to retrieve. This field will be populated with the title of the item if the item it looked up by its UUID.\n"
                     },
                     "type": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "(Only applies to the database category) The type of database. One of [\"db2\" \"filemaker\" \"msaccess\" \"mssql\" \"mysql\" \"oracle\" \"postgresql\" \"sqlite\" \"other\"]\n"
                     },
                     "url": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The primary URL for the item.\n"
                     },
                     "username": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Username for this item.\n"
                     },
                     "uuid": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The UUID of the item to retrieve. This field will be populated with the UUID of the item if the item it looked up by its title.\n"
                     },
                     "vault": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The UUID of the vault the item is in.\n"
                     }
                 },
                 "type": "object",
@@ -814,14 +840,17 @@
             }
         },
         "onepassword:index/getVault:getVault": {
+            "description": "Use this data source to get details of a vault by either its name or uuid.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as onepassword from \"@pulumi/onepassword\";\n\nconst example = onepassword.getVault({\n    name: \"your-vault-name\",\n});\n```\n```python\nimport pulumi\nimport pulumi_onepassword as onepassword\n\nexample = onepassword.get_vault(name=\"your-vault-name\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Onepassword = Pulumi.Onepassword;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Onepassword.GetVault.Invoke(new()\n    {\n        Name = \"your-vault-name\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/1Password/pulumi-onepassword/sdk/go/onepassword\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := onepassword.GetVault(ctx, \u0026onepassword.GetVaultArgs{\n\t\t\tName: pulumi.StringRef(\"your-vault-name\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.onepassword.OnepasswordFunctions;\nimport com.pulumi.onepassword.inputs.GetVaultArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = OnepasswordFunctions.getVault(GetVaultArgs.builder()\n            .name(\"your-vault-name\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: onepassword:getVault\n      Arguments:\n        name: your-vault-name\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getVault.\n",
                 "properties": {
                     "name": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The name of the vault to retrieve. This field will be populated with the name of the vault if the vault it looked up by its UUID.\n"
                     },
                     "uuid": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The UUID of the vault to retrieve. This field will be populated with the UUID of the vault if the vault it looked up by its name.\n"
                     }
                 },
                 "type": "object"
@@ -830,16 +859,19 @@
                 "description": "A collection of values returned by getVault.\n",
                 "properties": {
                     "description": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The description of the vault.\n"
                     },
                     "id": {
                         "type": "string"
                     },
                     "name": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The name of the vault to retrieve. This field will be populated with the name of the vault if the vault it looked up by its UUID.\n"
                     },
                     "uuid": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The UUID of the vault to retrieve. This field will be populated with the UUID of the vault if the vault it looked up by its name.\n"
                     }
                 },
                 "type": "object",

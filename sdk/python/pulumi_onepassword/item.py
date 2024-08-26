@@ -43,8 +43,7 @@ class ItemArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ItemSectionArgs']]] sections: A list of custom sections in an item
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: An array of strings of the tags assigned to the item.
         :param pulumi.Input[str] title: The title of the item.
-        :param pulumi.Input[str] type: (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql"
-               "oracle" "postgresql" "sqlite" "other"]
+        :param pulumi.Input[str] type: (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
         :param pulumi.Input[str] url: The primary URL for the item.
         :param pulumi.Input[str] username: Username for this item.
         """
@@ -212,8 +211,7 @@ class ItemArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql"
-        "oracle" "postgresql" "sqlite" "other"]
+        (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
         """
         return pulumi.get(self, "type")
 
@@ -276,8 +274,7 @@ class _ItemState:
         :param pulumi.Input[Sequence[pulumi.Input['ItemSectionArgs']]] sections: A list of custom sections in an item
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: An array of strings of the tags assigned to the item.
         :param pulumi.Input[str] title: The title of the item.
-        :param pulumi.Input[str] type: (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql"
-               "oracle" "postgresql" "sqlite" "other"]
+        :param pulumi.Input[str] type: (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
         :param pulumi.Input[str] url: The primary URL for the item.
         :param pulumi.Input[str] username: Username for this item.
         :param pulumi.Input[str] uuid: The UUID of the item. Item identifiers are unique within a specific vault.
@@ -438,8 +435,7 @@ class _ItemState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql"
-        "oracle" "postgresql" "sqlite" "other"]
+        (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
         """
         return pulumi.get(self, "type")
 
@@ -517,7 +513,40 @@ class Item(pulumi.CustomResource):
                  vault: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a Item resource with the given unique name, props, and options.
+        A 1Password Item.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_onepassword as onepassword
+
+        example = onepassword.Item("example",
+            category="login",
+            password_recipe={
+                "length": 40,
+                "symbols": False,
+            },
+            sections=[{
+                "fields": [{
+                    "label": "Example field",
+                    "type": "DATE",
+                    "value": "2024-01-31",
+                }],
+                "label": "Example section",
+            }],
+            title="Example Item Title",
+            vault="your-vault-id")
+        ```
+
+        ## Import
+
+        import an existing 1Password item
+
+        ```sh
+        $ pulumi import onepassword:index/item:Item myitem vaults/<vault uuid>/items/<item uuid>
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] category: The category of the item. One of ["login" "password" "database" "secure_note"]
@@ -530,8 +559,7 @@ class Item(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['ItemSectionArgs', 'ItemSectionArgsDict']]]] sections: A list of custom sections in an item
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: An array of strings of the tags assigned to the item.
         :param pulumi.Input[str] title: The title of the item.
-        :param pulumi.Input[str] type: (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql"
-               "oracle" "postgresql" "sqlite" "other"]
+        :param pulumi.Input[str] type: (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
         :param pulumi.Input[str] url: The primary URL for the item.
         :param pulumi.Input[str] username: Username for this item.
         :param pulumi.Input[str] vault: The UUID of the vault the item is in.
@@ -543,7 +571,40 @@ class Item(pulumi.CustomResource):
                  args: ItemArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Item resource with the given unique name, props, and options.
+        A 1Password Item.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_onepassword as onepassword
+
+        example = onepassword.Item("example",
+            category="login",
+            password_recipe={
+                "length": 40,
+                "symbols": False,
+            },
+            sections=[{
+                "fields": [{
+                    "label": "Example field",
+                    "type": "DATE",
+                    "value": "2024-01-31",
+                }],
+                "label": "Example section",
+            }],
+            title="Example Item Title",
+            vault="your-vault-id")
+        ```
+
+        ## Import
+
+        import an existing 1Password item
+
+        ```sh
+        $ pulumi import onepassword:index/item:Item myitem vaults/<vault uuid>/items/<item uuid>
+        ```
+
         :param str resource_name: The name of the resource.
         :param ItemArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -643,8 +704,7 @@ class Item(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['ItemSectionArgs', 'ItemSectionArgsDict']]]] sections: A list of custom sections in an item
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: An array of strings of the tags assigned to the item.
         :param pulumi.Input[str] title: The title of the item.
-        :param pulumi.Input[str] type: (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql"
-               "oracle" "postgresql" "sqlite" "other"]
+        :param pulumi.Input[str] type: (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
         :param pulumi.Input[str] url: The primary URL for the item.
         :param pulumi.Input[str] username: Username for this item.
         :param pulumi.Input[str] uuid: The UUID of the item. Item identifiers are unique within a specific vault.
@@ -755,8 +815,7 @@ class Item(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[Optional[str]]:
         """
-        (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql"
-        "oracle" "postgresql" "sqlite" "other"]
+        (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
         """
         return pulumi.get(self, "type")
 
