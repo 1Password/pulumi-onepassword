@@ -108,7 +108,9 @@ jobs:
           if ! git diff-files --quiet \
             ':(exclude)provider/cmd/pulumi-resource-onepassword/schema.json' \
             ':(exclude)sdk/nodejs/getItem.ts' \
-            ':(exclude)sdk/nodejs/getVault.ts'; then
+            ':(exclude)sdk/nodejs/getVault.ts' \
+            ':(exclude)sdk/nodejs/README.md' \
+            ':(exclude)sdk/python/pulumi_onepassword/README.md'; then
               >&2 echo "error: working tree is not clean, aborting!"
               git status
               git diff

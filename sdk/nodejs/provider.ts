@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The provider type for the onepassword package. By default, resources use package-wide configuration
+ * The provider type for the onepassword/v2 package. By default, resources use package-wide configuration
  * settings, however an explicit `Provider` instance may be created and passed during resource
  * construction to achieve fine-grained programmatic control over provider settings. See the
  * [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
@@ -63,11 +63,13 @@ export class Provider extends pulumi.ProviderResource {
         {
             resourceInputs["account"] = (args ? args.account : undefined) ?? utilities.getEnv("OP_ACCOUNT");
             resourceInputs["opCliPath"] = (args ? args.opCliPath : undefined) ?? utilities.getEnv("OP_CLI_PATH");
-            resourceInputs["serviceAccountToken"] = (args ? args.serviceAccountToken : undefined) ?? utilities.getEnv("OP_SERVICE_ACCOUNT_TOKEN");
-            resourceInputs["token"] = (args ? args.token : undefined) ?? utilities.getEnv("OP_CONNECT_TOKEN");
+            resourceInputs["serviceAccountToken"] = (args?.serviceAccountToken ? pulumi.secret(args.serviceAccountToken) : undefined) ?? utilities.getEnv("OP_SERVICE_ACCOUNT_TOKEN");
+            resourceInputs["token"] = (args?.token ? pulumi.secret(args.token) : undefined) ?? utilities.getEnv("OP_CONNECT_TOKEN");
             resourceInputs["url"] = (args ? args.url : undefined) ?? utilities.getEnv("OP_CONNECT_HOST");
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["serviceAccountToken", "token"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
     }
 }

@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'GetItemResult',
@@ -22,13 +23,19 @@ class GetItemResult:
     """
     A collection of values returned by getItem.
     """
-    def __init__(__self__, category=None, database=None, hostname=None, id=None, note_value=None, password=None, port=None, sections=None, tags=None, title=None, type=None, url=None, username=None, uuid=None, vault=None):
+    def __init__(__self__, category=None, credential=None, database=None, files=None, hostname=None, id=None, note_value=None, password=None, port=None, private_key=None, public_key=None, sections=None, tags=None, title=None, type=None, url=None, username=None, uuid=None, vault=None):
         if category and not isinstance(category, str):
             raise TypeError("Expected argument 'category' to be a str")
         pulumi.set(__self__, "category", category)
+        if credential and not isinstance(credential, str):
+            raise TypeError("Expected argument 'credential' to be a str")
+        pulumi.set(__self__, "credential", credential)
         if database and not isinstance(database, str):
             raise TypeError("Expected argument 'database' to be a str")
         pulumi.set(__self__, "database", database)
+        if files and not isinstance(files, list):
+            raise TypeError("Expected argument 'files' to be a list")
+        pulumi.set(__self__, "files", files)
         if hostname and not isinstance(hostname, str):
             raise TypeError("Expected argument 'hostname' to be a str")
         pulumi.set(__self__, "hostname", hostname)
@@ -44,6 +51,12 @@ class GetItemResult:
         if port and not isinstance(port, str):
             raise TypeError("Expected argument 'port' to be a str")
         pulumi.set(__self__, "port", port)
+        if private_key and not isinstance(private_key, str):
+            raise TypeError("Expected argument 'private_key' to be a str")
+        pulumi.set(__self__, "private_key", private_key)
+        if public_key and not isinstance(public_key, str):
+            raise TypeError("Expected argument 'public_key' to be a str")
+        pulumi.set(__self__, "public_key", public_key)
         if sections and not isinstance(sections, list):
             raise TypeError("Expected argument 'sections' to be a list")
         pulumi.set(__self__, "sections", sections)
@@ -72,25 +85,26 @@ class GetItemResult:
     @property
     @pulumi.getter
     def category(self) -> str:
-        """
-        The category of the item. One of ["login" "password" "database" "secure_note"]
-        """
         return pulumi.get(self, "category")
 
     @property
     @pulumi.getter
+    def credential(self) -> str:
+        return pulumi.get(self, "credential")
+
+    @property
+    @pulumi.getter
     def database(self) -> str:
-        """
-        (Only applies to the database category) The name of the database.
-        """
         return pulumi.get(self, "database")
 
     @property
     @pulumi.getter
+    def files(self) -> Optional[Sequence['outputs.GetItemFileResult']]:
+        return pulumi.get(self, "files")
+
+    @property
+    @pulumi.getter
     def hostname(self) -> str:
-        """
-        (Only applies to the database category) The address where the database can be found
-        """
         return pulumi.get(self, "hostname")
 
     @property
@@ -101,89 +115,66 @@ class GetItemResult:
     @property
     @pulumi.getter(name="noteValue")
     def note_value(self) -> str:
-        """
-        Secure Note value.
-        """
         return pulumi.get(self, "note_value")
 
     @property
     @pulumi.getter
     def password(self) -> str:
-        """
-        Password for this item.
-        """
         return pulumi.get(self, "password")
 
     @property
     @pulumi.getter
     def port(self) -> str:
-        """
-        (Only applies to the database category) The port the database is listening on.
-        """
         return pulumi.get(self, "port")
 
     @property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> str:
+        return pulumi.get(self, "private_key")
+
+    @property
+    @pulumi.getter(name="publicKey")
+    def public_key(self) -> str:
+        return pulumi.get(self, "public_key")
+
+    @property
     @pulumi.getter
-    def sections(self) -> Sequence['outputs.GetItemSectionResult']:
-        """
-        A list of custom sections in an item
-        """
+    def sections(self) -> Optional[Sequence['outputs.GetItemSectionResult']]:
         return pulumi.get(self, "sections")
 
     @property
     @pulumi.getter
     def tags(self) -> Sequence[str]:
-        """
-        An array of strings of the tags assigned to the item.
-        """
         return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
     def title(self) -> str:
-        """
-        The title of the item to retrieve. This field will be populated with the title of the item if the item it looked up by its UUID.
-        """
         return pulumi.get(self, "title")
 
     @property
     @pulumi.getter
     def type(self) -> str:
-        """
-        (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
-        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
     def url(self) -> str:
-        """
-        The primary URL for the item.
-        """
         return pulumi.get(self, "url")
 
     @property
     @pulumi.getter
     def username(self) -> str:
-        """
-        Username for this item.
-        """
         return pulumi.get(self, "username")
 
     @property
     @pulumi.getter
     def uuid(self) -> str:
-        """
-        The UUID of the item to retrieve. This field will be populated with the UUID of the item if the item it looked up by its title.
-        """
         return pulumi.get(self, "uuid")
 
     @property
     @pulumi.getter
     def vault(self) -> str:
-        """
-        The UUID of the vault the item is in.
-        """
         return pulumi.get(self, "vault")
 
 
@@ -194,12 +185,16 @@ class AwaitableGetItemResult(GetItemResult):
             yield self
         return GetItemResult(
             category=self.category,
+            credential=self.credential,
             database=self.database,
+            files=self.files,
             hostname=self.hostname,
             id=self.id,
             note_value=self.note_value,
             password=self.password,
             port=self.port,
+            private_key=self.private_key,
+            public_key=self.public_key,
             sections=self.sections,
             tags=self.tags,
             title=self.title,
@@ -210,32 +205,20 @@ class AwaitableGetItemResult(GetItemResult):
             vault=self.vault)
 
 
-def get_item(note_value: Optional[str] = None,
+def get_item(files: Optional[Sequence[Union['GetItemFileArgs', 'GetItemFileArgsDict']]] = None,
+             note_value: Optional[str] = None,
+             sections: Optional[Sequence[Union['GetItemSectionArgs', 'GetItemSectionArgsDict']]] = None,
              title: Optional[str] = None,
              uuid: Optional[str] = None,
              vault: Optional[str] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetItemResult:
     """
-    Use this data source to get details of an item by its vault uuid and either the title or the uuid of the item.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_onepassword as onepassword
-
-    example = onepassword.get_item(vault=data["onepassword_vault"]["example"]["uuid"],
-        uuid=onepassword_item["demo_sections"]["uuid"])
-    ```
-
-
-    :param str note_value: Secure Note value.
-    :param str title: The title of the item to retrieve. This field will be populated with the title of the item if the item it looked up by its UUID.
-    :param str uuid: The UUID of the item to retrieve. This field will be populated with the UUID of the item if the item it looked up by its title.
-    :param str vault: The UUID of the vault the item is in.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
+    __args__['files'] = files
     __args__['noteValue'] = note_value
+    __args__['sections'] = sections
     __args__['title'] = title
     __args__['uuid'] = uuid
     __args__['vault'] = vault
@@ -244,12 +227,16 @@ def get_item(note_value: Optional[str] = None,
 
     return AwaitableGetItemResult(
         category=pulumi.get(__ret__, 'category'),
+        credential=pulumi.get(__ret__, 'credential'),
         database=pulumi.get(__ret__, 'database'),
+        files=pulumi.get(__ret__, 'files'),
         hostname=pulumi.get(__ret__, 'hostname'),
         id=pulumi.get(__ret__, 'id'),
         note_value=pulumi.get(__ret__, 'note_value'),
         password=pulumi.get(__ret__, 'password'),
         port=pulumi.get(__ret__, 'port'),
+        private_key=pulumi.get(__ret__, 'private_key'),
+        public_key=pulumi.get(__ret__, 'public_key'),
         sections=pulumi.get(__ret__, 'sections'),
         tags=pulumi.get(__ret__, 'tags'),
         title=pulumi.get(__ret__, 'title'),
@@ -261,28 +248,14 @@ def get_item(note_value: Optional[str] = None,
 
 
 @_utilities.lift_output_func(get_item)
-def get_item_output(note_value: Optional[pulumi.Input[Optional[str]]] = None,
+def get_item_output(files: Optional[pulumi.Input[Optional[Sequence[Union['GetItemFileArgs', 'GetItemFileArgsDict']]]]] = None,
+                    note_value: Optional[pulumi.Input[Optional[str]]] = None,
+                    sections: Optional[pulumi.Input[Optional[Sequence[Union['GetItemSectionArgs', 'GetItemSectionArgsDict']]]]] = None,
                     title: Optional[pulumi.Input[Optional[str]]] = None,
                     uuid: Optional[pulumi.Input[Optional[str]]] = None,
                     vault: Optional[pulumi.Input[str]] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetItemResult]:
     """
-    Use this data source to get details of an item by its vault uuid and either the title or the uuid of the item.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_onepassword as onepassword
-
-    example = onepassword.get_item(vault=data["onepassword_vault"]["example"]["uuid"],
-        uuid=onepassword_item["demo_sections"]["uuid"])
-    ```
-
-
-    :param str note_value: Secure Note value.
-    :param str title: The title of the item to retrieve. This field will be populated with the title of the item if the item it looked up by its UUID.
-    :param str uuid: The UUID of the item to retrieve. This field will be populated with the UUID of the item if the item it looked up by its title.
-    :param str vault: The UUID of the vault the item is in.
+    Use this data source to access information about an existing resource.
     """
     ...

@@ -129,7 +129,7 @@ class Provider(pulumi.ProviderResource):
                  url: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The provider type for the onepassword package. By default, resources use package-wide configuration
+        The provider type for the onepassword/v2 package. By default, resources use package-wide configuration
         settings, however an explicit `Provider` instance may be created and passed during resource
         construction to achieve fine-grained programmatic control over provider settings. See the
         [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
@@ -153,7 +153,7 @@ class Provider(pulumi.ProviderResource):
                  args: Optional[ProviderArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The provider type for the onepassword package. By default, resources use package-wide configuration
+        The provider type for the onepassword/v2 package. By default, resources use package-wide configuration
         settings, however an explicit `Provider` instance may be created and passed during resource
         construction to achieve fine-grained programmatic control over provider settings. See the
         [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
@@ -195,13 +195,15 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["op_cli_path"] = op_cli_path
             if service_account_token is None:
                 service_account_token = _utilities.get_env('OP_SERVICE_ACCOUNT_TOKEN')
-            __props__.__dict__["service_account_token"] = service_account_token
+            __props__.__dict__["service_account_token"] = None if service_account_token is None else pulumi.Output.secret(service_account_token)
             if token is None:
                 token = _utilities.get_env('OP_CONNECT_TOKEN')
-            __props__.__dict__["token"] = token
+            __props__.__dict__["token"] = None if token is None else pulumi.Output.secret(token)
             if url is None:
                 url = _utilities.get_env('OP_CONNECT_HOST')
             __props__.__dict__["url"] = url
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["serviceAccountToken", "token"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Provider, __self__).__init__(
             'onepassword',
             resource_name,

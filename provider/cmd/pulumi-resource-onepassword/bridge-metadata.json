@@ -36,11 +36,17 @@
                 "current": "onepassword:index/getItem:getItem",
                 "majorVersion": 1,
                 "fields": {
+                    "file": {
+                        "maxItemsOne": false
+                    },
                     "section": {
                         "maxItemsOne": false,
                         "elem": {
                             "fields": {
                                 "field": {
+                                    "maxItemsOne": false
+                                },
+                                "file": {
                                     "maxItemsOne": false
                                 }
                             }

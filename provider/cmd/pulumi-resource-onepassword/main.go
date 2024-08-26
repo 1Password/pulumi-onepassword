@@ -17,17 +17,18 @@
 package main
 
 import (
+	"context"
 	_ "embed"
 
 	onepassword "github.com/1Password/pulumi-onepassword/provider"
-	"github.com/1Password/pulumi-onepassword/provider/pkg/version"
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
 )
 
 //go:embed schema-embed.json
 var pulumiSchema []byte
 
 func main() {
+	meta := tfbridge.ProviderMetadata{PackageSchema: pulumiSchema}
 	// Modify the path to point to the new provider
-	tfbridge.Main("onepassword", version.Version, onepassword.Provider(), pulumiSchema)
+	tfbridge.Main(context.Background(), "onepassword", onepassword.Provider(), meta)
 }

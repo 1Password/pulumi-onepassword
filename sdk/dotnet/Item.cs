@@ -9,78 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Onepassword
 {
-    /// <summary>
-    /// A 1Password Item.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Onepassword = Pulumi.Onepassword;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var demoPassword = new Onepassword.Item("demoPassword", new()
-    ///     {
-    ///         Vault = @var.Demo_vault,
-    ///         Title = "Demo Password Recipe",
-    ///         Category = "password",
-    ///         PasswordRecipe = new Onepassword.Inputs.ItemPasswordRecipeArgs
-    ///         {
-    ///             Length = 40,
-    ///             Symbols = false,
-    ///         },
-    ///         Sections = new[]
-    ///         {
-    ///             new Onepassword.Inputs.ItemSectionArgs
-    ///             {
-    ///                 Label = "Credential metadata",
-    ///                 Fields = new[]
-    ///                 {
-    ///                     new Onepassword.Inputs.ItemSectionFieldArgs
-    ///                     {
-    ///                         Label = "Expiration",
-    ///                         Type = "DATE",
-    ///                         Value = "2024-01-31",
-    ///                     },
-    ///                 },
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    ///     var demoLogin = new Onepassword.Item("demoLogin", new()
-    ///     {
-    ///         Vault = @var.Demo_vault,
-    ///         Title = "Demo Terraform Login",
-    ///         Category = "login",
-    ///         Username = "test@example.com",
-    ///     });
-    /// 
-    ///     var demoDb = new Onepassword.Item("demoDb", new()
-    ///     {
-    ///         Vault = @var.Demo_vault,
-    ///         Category = "database",
-    ///         Type = "mysql",
-    ///         Title = "Demo TF Database",
-    ///         Username = "root",
-    ///         Database = "Example MySQL Instance",
-    ///         Hostname = "localhost",
-    ///         Port = "3306",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// import an existing 1Password item
-    /// 
-    /// ```sh
-    /// $ pulumi import onepassword:index/item:Item myitem vaults/&lt;vault uuid&gt;/items/&lt;item uuid&gt;
-    /// ```
-    /// </summary>
     [OnepasswordResourceType("onepassword:index/item:Item")]
     public partial class Item : global::Pulumi.CustomResource
     {
@@ -88,7 +16,7 @@ namespace Pulumi.Onepassword
         /// The category of the item. One of ["login" "password" "database" "secure_note"]
         /// </summary>
         [Output("category")]
-        public Output<string?> Category { get; private set; } = null!;
+        public Output<string> Category { get; private set; } = null!;
 
         /// <summary>
         /// (Only applies to the database category) The name of the database.
@@ -101,6 +29,12 @@ namespace Pulumi.Onepassword
         /// </summary>
         [Output("hostname")]
         public Output<string?> Hostname { get; private set; } = null!;
+
+        /// <summary>
+        /// Secure Note value.
+        /// </summary>
+        [Output("noteValue")]
+        public Output<string?> NoteValue { get; private set; } = null!;
 
         /// <summary>
         /// Password for this item.
@@ -139,7 +73,8 @@ namespace Pulumi.Onepassword
         public Output<string?> Title { get; private set; } = null!;
 
         /// <summary>
-        /// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
+        /// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql"
+        /// "oracle" "postgresql" "sqlite" "other"]
         /// </summary>
         [Output("type")]
         public Output<string?> Type { get; private set; } = null!;
@@ -194,6 +129,7 @@ namespace Pulumi.Onepassword
                 PluginDownloadURL = "github://api.github.com/1Password/pulumi-onepassword",
                 AdditionalSecretOutputs =
                 {
+                    "noteValue",
                     "password",
                 },
             };
@@ -236,6 +172,22 @@ namespace Pulumi.Onepassword
         /// </summary>
         [Input("hostname")]
         public Input<string>? Hostname { get; set; }
+
+        [Input("noteValue")]
+        private Input<string>? _noteValue;
+
+        /// <summary>
+        /// Secure Note value.
+        /// </summary>
+        public Input<string>? NoteValue
+        {
+            get => _noteValue;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _noteValue = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("password")]
         private Input<string>? _password;
@@ -296,7 +248,8 @@ namespace Pulumi.Onepassword
         public Input<string>? Title { get; set; }
 
         /// <summary>
-        /// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
+        /// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql"
+        /// "oracle" "postgresql" "sqlite" "other"]
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -344,6 +297,22 @@ namespace Pulumi.Onepassword
         /// </summary>
         [Input("hostname")]
         public Input<string>? Hostname { get; set; }
+
+        [Input("noteValue")]
+        private Input<string>? _noteValue;
+
+        /// <summary>
+        /// Secure Note value.
+        /// </summary>
+        public Input<string>? NoteValue
+        {
+            get => _noteValue;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _noteValue = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("password")]
         private Input<string>? _password;
@@ -404,7 +373,8 @@ namespace Pulumi.Onepassword
         public Input<string>? Title { get; set; }
 
         /// <summary>
-        /// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
+        /// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql"
+        /// "oracle" "postgresql" "sqlite" "other"]
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
