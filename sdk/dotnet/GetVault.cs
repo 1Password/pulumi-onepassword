@@ -11,9 +11,51 @@ namespace Pulumi.Onepassword
 {
     public static class GetVault
     {
+        /// <summary>
+        /// Use this data source to get details of a vault by either its name or uuid.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Onepassword = Pulumi.Onepassword;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Onepassword.GetVault.Invoke(new()
+        ///     {
+        ///         Name = "your-vault-name",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Task<GetVaultResult> InvokeAsync(GetVaultArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetVaultResult>("onepassword:index/getVault:getVault", args ?? new GetVaultArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Use this data source to get details of a vault by either its name or uuid.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Onepassword = Pulumi.Onepassword;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Onepassword.GetVault.Invoke(new()
+        ///     {
+        ///         Name = "your-vault-name",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Output<GetVaultResult> Invoke(GetVaultInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetVaultResult>("onepassword:index/getVault:getVault", args ?? new GetVaultInvokeArgs(), options.WithDefaults());
     }
@@ -21,9 +63,15 @@ namespace Pulumi.Onepassword
 
     public sealed class GetVaultArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The name of the vault to retrieve. This field will be populated with the name of the vault if the vault it looked up by its UUID.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// The UUID of the vault to retrieve. This field will be populated with the UUID of the vault if the vault it looked up by its name.
+        /// </summary>
         [Input("uuid")]
         public string? Uuid { get; set; }
 
@@ -35,9 +83,15 @@ namespace Pulumi.Onepassword
 
     public sealed class GetVaultInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The name of the vault to retrieve. This field will be populated with the name of the vault if the vault it looked up by its UUID.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The UUID of the vault to retrieve. This field will be populated with the UUID of the vault if the vault it looked up by its name.
+        /// </summary>
         [Input("uuid")]
         public Input<string>? Uuid { get; set; }
 
@@ -51,9 +105,18 @@ namespace Pulumi.Onepassword
     [OutputType]
     public sealed class GetVaultResult
     {
+        /// <summary>
+        /// The description of the vault.
+        /// </summary>
         public readonly string Description;
         public readonly string Id;
+        /// <summary>
+        /// The name of the vault to retrieve. This field will be populated with the name of the vault if the vault it looked up by its UUID.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// The UUID of the vault to retrieve. This field will be populated with the UUID of the vault if the vault it looked up by its name.
+        /// </summary>
         public readonly string Uuid;
 
         [OutputConstructor]

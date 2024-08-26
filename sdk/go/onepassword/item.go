@@ -12,6 +12,59 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// A 1Password Item.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/1Password/pulumi-onepassword/sdk/go/onepassword"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := onepassword.NewItem(ctx, "example", &onepassword.ItemArgs{
+//				Category: pulumi.String("login"),
+//				PasswordRecipe: &onepassword.ItemPasswordRecipeArgs{
+//					Length:  pulumi.Int(40),
+//					Symbols: pulumi.Bool(false),
+//				},
+//				Sections: onepassword.ItemSectionArray{
+//					&onepassword.ItemSectionArgs{
+//						Fields: onepassword.ItemSectionFieldArray{
+//							&onepassword.ItemSectionFieldArgs{
+//								Label: pulumi.String("Example field"),
+//								Type:  pulumi.String("DATE"),
+//								Value: pulumi.String("2024-01-31"),
+//							},
+//						},
+//						Label: pulumi.String("Example section"),
+//					},
+//				},
+//				Title: pulumi.String("Example Item Title"),
+//				Vault: pulumi.String("your-vault-id"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// import an existing 1Password item
+//
+// ```sh
+// $ pulumi import onepassword:index/item:Item myitem vaults/<vault uuid>/items/<item uuid>
+// ```
 type Item struct {
 	pulumi.CustomResourceState
 
@@ -35,8 +88,7 @@ type Item struct {
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The title of the item.
 	Title pulumi.StringPtrOutput `pulumi:"title"`
-	// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql"
-	// "oracle" "postgresql" "sqlite" "other"]
+	// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
 	Type pulumi.StringPtrOutput `pulumi:"type"`
 	// The primary URL for the item.
 	Url pulumi.StringPtrOutput `pulumi:"url"`
@@ -112,8 +164,7 @@ type itemState struct {
 	Tags []string `pulumi:"tags"`
 	// The title of the item.
 	Title *string `pulumi:"title"`
-	// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql"
-	// "oracle" "postgresql" "sqlite" "other"]
+	// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
 	Type *string `pulumi:"type"`
 	// The primary URL for the item.
 	Url *string `pulumi:"url"`
@@ -146,8 +197,7 @@ type ItemState struct {
 	Tags pulumi.StringArrayInput
 	// The title of the item.
 	Title pulumi.StringPtrInput
-	// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql"
-	// "oracle" "postgresql" "sqlite" "other"]
+	// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
 	Type pulumi.StringPtrInput
 	// The primary URL for the item.
 	Url pulumi.StringPtrInput
@@ -184,8 +234,7 @@ type itemArgs struct {
 	Tags []string `pulumi:"tags"`
 	// The title of the item.
 	Title *string `pulumi:"title"`
-	// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql"
-	// "oracle" "postgresql" "sqlite" "other"]
+	// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
 	Type *string `pulumi:"type"`
 	// The primary URL for the item.
 	Url *string `pulumi:"url"`
@@ -217,8 +266,7 @@ type ItemArgs struct {
 	Tags pulumi.StringArrayInput
 	// The title of the item.
 	Title pulumi.StringPtrInput
-	// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql"
-	// "oracle" "postgresql" "sqlite" "other"]
+	// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
 	Type pulumi.StringPtrInput
 	// The primary URL for the item.
 	Url pulumi.StringPtrInput
@@ -365,8 +413,7 @@ func (o ItemOutput) Title() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Item) pulumi.StringPtrOutput { return v.Title }).(pulumi.StringPtrOutput)
 }
 
-// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql"
-// "oracle" "postgresql" "sqlite" "other"]
+// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
 func (o ItemOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Item) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
 }

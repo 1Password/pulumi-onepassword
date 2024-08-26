@@ -9,6 +9,58 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Onepassword
 {
+    /// <summary>
+    /// A 1Password Item.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Onepassword = Pulumi.Onepassword;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Onepassword.Item("example", new()
+    ///     {
+    ///         Category = "login",
+    ///         PasswordRecipe = new Onepassword.Inputs.ItemPasswordRecipeArgs
+    ///         {
+    ///             Length = 40,
+    ///             Symbols = false,
+    ///         },
+    ///         Sections = new[]
+    ///         {
+    ///             new Onepassword.Inputs.ItemSectionArgs
+    ///             {
+    ///                 Fields = new[]
+    ///                 {
+    ///                     new Onepassword.Inputs.ItemSectionFieldArgs
+    ///                     {
+    ///                         Label = "Example field",
+    ///                         Type = "DATE",
+    ///                         Value = "2024-01-31",
+    ///                     },
+    ///                 },
+    ///                 Label = "Example section",
+    ///             },
+    ///         },
+    ///         Title = "Example Item Title",
+    ///         Vault = "your-vault-id",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// import an existing 1Password item
+    /// 
+    /// ```sh
+    /// $ pulumi import onepassword:index/item:Item myitem vaults/&lt;vault uuid&gt;/items/&lt;item uuid&gt;
+    /// ```
+    /// </summary>
     [OnepasswordResourceType("onepassword:index/item:Item")]
     public partial class Item : global::Pulumi.CustomResource
     {
@@ -73,8 +125,7 @@ namespace Pulumi.Onepassword
         public Output<string?> Title { get; private set; } = null!;
 
         /// <summary>
-        /// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql"
-        /// "oracle" "postgresql" "sqlite" "other"]
+        /// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
         /// </summary>
         [Output("type")]
         public Output<string?> Type { get; private set; } = null!;
@@ -248,8 +299,7 @@ namespace Pulumi.Onepassword
         public Input<string>? Title { get; set; }
 
         /// <summary>
-        /// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql"
-        /// "oracle" "postgresql" "sqlite" "other"]
+        /// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -373,8 +423,7 @@ namespace Pulumi.Onepassword
         public Input<string>? Title { get; set; }
 
         /// <summary>
-        /// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql"
-        /// "oracle" "postgresql" "sqlite" "other"]
+        /// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

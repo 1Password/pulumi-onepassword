@@ -11,6 +11,34 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Use this data source to get details of an item by its vault uuid and either the title or the uuid of the item.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/1Password/pulumi-onepassword/sdk/go/onepassword"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := onepassword.LookupItem(ctx, &onepassword.LookupItemArgs{
+//				Title: pulumi.StringRef("your-item-title"),
+//				Vault: "your-vault-id",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupItem(ctx *pulumi.Context, args *LookupItemArgs, opts ...pulumi.InvokeOption) (*LookupItemResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupItemResult
@@ -23,35 +51,59 @@ func LookupItem(ctx *pulumi.Context, args *LookupItemArgs, opts ...pulumi.Invoke
 
 // A collection of arguments for invoking getItem.
 type LookupItemArgs struct {
-	Files     []GetItemFile    `pulumi:"files"`
-	NoteValue *string          `pulumi:"noteValue"`
-	Sections  []GetItemSection `pulumi:"sections"`
-	Title     *string          `pulumi:"title"`
-	Uuid      *string          `pulumi:"uuid"`
-	Vault     string           `pulumi:"vault"`
+	// A list of files attached to the item.
+	Files []GetItemFile `pulumi:"files"`
+	// Secure Note value.
+	NoteValue *string `pulumi:"noteValue"`
+	// A list of custom sections in an item
+	Sections []GetItemSection `pulumi:"sections"`
+	// The title of the item to retrieve. This field will be populated with the title of the item if the item it looked up by its UUID.
+	Title *string `pulumi:"title"`
+	// The UUID of the item to retrieve. This field will be populated with the UUID of the item if the item it looked up by its title.
+	Uuid *string `pulumi:"uuid"`
+	// The UUID of the vault the item is in.
+	Vault string `pulumi:"vault"`
 }
 
 // A collection of values returned by getItem.
 type LookupItemResult struct {
-	Category   string           `pulumi:"category"`
-	Credential string           `pulumi:"credential"`
-	Database   string           `pulumi:"database"`
-	Files      []GetItemFile    `pulumi:"files"`
-	Hostname   string           `pulumi:"hostname"`
-	Id         string           `pulumi:"id"`
-	NoteValue  string           `pulumi:"noteValue"`
-	Password   string           `pulumi:"password"`
-	Port       string           `pulumi:"port"`
-	PrivateKey string           `pulumi:"privateKey"`
-	PublicKey  string           `pulumi:"publicKey"`
-	Sections   []GetItemSection `pulumi:"sections"`
-	Tags       []string         `pulumi:"tags"`
-	Title      string           `pulumi:"title"`
-	Type       string           `pulumi:"type"`
-	Url        string           `pulumi:"url"`
-	Username   string           `pulumi:"username"`
-	Uuid       string           `pulumi:"uuid"`
-	Vault      string           `pulumi:"vault"`
+	// The category of the item. One of ["login" "password" "database" "secure*note" "document" "ssh*key"]
+	Category string `pulumi:"category"`
+	// API credential for this item.
+	Credential string `pulumi:"credential"`
+	// (Only applies to the database category) The name of the database.
+	Database string `pulumi:"database"`
+	// A list of files attached to the item.
+	Files []GetItemFile `pulumi:"files"`
+	// (Only applies to the database category) The address where the database can be found
+	Hostname string `pulumi:"hostname"`
+	Id       string `pulumi:"id"`
+	// Secure Note value.
+	NoteValue string `pulumi:"noteValue"`
+	// Password for this item.
+	Password string `pulumi:"password"`
+	// (Only applies to the database category) The port the database is listening on.
+	Port string `pulumi:"port"`
+	// SSH Private Key for this item.
+	PrivateKey string `pulumi:"privateKey"`
+	// SSH Public Key for this item.
+	PublicKey string `pulumi:"publicKey"`
+	// A list of custom sections in an item
+	Sections []GetItemSection `pulumi:"sections"`
+	// An array of strings of the tags assigned to the item.
+	Tags []string `pulumi:"tags"`
+	// The title of the item to retrieve. This field will be populated with the title of the item if the item it looked up by its UUID.
+	Title string `pulumi:"title"`
+	// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
+	Type string `pulumi:"type"`
+	// The primary URL for the item.
+	Url string `pulumi:"url"`
+	// Username for this item.
+	Username string `pulumi:"username"`
+	// The UUID of the item to retrieve. This field will be populated with the UUID of the item if the item it looked up by its title.
+	Uuid string `pulumi:"uuid"`
+	// The UUID of the vault the item is in.
+	Vault string `pulumi:"vault"`
 }
 
 func LookupItemOutput(ctx *pulumi.Context, args LookupItemOutputArgs, opts ...pulumi.InvokeOption) LookupItemResultOutput {
@@ -69,12 +121,18 @@ func LookupItemOutput(ctx *pulumi.Context, args LookupItemOutputArgs, opts ...pu
 
 // A collection of arguments for invoking getItem.
 type LookupItemOutputArgs struct {
-	Files     GetItemFileArrayInput    `pulumi:"files"`
-	NoteValue pulumi.StringPtrInput    `pulumi:"noteValue"`
-	Sections  GetItemSectionArrayInput `pulumi:"sections"`
-	Title     pulumi.StringPtrInput    `pulumi:"title"`
-	Uuid      pulumi.StringPtrInput    `pulumi:"uuid"`
-	Vault     pulumi.StringInput       `pulumi:"vault"`
+	// A list of files attached to the item.
+	Files GetItemFileArrayInput `pulumi:"files"`
+	// Secure Note value.
+	NoteValue pulumi.StringPtrInput `pulumi:"noteValue"`
+	// A list of custom sections in an item
+	Sections GetItemSectionArrayInput `pulumi:"sections"`
+	// The title of the item to retrieve. This field will be populated with the title of the item if the item it looked up by its UUID.
+	Title pulumi.StringPtrInput `pulumi:"title"`
+	// The UUID of the item to retrieve. This field will be populated with the UUID of the item if the item it looked up by its title.
+	Uuid pulumi.StringPtrInput `pulumi:"uuid"`
+	// The UUID of the vault the item is in.
+	Vault pulumi.StringInput `pulumi:"vault"`
 }
 
 func (LookupItemOutputArgs) ElementType() reflect.Type {
@@ -96,22 +154,27 @@ func (o LookupItemResultOutput) ToLookupItemResultOutputWithContext(ctx context.
 	return o
 }
 
+// The category of the item. One of ["login" "password" "database" "secure*note" "document" "ssh*key"]
 func (o LookupItemResultOutput) Category() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupItemResult) string { return v.Category }).(pulumi.StringOutput)
 }
 
+// API credential for this item.
 func (o LookupItemResultOutput) Credential() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupItemResult) string { return v.Credential }).(pulumi.StringOutput)
 }
 
+// (Only applies to the database category) The name of the database.
 func (o LookupItemResultOutput) Database() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupItemResult) string { return v.Database }).(pulumi.StringOutput)
 }
 
+// A list of files attached to the item.
 func (o LookupItemResultOutput) Files() GetItemFileArrayOutput {
 	return o.ApplyT(func(v LookupItemResult) []GetItemFile { return v.Files }).(GetItemFileArrayOutput)
 }
 
+// (Only applies to the database category) The address where the database can be found
 func (o LookupItemResultOutput) Hostname() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupItemResult) string { return v.Hostname }).(pulumi.StringOutput)
 }
@@ -120,54 +183,67 @@ func (o LookupItemResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupItemResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Secure Note value.
 func (o LookupItemResultOutput) NoteValue() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupItemResult) string { return v.NoteValue }).(pulumi.StringOutput)
 }
 
+// Password for this item.
 func (o LookupItemResultOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupItemResult) string { return v.Password }).(pulumi.StringOutput)
 }
 
+// (Only applies to the database category) The port the database is listening on.
 func (o LookupItemResultOutput) Port() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupItemResult) string { return v.Port }).(pulumi.StringOutput)
 }
 
+// SSH Private Key for this item.
 func (o LookupItemResultOutput) PrivateKey() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupItemResult) string { return v.PrivateKey }).(pulumi.StringOutput)
 }
 
+// SSH Public Key for this item.
 func (o LookupItemResultOutput) PublicKey() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupItemResult) string { return v.PublicKey }).(pulumi.StringOutput)
 }
 
+// A list of custom sections in an item
 func (o LookupItemResultOutput) Sections() GetItemSectionArrayOutput {
 	return o.ApplyT(func(v LookupItemResult) []GetItemSection { return v.Sections }).(GetItemSectionArrayOutput)
 }
 
+// An array of strings of the tags assigned to the item.
 func (o LookupItemResultOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupItemResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
+// The title of the item to retrieve. This field will be populated with the title of the item if the item it looked up by its UUID.
 func (o LookupItemResultOutput) Title() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupItemResult) string { return v.Title }).(pulumi.StringOutput)
 }
 
+// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
 func (o LookupItemResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupItemResult) string { return v.Type }).(pulumi.StringOutput)
 }
 
+// The primary URL for the item.
 func (o LookupItemResultOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupItemResult) string { return v.Url }).(pulumi.StringOutput)
 }
 
+// Username for this item.
 func (o LookupItemResultOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupItemResult) string { return v.Username }).(pulumi.StringOutput)
 }
 
+// The UUID of the item to retrieve. This field will be populated with the UUID of the item if the item it looked up by its title.
 func (o LookupItemResultOutput) Uuid() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupItemResult) string { return v.Uuid }).(pulumi.StringOutput)
 }
 
+// The UUID of the vault the item is in.
 func (o LookupItemResultOutput) Vault() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupItemResult) string { return v.Vault }).(pulumi.StringOutput)
 }

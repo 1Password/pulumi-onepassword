@@ -6,6 +6,21 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Use this data source to get details of an item by its vault uuid and either the title or the uuid of the item.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as onepassword from "@1Password/pulumi-onepassword";
+ *
+ * const example = onepassword.getItem({
+ *     title: "your-item-title",
+ *     vault: "your-vault-id",
+ * });
+ * ```
+ */
 export function getItem(args: GetItemArgs, opts?: pulumi.InvokeOptions): Promise<GetItemResult> {
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -23,11 +38,29 @@ export function getItem(args: GetItemArgs, opts?: pulumi.InvokeOptions): Promise
  * A collection of arguments for invoking getItem.
  */
 export interface GetItemArgs {
+    /**
+     * A list of files attached to the item.
+     */
     files?: inputs.GetItemFile[];
+    /**
+     * Secure Note value.
+     */
     noteValue?: string;
+    /**
+     * A list of custom sections in an item
+     */
     sections?: inputs.GetItemSection[];
+    /**
+     * The title of the item to retrieve. This field will be populated with the title of the item if the item it looked up by its UUID.
+     */
     title?: string;
+    /**
+     * The UUID of the item to retrieve. This field will be populated with the UUID of the item if the item it looked up by its title.
+     */
     uuid?: string;
+    /**
+     * The UUID of the vault the item is in.
+     */
     vault: string;
 }
 
@@ -35,26 +68,95 @@ export interface GetItemArgs {
  * A collection of values returned by getItem.
  */
 export interface GetItemResult {
+    /**
+     * The category of the item. One of ["login" "password" "database" "secure*note" "document" "ssh*key"]
+     */
     readonly category: string;
+    /**
+     * API credential for this item.
+     */
     readonly credential: string;
+    /**
+     * (Only applies to the database category) The name of the database.
+     */
     readonly database: string;
+    /**
+     * A list of files attached to the item.
+     */
     readonly files?: outputs.GetItemFile[];
+    /**
+     * (Only applies to the database category) The address where the database can be found
+     */
     readonly hostname: string;
     readonly id: string;
+    /**
+     * Secure Note value.
+     */
     readonly noteValue: string;
+    /**
+     * Password for this item.
+     */
     readonly password: string;
+    /**
+     * (Only applies to the database category) The port the database is listening on.
+     */
     readonly port: string;
+    /**
+     * SSH Private Key for this item.
+     */
     readonly privateKey: string;
+    /**
+     * SSH Public Key for this item.
+     */
     readonly publicKey: string;
+    /**
+     * A list of custom sections in an item
+     */
     readonly sections?: outputs.GetItemSection[];
+    /**
+     * An array of strings of the tags assigned to the item.
+     */
     readonly tags: string[];
+    /**
+     * The title of the item to retrieve. This field will be populated with the title of the item if the item it looked up by its UUID.
+     */
     readonly title: string;
+    /**
+     * (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
+     */
     readonly type: string;
+    /**
+     * The primary URL for the item.
+     */
     readonly url: string;
+    /**
+     * Username for this item.
+     */
     readonly username: string;
+    /**
+     * The UUID of the item to retrieve. This field will be populated with the UUID of the item if the item it looked up by its title.
+     */
     readonly uuid: string;
+    /**
+     * The UUID of the vault the item is in.
+     */
     readonly vault: string;
 }
+/**
+ * Use this data source to get details of an item by its vault uuid and either the title or the uuid of the item.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as onepassword from "@1Password/pulumi-onepassword";
+ *
+ * const example = onepassword.getItem({
+ *     title: "your-item-title",
+ *     vault: "your-vault-id",
+ * });
+ * ```
+ */
 export function getItemOutput(args: GetItemOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetItemResult> {
     return pulumi.output(args).apply((a: any) => getItem(a, opts))
 }
@@ -63,10 +165,28 @@ export function getItemOutput(args: GetItemOutputArgs, opts?: pulumi.InvokeOptio
  * A collection of arguments for invoking getItem.
  */
 export interface GetItemOutputArgs {
+    /**
+     * A list of files attached to the item.
+     */
     files?: pulumi.Input<pulumi.Input<inputs.GetItemFileArgs>[]>;
+    /**
+     * Secure Note value.
+     */
     noteValue?: pulumi.Input<string>;
+    /**
+     * A list of custom sections in an item
+     */
     sections?: pulumi.Input<pulumi.Input<inputs.GetItemSectionArgs>[]>;
+    /**
+     * The title of the item to retrieve. This field will be populated with the title of the item if the item it looked up by its UUID.
+     */
     title?: pulumi.Input<string>;
+    /**
+     * The UUID of the item to retrieve. This field will be populated with the UUID of the item if the item it looked up by its title.
+     */
     uuid?: pulumi.Input<string>;
+    /**
+     * The UUID of the vault the item is in.
+     */
     vault: pulumi.Input<string>;
 }
