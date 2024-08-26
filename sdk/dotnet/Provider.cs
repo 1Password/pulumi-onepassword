@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Onepassword
 {
     /// <summary>
-    /// The provider type for the onepassword package. By default, resources use package-wide configuration
+    /// The provider type for the onepassword/v2 package. By default, resources use package-wide configuration
     /// settings, however an explicit `Provider` instance may be created and passed during resource
     /// construction to achieve fine-grained programmatic control over provider settings. See the
     /// [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
@@ -71,6 +71,11 @@ namespace Pulumi.Onepassword
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/1Password/pulumi-onepassword",
+                AdditionalSecretOutputs =
+                {
+                    "serviceAccountToken",
+                    "token",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -94,19 +99,39 @@ namespace Pulumi.Onepassword
         [Input("opCliPath")]
         public Input<string>? OpCliPath { get; set; }
 
+        [Input("serviceAccountToken")]
+        private Input<string>? _serviceAccountToken;
+
         /// <summary>
         /// A valid 1Password service account token. Can also be sourced from `OP_SERVICE_ACCOUNT_TOKEN` environment variable.
         /// Provider will use the 1Password CLI if set.
         /// </summary>
-        [Input("serviceAccountToken")]
-        public Input<string>? ServiceAccountToken { get; set; }
+        public Input<string>? ServiceAccountToken
+        {
+            get => _serviceAccountToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _serviceAccountToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("token")]
+        private Input<string>? _token;
 
         /// <summary>
         /// A valid token for your 1Password Connect server. Can also be sourced from `OP_CONNECT_TOKEN` environment variable.
         /// Provider will use 1Password Connect server if set.
         /// </summary>
-        [Input("token")]
-        public Input<string>? Token { get; set; }
+        public Input<string>? Token
+        {
+            get => _token;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _token = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The HTTP(S) URL where your 1Password Connect server can be found. Can also be sourced `OP_CONNECT_HOST` environment

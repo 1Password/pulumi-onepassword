@@ -11,53 +11,9 @@ namespace Pulumi.Onepassword
 {
     public static class GetItem
     {
-        /// <summary>
-        /// Use this data source to get details of an item by its vault uuid and either the title or the uuid of the item.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Onepassword = Pulumi.Onepassword;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var example = Onepassword.GetItem.Invoke(new()
-        ///     {
-        ///         Vault = data.Onepassword_vault.Example.Uuid,
-        ///         Uuid = onepassword_item.Demo_sections.Uuid,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// </summary>
         public static Task<GetItemResult> InvokeAsync(GetItemArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetItemResult>("onepassword:index/getItem:getItem", args ?? new GetItemArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// Use this data source to get details of an item by its vault uuid and either the title or the uuid of the item.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Onepassword = Pulumi.Onepassword;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var example = Onepassword.GetItem.Invoke(new()
-        ///     {
-        ///         Vault = data.Onepassword_vault.Example.Uuid,
-        ///         Uuid = onepassword_item.Demo_sections.Uuid,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// </summary>
         public static Output<GetItemResult> Invoke(GetItemInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetItemResult>("onepassword:index/getItem:getItem", args ?? new GetItemInvokeArgs(), options.WithDefaults());
     }
@@ -65,33 +21,36 @@ namespace Pulumi.Onepassword
 
     public sealed class GetItemArgs : global::Pulumi.InvokeArgs
     {
+        [Input("files")]
+        private List<Inputs.GetItemFileArgs>? _files;
+        public List<Inputs.GetItemFileArgs> Files
+        {
+            get => _files ?? (_files = new List<Inputs.GetItemFileArgs>());
+            set => _files = value;
+        }
+
         [Input("noteValue")]
         private string? _noteValue;
-
-        /// <summary>
-        /// Secure Note value.
-        /// </summary>
         public string? NoteValue
         {
             get => _noteValue;
             set => _noteValue = value;
         }
 
-        /// <summary>
-        /// The title of the item to retrieve. This field will be populated with the title of the item if the item it looked up by its UUID.
-        /// </summary>
+        [Input("sections")]
+        private List<Inputs.GetItemSectionArgs>? _sections;
+        public List<Inputs.GetItemSectionArgs> Sections
+        {
+            get => _sections ?? (_sections = new List<Inputs.GetItemSectionArgs>());
+            set => _sections = value;
+        }
+
         [Input("title")]
         public string? Title { get; set; }
 
-        /// <summary>
-        /// The UUID of the item to retrieve. This field will be populated with the UUID of the item if the item it looked up by its title.
-        /// </summary>
         [Input("uuid")]
         public string? Uuid { get; set; }
 
-        /// <summary>
-        /// The UUID of the vault the item is in.
-        /// </summary>
         [Input("vault", required: true)]
         public string Vault { get; set; } = null!;
 
@@ -103,12 +62,16 @@ namespace Pulumi.Onepassword
 
     public sealed class GetItemInvokeArgs : global::Pulumi.InvokeArgs
     {
+        [Input("files")]
+        private InputList<Inputs.GetItemFileInputArgs>? _files;
+        public InputList<Inputs.GetItemFileInputArgs> Files
+        {
+            get => _files ?? (_files = new InputList<Inputs.GetItemFileInputArgs>());
+            set => _files = value;
+        }
+
         [Input("noteValue")]
         private Input<string>? _noteValue;
-
-        /// <summary>
-        /// Secure Note value.
-        /// </summary>
         public Input<string>? NoteValue
         {
             get => _noteValue;
@@ -119,21 +82,20 @@ namespace Pulumi.Onepassword
             }
         }
 
-        /// <summary>
-        /// The title of the item to retrieve. This field will be populated with the title of the item if the item it looked up by its UUID.
-        /// </summary>
+        [Input("sections")]
+        private InputList<Inputs.GetItemSectionInputArgs>? _sections;
+        public InputList<Inputs.GetItemSectionInputArgs> Sections
+        {
+            get => _sections ?? (_sections = new InputList<Inputs.GetItemSectionInputArgs>());
+            set => _sections = value;
+        }
+
         [Input("title")]
         public Input<string>? Title { get; set; }
 
-        /// <summary>
-        /// The UUID of the item to retrieve. This field will be populated with the UUID of the item if the item it looked up by its title.
-        /// </summary>
         [Input("uuid")]
         public Input<string>? Uuid { get; set; }
 
-        /// <summary>
-        /// The UUID of the vault the item is in.
-        /// </summary>
         [Input("vault", required: true)]
         public Input<string> Vault { get; set; } = null!;
 
@@ -147,69 +109,35 @@ namespace Pulumi.Onepassword
     [OutputType]
     public sealed class GetItemResult
     {
-        /// <summary>
-        /// The category of the item. One of ["login" "password" "database" "secure_note"]
-        /// </summary>
         public readonly string Category;
-        /// <summary>
-        /// (Only applies to the database category) The name of the database.
-        /// </summary>
+        public readonly string Credential;
         public readonly string Database;
-        /// <summary>
-        /// (Only applies to the database category) The address where the database can be found
-        /// </summary>
+        public readonly ImmutableArray<Outputs.GetItemFileResult> Files;
         public readonly string Hostname;
         public readonly string Id;
-        /// <summary>
-        /// Secure Note value.
-        /// </summary>
         public readonly string NoteValue;
-        /// <summary>
-        /// Password for this item.
-        /// </summary>
         public readonly string Password;
-        /// <summary>
-        /// (Only applies to the database category) The port the database is listening on.
-        /// </summary>
         public readonly string Port;
-        /// <summary>
-        /// A list of custom sections in an item
-        /// </summary>
+        public readonly string PrivateKey;
+        public readonly string PublicKey;
         public readonly ImmutableArray<Outputs.GetItemSectionResult> Sections;
-        /// <summary>
-        /// An array of strings of the tags assigned to the item.
-        /// </summary>
         public readonly ImmutableArray<string> Tags;
-        /// <summary>
-        /// The title of the item to retrieve. This field will be populated with the title of the item if the item it looked up by its UUID.
-        /// </summary>
         public readonly string Title;
-        /// <summary>
-        /// (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
-        /// </summary>
         public readonly string Type;
-        /// <summary>
-        /// The primary URL for the item.
-        /// </summary>
         public readonly string Url;
-        /// <summary>
-        /// Username for this item.
-        /// </summary>
         public readonly string Username;
-        /// <summary>
-        /// The UUID of the item to retrieve. This field will be populated with the UUID of the item if the item it looked up by its title.
-        /// </summary>
         public readonly string Uuid;
-        /// <summary>
-        /// The UUID of the vault the item is in.
-        /// </summary>
         public readonly string Vault;
 
         [OutputConstructor]
         private GetItemResult(
             string category,
 
+            string credential,
+
             string database,
+
+            ImmutableArray<Outputs.GetItemFileResult> files,
 
             string hostname,
 
@@ -220,6 +148,10 @@ namespace Pulumi.Onepassword
             string password,
 
             string port,
+
+            string privateKey,
+
+            string publicKey,
 
             ImmutableArray<Outputs.GetItemSectionResult> sections,
 
@@ -238,12 +170,16 @@ namespace Pulumi.Onepassword
             string vault)
         {
             Category = category;
+            Credential = credential;
             Database = database;
+            Files = files;
             Hostname = hostname;
             Id = id;
             NoteValue = noteValue;
             Password = password;
             Port = port;
+            PrivateKey = privateKey;
+            PublicKey = publicKey;
             Sections = sections;
             Tags = tags;
             Title = title;

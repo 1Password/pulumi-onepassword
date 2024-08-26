@@ -5,11 +5,31 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-export interface GetItemSection {
+export interface GetItemFile {
     /**
-     * A list of custom fields in the section.
+     * The content of the file.
      */
-    fields: outputs.GetItemSectionField[];
+    content: string;
+    /**
+     * The content of the file in base64 encoding. (Use this for binary files.)
+     */
+    contentBase64: string;
+    /**
+     * The UUID of the file.
+     */
+    id: string;
+    /**
+     * The name of the file.
+     */
+    name: string;
+}
+
+export interface GetItemSection {
+    fields?: outputs.GetItemSectionField[];
+    /**
+     * A list of files attached to the section.
+     */
+    files?: outputs.GetItemSectionFile[];
     /**
      * A unique identifier for the section.
      */
@@ -30,11 +50,11 @@ export interface GetItemSectionField {
      */
     label: string;
     /**
-     * Purpose indicates this is a special field: a username, password, or notes field.
+     * Purpose indicates this is a special field: a username, password, or notes field. One of ["USERNAME" "PASSWORD" "NOTES"]
      */
     purpose: string;
     /**
-     * The type of value stored in the field.
+     * The type of value stored in the field. One of ["STRING" "CONCEALED" "EMAIL" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
      */
     type: string;
     /**
@@ -43,23 +63,42 @@ export interface GetItemSectionField {
     value: string;
 }
 
+export interface GetItemSectionFile {
+    /**
+     * The content of the file.
+     */
+    content: string;
+    /**
+     * The content of the file in base64 encoding. (Use this for binary files.)
+     */
+    contentBase64: string;
+    /**
+     * The UUID of the file.
+     */
+    id: string;
+    /**
+     * The name of the file.
+     */
+    name: string;
+}
+
 export interface ItemPasswordRecipe {
     /**
      * Use digits [0-9] when generating the password.
      */
-    digits?: boolean;
+    digits: boolean;
     /**
      * The length of the password to be generated.
      */
-    length?: number;
+    length: number;
     /**
      * Use letters [a-zA-Z] when generating the password.
      */
-    letters?: boolean;
+    letters: boolean;
     /**
      * Use symbols [!@.-_*] when generating the password.
      */
-    symbols?: boolean;
+    symbols: boolean;
 }
 
 export interface ItemSection {
@@ -97,7 +136,7 @@ export interface ItemSectionField {
     /**
      * The type of value stored in the field. One of ["STRING" "CONCEALED" "EMAIL" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
      */
-    type?: string;
+    type: string;
     /**
      * The value of the field.
      */
@@ -108,18 +147,18 @@ export interface ItemSectionFieldPasswordRecipe {
     /**
      * Use digits [0-9] when generating the password.
      */
-    digits?: boolean;
+    digits: boolean;
     /**
      * The length of the password to be generated.
      */
-    length?: number;
+    length: number;
     /**
      * Use letters [a-zA-Z] when generating the password.
      */
-    letters?: boolean;
+    letters: boolean;
     /**
      * Use symbols [!@.-_*] when generating the password.
      */
-    symbols?: boolean;
+    symbols: boolean;
 }
 

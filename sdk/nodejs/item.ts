@@ -6,58 +6,6 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * A 1Password Item.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as onepassword from "@1password/pulumi-onepassword";
- *
- * const demoPassword = new onepassword.Item("demoPassword", {
- *     vault: _var.demo_vault,
- *     title: "Demo Password Recipe",
- *     category: "password",
- *     passwordRecipe: {
- *         length: 40,
- *         symbols: false,
- *     },
- *     sections: [{
- *         label: "Credential metadata",
- *         fields: [{
- *             label: "Expiration",
- *             type: "DATE",
- *             value: "2024-01-31",
- *         }],
- *     }],
- * });
- * const demoLogin = new onepassword.Item("demoLogin", {
- *     vault: _var.demo_vault,
- *     title: "Demo Terraform Login",
- *     category: "login",
- *     username: "test@example.com",
- * });
- * const demoDb = new onepassword.Item("demoDb", {
- *     vault: _var.demo_vault,
- *     category: "database",
- *     type: "mysql",
- *     title: "Demo TF Database",
- *     username: "root",
- *     database: "Example MySQL Instance",
- *     hostname: "localhost",
- *     port: "3306",
- * });
- * ```
- *
- * ## Import
- *
- * import an existing 1Password item
- *
- * ```sh
- * $ pulumi import onepassword:index/item:Item myitem vaults/<vault uuid>/items/<item uuid>
- * ```
- */
 export class Item extends pulumi.CustomResource {
     /**
      * Get an existing Item resource's state with the given name, ID, and optional extra
@@ -89,7 +37,7 @@ export class Item extends pulumi.CustomResource {
     /**
      * The category of the item. One of ["login" "password" "database" "secureNote"]
      */
-    public readonly category!: pulumi.Output<string | undefined>;
+    public readonly category!: pulumi.Output<string>;
     /**
      * (Only applies to the database category) The name of the database.
      */
@@ -98,6 +46,10 @@ export class Item extends pulumi.CustomResource {
      * (Only applies to the database category) The address where the database can be found
      */
     public readonly hostname!: pulumi.Output<string | undefined>;
+    /**
+     * Secure Note value.
+     */
+    public readonly noteValue!: pulumi.Output<string | undefined>;
     /**
      * Password for this item.
      */
@@ -123,7 +75,8 @@ export class Item extends pulumi.CustomResource {
      */
     public readonly title!: pulumi.Output<string | undefined>;
     /**
-     * (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
+     * (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql"
+     * "oracle" "postgresql" "sqlite" "other"]
      */
     public readonly type!: pulumi.Output<string | undefined>;
     /**
@@ -159,6 +112,7 @@ export class Item extends pulumi.CustomResource {
             resourceInputs["category"] = state ? state.category : undefined;
             resourceInputs["database"] = state ? state.database : undefined;
             resourceInputs["hostname"] = state ? state.hostname : undefined;
+            resourceInputs["noteValue"] = state ? state.noteValue : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
             resourceInputs["passwordRecipe"] = state ? state.passwordRecipe : undefined;
             resourceInputs["port"] = state ? state.port : undefined;
@@ -178,6 +132,7 @@ export class Item extends pulumi.CustomResource {
             resourceInputs["category"] = args ? args.category : undefined;
             resourceInputs["database"] = args ? args.database : undefined;
             resourceInputs["hostname"] = args ? args.hostname : undefined;
+            resourceInputs["noteValue"] = args?.noteValue ? pulumi.secret(args.noteValue) : undefined;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["passwordRecipe"] = args ? args.passwordRecipe : undefined;
             resourceInputs["port"] = args ? args.port : undefined;
@@ -191,7 +146,7 @@ export class Item extends pulumi.CustomResource {
             resourceInputs["uuid"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["password"] };
+        const secretOpts = { additionalSecretOutputs: ["noteValue", "password"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(Item.__pulumiType, name, resourceInputs, opts);
     }
@@ -213,6 +168,10 @@ export interface ItemState {
      * (Only applies to the database category) The address where the database can be found
      */
     hostname?: pulumi.Input<string>;
+    /**
+     * Secure Note value.
+     */
+    noteValue?: pulumi.Input<string>;
     /**
      * Password for this item.
      */
@@ -238,7 +197,8 @@ export interface ItemState {
      */
     title?: pulumi.Input<string>;
     /**
-     * (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
+     * (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql"
+     * "oracle" "postgresql" "sqlite" "other"]
      */
     type?: pulumi.Input<string>;
     /**
@@ -276,6 +236,10 @@ export interface ItemArgs {
      */
     hostname?: pulumi.Input<string>;
     /**
+     * Secure Note value.
+     */
+    noteValue?: pulumi.Input<string>;
+    /**
      * Password for this item.
      */
     password?: pulumi.Input<string>;
@@ -300,7 +264,8 @@ export interface ItemArgs {
      */
     title?: pulumi.Input<string>;
     /**
-     * (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql" "oracle" "postgresql" "sqlite" "other"]
+     * (Only applies to the database category) The type of database. One of ["db2" "filemaker" "msaccess" "mssql" "mysql"
+     * "oracle" "postgresql" "sqlite" "other"]
      */
     type?: pulumi.Input<string>;
     /**

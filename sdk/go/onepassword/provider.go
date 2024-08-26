@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// The provider type for the onepassword package. By default, resources use package-wide configuration
+// The provider type for the onepassword/v2 package. By default, resources use package-wide configuration
 // settings, however an explicit `Provider` instance may be created and passed during resource
 // construction to achieve fine-grained programmatic control over provider settings. See the
 // [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
@@ -66,6 +66,17 @@ func NewProvider(ctx *pulumi.Context,
 			args.Url = pulumi.StringPtr(d.(string))
 		}
 	}
+	if args.ServiceAccountToken != nil {
+		args.ServiceAccountToken = pulumi.ToSecret(args.ServiceAccountToken).(pulumi.StringPtrInput)
+	}
+	if args.Token != nil {
+		args.Token = pulumi.ToSecret(args.Token).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"serviceAccountToken",
+		"token",
+	})
+	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:onepassword", name, args, &resource, opts...)

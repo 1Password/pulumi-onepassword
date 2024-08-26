@@ -13,10 +13,11 @@ namespace Pulumi.Onepassword.Outputs
     [OutputType]
     public sealed class GetItemSectionResult
     {
-        /// <summary>
-        /// A list of custom fields in the section.
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetItemSectionFieldResult> Fields;
+        /// <summary>
+        /// A list of files attached to the section.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetItemSectionFileResult> Files;
         /// <summary>
         /// A unique identifier for the section.
         /// </summary>
@@ -30,11 +31,14 @@ namespace Pulumi.Onepassword.Outputs
         private GetItemSectionResult(
             ImmutableArray<Outputs.GetItemSectionFieldResult> fields,
 
+            ImmutableArray<Outputs.GetItemSectionFileResult> files,
+
             string id,
 
             string label)
         {
             Fields = fields;
+            Files = files;
             Id = id;
             Label = label;
         }

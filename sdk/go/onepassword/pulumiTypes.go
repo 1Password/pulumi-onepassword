@@ -658,9 +658,134 @@ func (o ItemSectionFieldPasswordRecipePtrOutput) Symbols() pulumi.BoolPtrOutput 
 	}).(pulumi.BoolPtrOutput)
 }
 
+type GetItemFile struct {
+	// The content of the file.
+	Content string `pulumi:"content"`
+	// The content of the file in base64 encoding. (Use this for binary files.)
+	ContentBase64 string `pulumi:"contentBase64"`
+	// The UUID of the file.
+	Id string `pulumi:"id"`
+	// The name of the file.
+	Name string `pulumi:"name"`
+}
+
+// GetItemFileInput is an input type that accepts GetItemFileArgs and GetItemFileOutput values.
+// You can construct a concrete instance of `GetItemFileInput` via:
+//
+//	GetItemFileArgs{...}
+type GetItemFileInput interface {
+	pulumi.Input
+
+	ToGetItemFileOutput() GetItemFileOutput
+	ToGetItemFileOutputWithContext(context.Context) GetItemFileOutput
+}
+
+type GetItemFileArgs struct {
+	// The content of the file.
+	Content pulumi.StringInput `pulumi:"content"`
+	// The content of the file in base64 encoding. (Use this for binary files.)
+	ContentBase64 pulumi.StringInput `pulumi:"contentBase64"`
+	// The UUID of the file.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The name of the file.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetItemFileArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetItemFile)(nil)).Elem()
+}
+
+func (i GetItemFileArgs) ToGetItemFileOutput() GetItemFileOutput {
+	return i.ToGetItemFileOutputWithContext(context.Background())
+}
+
+func (i GetItemFileArgs) ToGetItemFileOutputWithContext(ctx context.Context) GetItemFileOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetItemFileOutput)
+}
+
+// GetItemFileArrayInput is an input type that accepts GetItemFileArray and GetItemFileArrayOutput values.
+// You can construct a concrete instance of `GetItemFileArrayInput` via:
+//
+//	GetItemFileArray{ GetItemFileArgs{...} }
+type GetItemFileArrayInput interface {
+	pulumi.Input
+
+	ToGetItemFileArrayOutput() GetItemFileArrayOutput
+	ToGetItemFileArrayOutputWithContext(context.Context) GetItemFileArrayOutput
+}
+
+type GetItemFileArray []GetItemFileInput
+
+func (GetItemFileArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetItemFile)(nil)).Elem()
+}
+
+func (i GetItemFileArray) ToGetItemFileArrayOutput() GetItemFileArrayOutput {
+	return i.ToGetItemFileArrayOutputWithContext(context.Background())
+}
+
+func (i GetItemFileArray) ToGetItemFileArrayOutputWithContext(ctx context.Context) GetItemFileArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetItemFileArrayOutput)
+}
+
+type GetItemFileOutput struct{ *pulumi.OutputState }
+
+func (GetItemFileOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetItemFile)(nil)).Elem()
+}
+
+func (o GetItemFileOutput) ToGetItemFileOutput() GetItemFileOutput {
+	return o
+}
+
+func (o GetItemFileOutput) ToGetItemFileOutputWithContext(ctx context.Context) GetItemFileOutput {
+	return o
+}
+
+// The content of the file.
+func (o GetItemFileOutput) Content() pulumi.StringOutput {
+	return o.ApplyT(func(v GetItemFile) string { return v.Content }).(pulumi.StringOutput)
+}
+
+// The content of the file in base64 encoding. (Use this for binary files.)
+func (o GetItemFileOutput) ContentBase64() pulumi.StringOutput {
+	return o.ApplyT(func(v GetItemFile) string { return v.ContentBase64 }).(pulumi.StringOutput)
+}
+
+// The UUID of the file.
+func (o GetItemFileOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetItemFile) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The name of the file.
+func (o GetItemFileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetItemFile) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetItemFileArrayOutput struct{ *pulumi.OutputState }
+
+func (GetItemFileArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetItemFile)(nil)).Elem()
+}
+
+func (o GetItemFileArrayOutput) ToGetItemFileArrayOutput() GetItemFileArrayOutput {
+	return o
+}
+
+func (o GetItemFileArrayOutput) ToGetItemFileArrayOutputWithContext(ctx context.Context) GetItemFileArrayOutput {
+	return o
+}
+
+func (o GetItemFileArrayOutput) Index(i pulumi.IntInput) GetItemFileOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetItemFile {
+		return vs[0].([]GetItemFile)[vs[1].(int)]
+	}).(GetItemFileOutput)
+}
+
 type GetItemSection struct {
-	// A list of custom fields in the section.
 	Fields []GetItemSectionField `pulumi:"fields"`
+	// A list of files attached to the section.
+	Files []GetItemSectionFile `pulumi:"files"`
 	// A unique identifier for the section.
 	Id string `pulumi:"id"`
 	// The label for the section.
@@ -679,8 +804,9 @@ type GetItemSectionInput interface {
 }
 
 type GetItemSectionArgs struct {
-	// A list of custom fields in the section.
 	Fields GetItemSectionFieldArrayInput `pulumi:"fields"`
+	// A list of files attached to the section.
+	Files GetItemSectionFileArrayInput `pulumi:"files"`
 	// A unique identifier for the section.
 	Id pulumi.StringInput `pulumi:"id"`
 	// The label for the section.
@@ -738,9 +864,13 @@ func (o GetItemSectionOutput) ToGetItemSectionOutputWithContext(ctx context.Cont
 	return o
 }
 
-// A list of custom fields in the section.
 func (o GetItemSectionOutput) Fields() GetItemSectionFieldArrayOutput {
 	return o.ApplyT(func(v GetItemSection) []GetItemSectionField { return v.Fields }).(GetItemSectionFieldArrayOutput)
+}
+
+// A list of files attached to the section.
+func (o GetItemSectionOutput) Files() GetItemSectionFileArrayOutput {
+	return o.ApplyT(func(v GetItemSection) []GetItemSectionFile { return v.Files }).(GetItemSectionFileArrayOutput)
 }
 
 // A unique identifier for the section.
@@ -778,9 +908,9 @@ type GetItemSectionField struct {
 	Id string `pulumi:"id"`
 	// The label for the field.
 	Label string `pulumi:"label"`
-	// Purpose indicates this is a special field: a username, password, or notes field.
+	// Purpose indicates this is a special field: a username, password, or notes field. One of ["USERNAME" "PASSWORD" "NOTES"]
 	Purpose string `pulumi:"purpose"`
-	// The type of value stored in the field.
+	// The type of value stored in the field. One of ["STRING" "CONCEALED" "EMAIL" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
 	Type string `pulumi:"type"`
 	// The value of the field.
 	Value string `pulumi:"value"`
@@ -802,9 +932,9 @@ type GetItemSectionFieldArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// The label for the field.
 	Label pulumi.StringInput `pulumi:"label"`
-	// Purpose indicates this is a special field: a username, password, or notes field.
+	// Purpose indicates this is a special field: a username, password, or notes field. One of ["USERNAME" "PASSWORD" "NOTES"]
 	Purpose pulumi.StringInput `pulumi:"purpose"`
-	// The type of value stored in the field.
+	// The type of value stored in the field. One of ["STRING" "CONCEALED" "EMAIL" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
 	Type pulumi.StringInput `pulumi:"type"`
 	// The value of the field.
 	Value pulumi.StringInput `pulumi:"value"`
@@ -871,12 +1001,12 @@ func (o GetItemSectionFieldOutput) Label() pulumi.StringOutput {
 	return o.ApplyT(func(v GetItemSectionField) string { return v.Label }).(pulumi.StringOutput)
 }
 
-// Purpose indicates this is a special field: a username, password, or notes field.
+// Purpose indicates this is a special field: a username, password, or notes field. One of ["USERNAME" "PASSWORD" "NOTES"]
 func (o GetItemSectionFieldOutput) Purpose() pulumi.StringOutput {
 	return o.ApplyT(func(v GetItemSectionField) string { return v.Purpose }).(pulumi.StringOutput)
 }
 
-// The type of value stored in the field.
+// The type of value stored in the field. One of ["STRING" "CONCEALED" "EMAIL" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
 func (o GetItemSectionFieldOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetItemSectionField) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -906,6 +1036,130 @@ func (o GetItemSectionFieldArrayOutput) Index(i pulumi.IntInput) GetItemSectionF
 	}).(GetItemSectionFieldOutput)
 }
 
+type GetItemSectionFile struct {
+	// The content of the file.
+	Content string `pulumi:"content"`
+	// The content of the file in base64 encoding. (Use this for binary files.)
+	ContentBase64 string `pulumi:"contentBase64"`
+	// The UUID of the file.
+	Id string `pulumi:"id"`
+	// The name of the file.
+	Name string `pulumi:"name"`
+}
+
+// GetItemSectionFileInput is an input type that accepts GetItemSectionFileArgs and GetItemSectionFileOutput values.
+// You can construct a concrete instance of `GetItemSectionFileInput` via:
+//
+//	GetItemSectionFileArgs{...}
+type GetItemSectionFileInput interface {
+	pulumi.Input
+
+	ToGetItemSectionFileOutput() GetItemSectionFileOutput
+	ToGetItemSectionFileOutputWithContext(context.Context) GetItemSectionFileOutput
+}
+
+type GetItemSectionFileArgs struct {
+	// The content of the file.
+	Content pulumi.StringInput `pulumi:"content"`
+	// The content of the file in base64 encoding. (Use this for binary files.)
+	ContentBase64 pulumi.StringInput `pulumi:"contentBase64"`
+	// The UUID of the file.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The name of the file.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetItemSectionFileArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetItemSectionFile)(nil)).Elem()
+}
+
+func (i GetItemSectionFileArgs) ToGetItemSectionFileOutput() GetItemSectionFileOutput {
+	return i.ToGetItemSectionFileOutputWithContext(context.Background())
+}
+
+func (i GetItemSectionFileArgs) ToGetItemSectionFileOutputWithContext(ctx context.Context) GetItemSectionFileOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetItemSectionFileOutput)
+}
+
+// GetItemSectionFileArrayInput is an input type that accepts GetItemSectionFileArray and GetItemSectionFileArrayOutput values.
+// You can construct a concrete instance of `GetItemSectionFileArrayInput` via:
+//
+//	GetItemSectionFileArray{ GetItemSectionFileArgs{...} }
+type GetItemSectionFileArrayInput interface {
+	pulumi.Input
+
+	ToGetItemSectionFileArrayOutput() GetItemSectionFileArrayOutput
+	ToGetItemSectionFileArrayOutputWithContext(context.Context) GetItemSectionFileArrayOutput
+}
+
+type GetItemSectionFileArray []GetItemSectionFileInput
+
+func (GetItemSectionFileArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetItemSectionFile)(nil)).Elem()
+}
+
+func (i GetItemSectionFileArray) ToGetItemSectionFileArrayOutput() GetItemSectionFileArrayOutput {
+	return i.ToGetItemSectionFileArrayOutputWithContext(context.Background())
+}
+
+func (i GetItemSectionFileArray) ToGetItemSectionFileArrayOutputWithContext(ctx context.Context) GetItemSectionFileArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetItemSectionFileArrayOutput)
+}
+
+type GetItemSectionFileOutput struct{ *pulumi.OutputState }
+
+func (GetItemSectionFileOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetItemSectionFile)(nil)).Elem()
+}
+
+func (o GetItemSectionFileOutput) ToGetItemSectionFileOutput() GetItemSectionFileOutput {
+	return o
+}
+
+func (o GetItemSectionFileOutput) ToGetItemSectionFileOutputWithContext(ctx context.Context) GetItemSectionFileOutput {
+	return o
+}
+
+// The content of the file.
+func (o GetItemSectionFileOutput) Content() pulumi.StringOutput {
+	return o.ApplyT(func(v GetItemSectionFile) string { return v.Content }).(pulumi.StringOutput)
+}
+
+// The content of the file in base64 encoding. (Use this for binary files.)
+func (o GetItemSectionFileOutput) ContentBase64() pulumi.StringOutput {
+	return o.ApplyT(func(v GetItemSectionFile) string { return v.ContentBase64 }).(pulumi.StringOutput)
+}
+
+// The UUID of the file.
+func (o GetItemSectionFileOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetItemSectionFile) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The name of the file.
+func (o GetItemSectionFileOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetItemSectionFile) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetItemSectionFileArrayOutput struct{ *pulumi.OutputState }
+
+func (GetItemSectionFileArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetItemSectionFile)(nil)).Elem()
+}
+
+func (o GetItemSectionFileArrayOutput) ToGetItemSectionFileArrayOutput() GetItemSectionFileArrayOutput {
+	return o
+}
+
+func (o GetItemSectionFileArrayOutput) ToGetItemSectionFileArrayOutputWithContext(ctx context.Context) GetItemSectionFileArrayOutput {
+	return o
+}
+
+func (o GetItemSectionFileArrayOutput) Index(i pulumi.IntInput) GetItemSectionFileOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetItemSectionFile {
+		return vs[0].([]GetItemSectionFile)[vs[1].(int)]
+	}).(GetItemSectionFileOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ItemPasswordRecipeInput)(nil)).Elem(), ItemPasswordRecipeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ItemPasswordRecipePtrInput)(nil)).Elem(), ItemPasswordRecipeArgs{})
@@ -915,10 +1169,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ItemSectionFieldArrayInput)(nil)).Elem(), ItemSectionFieldArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ItemSectionFieldPasswordRecipeInput)(nil)).Elem(), ItemSectionFieldPasswordRecipeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ItemSectionFieldPasswordRecipePtrInput)(nil)).Elem(), ItemSectionFieldPasswordRecipeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetItemFileInput)(nil)).Elem(), GetItemFileArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetItemFileArrayInput)(nil)).Elem(), GetItemFileArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetItemSectionInput)(nil)).Elem(), GetItemSectionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetItemSectionArrayInput)(nil)).Elem(), GetItemSectionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetItemSectionFieldInput)(nil)).Elem(), GetItemSectionFieldArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetItemSectionFieldArrayInput)(nil)).Elem(), GetItemSectionFieldArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetItemSectionFileInput)(nil)).Elem(), GetItemSectionFileArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetItemSectionFileArrayInput)(nil)).Elem(), GetItemSectionFileArray{})
 	pulumi.RegisterOutputType(ItemPasswordRecipeOutput{})
 	pulumi.RegisterOutputType(ItemPasswordRecipePtrOutput{})
 	pulumi.RegisterOutputType(ItemSectionOutput{})
@@ -927,8 +1185,12 @@ func init() {
 	pulumi.RegisterOutputType(ItemSectionFieldArrayOutput{})
 	pulumi.RegisterOutputType(ItemSectionFieldPasswordRecipeOutput{})
 	pulumi.RegisterOutputType(ItemSectionFieldPasswordRecipePtrOutput{})
+	pulumi.RegisterOutputType(GetItemFileOutput{})
+	pulumi.RegisterOutputType(GetItemFileArrayOutput{})
 	pulumi.RegisterOutputType(GetItemSectionOutput{})
 	pulumi.RegisterOutputType(GetItemSectionArrayOutput{})
 	pulumi.RegisterOutputType(GetItemSectionFieldOutput{})
 	pulumi.RegisterOutputType(GetItemSectionFieldArrayOutput{})
+	pulumi.RegisterOutputType(GetItemSectionFileOutput{})
+	pulumi.RegisterOutputType(GetItemSectionFileArrayOutput{})
 }
