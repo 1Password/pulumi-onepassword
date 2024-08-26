@@ -2,6 +2,8 @@ module github.com/1Password/pulumi-onepassword/provider
 
 go 1.21.12
 
+toolchain go1.23.0
+
 // Note 1: The `version` string below is comprised of a commit datetime+hash, the latest of which can be found on the `upstream-v2.33.0` branch.
 // https://github.com/pulumi/terraform-plugin-sdk/commits/upstream-v2.33.0/
 //
