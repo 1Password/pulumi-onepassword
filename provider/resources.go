@@ -28,7 +28,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 
 	"github.com/1Password/pulumi-onepassword/provider/pkg/version"
-	op "github.com/1Password/pulumi-onepassword/provider/shim"
+	onepassword "github.com/1Password/terraform-provider-onepassword/v2/providerlink"
 )
 
 // all of the token components used below.
@@ -56,7 +56,7 @@ func Provider() tfbridge.ProviderInfo {
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
 		// Instantiate the Terraform provider
-		P:    pf.ShimProvider(op.NewProvider()),
+		P:    pf.ShimProvider(onepassword.New(version.Version)()),
 		Name: "onepassword/v2",
 		// DisplayName is a way to be able to change the casing of the provider
 		// name when being displayed on the Pulumi registry
