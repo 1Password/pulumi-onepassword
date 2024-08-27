@@ -15,17 +15,17 @@ The 1Password provider for Pulumi is available as a package in most Pulumi langu
 - Go: [github.com/1Password/pulumi-onepassword/sdk/go/onepassword](https://pkg.go.dev/github.com/1Password/pulumi-onepassword/sdk/go/onepassword)
 - .NET: _coming soon_
 
-## Configuring Credentials
+## Configuration
 
 You must configure the 1Password provider for Pulumi with your 1Password credentials before the provider can be used to access and manage items in your 1Password vaults. You can use one of the following:
 
 - [Service account](https://developer.1password.com/docs/service-accounts/get-started)
-  - `pulumi-onepassword:service_account_token` (environment: `OP_SERVICE_ACCOUNT_TOKEN`) - the 1Password service account token to use with 1Password CLI.
+  - `pulumi-onepassword:service_account_token` (environment: `OP_SERVICE_ACCOUNT_TOKEN`) - the 1Password service account token. Requires [1Password CLI](https://developer.1password.com/docs/cli/get-started/).
 - [Connect server](https://developer.1password.com/docs/connect/get-started)
   - `pulumi-onepassword:url` (environment: `OP_CONNECT_HOST`) - the URL where your 1Password Connect API can be found.
   - `pulumi-onepassword:token` (environment: `OP_CONNECT_TOKEN`) - the token for your Connect API.
 - Personal account
-  - `pulumi-onepassword:account` (environment: `OP_ACCOUNT`) - the [sign-in address](https://support.1password.com/1password-glossary/#sign-in-address) or [unique identifier](https://developer.1password.com/docs/cli/reference/#unique-identifiers-ids) for your 1Password account to use with 1Password CLI and biometric unlock.
+  - `pulumi-onepassword:account` (environment: `OP_ACCOUNT`) - the [sign-in address](https://support.1password.com/1password-glossary/#sign-in-address) or [unique identifier](https://developer.1password.com/docs/cli/reference/#unique-identifiers-ids) for your 1Password account to use. Requires [1Password CLI](https://developer.1password.com/docs/cli/get-started/) and biometric unlock.
 
 After you find your credentials, there are two ways to provide them to Pulumi:
 
