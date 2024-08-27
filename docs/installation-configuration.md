@@ -25,7 +25,7 @@ You must configure the 1Password provider for Pulumi with your 1Password credent
   - `pulumi-onepassword:url` (environment: `OP_CONNECT_HOST`) - the URL where your 1Password Connect API can be found.
   - `pulumi-onepassword:token` (environment: `OP_CONNECT_TOKEN`) - the token for your Connect API.
 - Personal account
-  - `pulumi-onepassword:account` (environment: `OP_ACCOUNT`) - the [sign-in address](https://support.1password.com/1password-glossary/#sign-in-address) or [unique identifier](https://developer.1password.com/docs/cli/reference/#unique-identifiers-ids) for your 1Password account to use. Requires [1Password CLI](https://developer.1password.com/docs/cli/get-started/) and biometric unlock.
+  - `pulumi-onepassword:account` (environment: `OP_ACCOUNT`) - the [sign-in address](https://support.1password.com/1password-glossary/#sign-in-address) or [unique identifier](https://developer.1password.com/docs/cli/reference/#unique-identifiers-ids) for your 1Password account. Requires [1Password CLI](https://developer.1password.com/docs/cli/get-started/) and biometric unlock.
 
 After you find your credentials, there are two ways to provide them to Pulumi:
 
