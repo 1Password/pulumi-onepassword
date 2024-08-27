@@ -4,8 +4,8 @@ meta_desc: Provides an overview of the 1Password Provider for Pulumi.
 layout: package
 ---
 
-The Aiven provider for Pulumi can be used to provision any of the cloud resources available in [Aiven](https://aiven.io/).
-The Aiven provider must be configured with credentials to deploy and update resources in Aiven.
+The 1Password provider for Pulumi allows you to access and manage items in your [1Password](https://1password.com) vaults.
+You'll need to configure the 1Password provider with credentials to access and manage items in 1Password.
 
 ## Example
 
@@ -85,6 +85,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Pulumi;
 using Onepassword = Pulumi.Onepassword;
+
 return await Deployment.RunAsync(() =&gt; 
 {
     var example = Onepassword.GetItem.Invoke(new()
@@ -92,6 +93,7 @@ return await Deployment.RunAsync(() =&gt;
         Vault = data.Onepassword_vault.Example.Uuid,
         Uuid = onepassword_item.Demo_sections.Uuid,
     });
+
 });
 ```
 
