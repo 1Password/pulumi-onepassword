@@ -24,7 +24,7 @@ setup(name='pulumi_onepassword',
       long_description=readme(),
       long_description_content_type='text/markdown',
       keywords='pulumi onepassword 1Password category/cloud',
-      url='https://www.pulumi.com',
+      url='https://www.developer.1password.com',
       project_urls={
           'Repository': 'https://github.com/1Password/pulumi-onepassword'
       },
