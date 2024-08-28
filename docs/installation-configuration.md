@@ -15,6 +15,16 @@ The 1Password provider for Pulumi is available as a package in most Pulumi langu
 - Go: [github.com/1Password/pulumi-onepassword/sdk/go/onepassword](https://pkg.go.dev/github.com/1Password/pulumi-onepassword/sdk/go/onepassword)
 - .NET: _coming soon_
 
+### Provider Binary
+
+The 1Password provider binary is a third party binary. It can be installed using the `pulumi plugin` command.
+
+```sh
+pulumi plugin install resource onepassword <version> --server github://api.github.com/1Password
+```
+
+Replace the version string with your desired version.
+
 ## Configuration
 
 You must configure the 1Password provider for Pulumi with your 1Password credentials before the provider can be used to access and manage items in your 1Password vaults. You can use one of the following:
@@ -38,7 +48,8 @@ After you find your credentials, there are two ways to provide them to Pulumi:
 2. If you prefer to store your credentials alongside your Pulumi stack for easy multi-user access, use configuration to set them.
 
    ```sh
-   $ pulumi config set pulumi-onepassword:service_account_token XXXXXXXXXXXXXX --secret
+   $ pulumi config set pulumi-onepassword:service_account_token --secret
+   Value: <paste token here>
    ```
 
 Make sure to pass `--secret` when setting any sensitive data (in this example `pulumi-onepassword:service_account_token`) so that it's properly encrypted. The complete list of configuration parameters is in the [1Password provider for Pulumi README](https://github.com/1Password/pulumi-onepassword/blob/main/README.md).
