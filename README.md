@@ -63,6 +63,14 @@ The following configuration points are available for the `1Password` provider:
 - `pulumi-onepassword:account` (environment: `OP_ACCOUNT`) - A valid account's sign-in address or ID to use with 1Password CLI and biometric unlock.
 - `pulumi-onepassword:op_cli_path` (environment: `OP_CLI_PATH`) - The path to the 1Password CLI binary.
 
+## Deployment
+
+Follow the instructions below to deploy the 1Password provider:
+
+1. Push a tag to your repo in the format "v0.0.0" to initiate a release
+
+2. IMPORTANT: also add a tag in the format "sdk/v0.0.0" for the Go SDK
+
 ## Reference
 
 <!-- TODO: Confirm that this URL to the API documentation is correct. -->
