@@ -1,5 +1,6 @@
 {
     "name": "onepassword",
+    "displayName": "1Password",
     "description": "Use the 1Password Pulumi provider to access and manage items in your 1Password vaults.",
     "keywords": [
         "pulumi",
@@ -7,12 +8,13 @@
         "1Password",
         "category/cloud"
     ],
-    "homepage": "https://www.pulumi.com",
+    "homepage": "https://www.developer.1password.com",
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`onepassword` Terraform Provider](https://github.com/1Password/terraform-provider-onepassword).",
     "repository": "https://github.com/1Password/pulumi-onepassword",
+    "logoUrl": "https://1password.com/logo-images/1password-logo-dark@2x.png",
     "pluginDownloadURL": "github://api.github.com/1Password/pulumi-onepassword",
-    "publisher": "Pulumi",
+    "publisher": "1Password",
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"
     },

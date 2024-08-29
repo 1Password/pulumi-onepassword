@@ -8,7 +8,7 @@
         "1Password",
         "category/cloud"
     ],
-    "homepage": "https://www.pulumi.com",
+    "homepage": "https://www.developer.1password.com",
     "repository": "https://github.com/1Password/pulumi-onepassword",
     "license": "Apache-2.0",
     "scripts": {
