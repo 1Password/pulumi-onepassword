@@ -20,7 +20,7 @@ The 1Password provider for Pulumi is available as a package in most Pulumi langu
 The 1Password provider binary is a third party binary. It can be installed using the `pulumi plugin` command.
 
 ```sh
-pulumi plugin install resource onepassword <version> --server github://api.github.com/1Password
+pulumi plugin install resource onepassword <version> --server github://api.github.com/1Password/pulumi-onepassword
 ```
 
 Replace the version string with your desired version.
