@@ -39,27 +39,17 @@ You must configure the 1Password provider for Pulumi with your 1Password credent
 
 After you find your credentials, there are two ways to provide them to Pulumi:
 
-{{< chooser configuration "env-var,pulumi-config" >}}
+1. Set the environment variables for the preferred method. For example, to set the environment variable for a service account token:
 
-{{% choosable configuration env-var %}}
+   ```sh
+   $ export OP_SERVICE_ACCOUNT_TOKEN=XXXXXXXXXXXXXX
+   ```
 
-Set the environment variables for the preferred method. For example, to set the environment variable for a service account token:
+2. If you prefer to store your credentials alongside your Pulumi stack for easy multi-user access, use configuration to set them.
 
-```sh
-$ export OP_SERVICE_ACCOUNT_TOKEN=XXXXXXXXXXXXXX
-```
+   ```sh
+   $ pulumi config set pulumi-onepassword:service_account_token --secret
+   Value: <paste token here>
+   ```
 
-{{% /choosable %}}
-{{% choosable configuration pulumi-config %}}
-
-If you prefer to store your credentials alongside your Pulumi stack for easy multi-user access, use configuration to set them.
-
-```sh
-$ pulumi config set pulumi-onepassword:service_account_token --secret
-Value: <paste token here>
-```
-
-Make sure to pass `--secret` when setting any sensitive data (in this example `pulumi-onepassword:service_account_token`) so that it's properly encrypted. The complete list of configuration parameters is in the [1Password provider for Pulumi README](https://github.com/1Password/pulumi-onepassword/blob/main/README.md).
-
-{{% /choosable %}}
-{{< /chooser >}}
+Make sure to pass `--secret` when setting any sensitive data (in this example `pulumi-onepassword:service_account_token`) so that it's properly encrypted. The complete list of configuration parameters is in the [1Password provider for Pulumi README](https://github.com/1Password/pulumi-onepassword/blob/main/README.md#configuration).
