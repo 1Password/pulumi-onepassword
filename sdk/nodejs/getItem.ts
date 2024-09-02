@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as onepassword from "@1Password/pulumi-onepassword";
+ * import * as onepassword from "@pulumi/onepassword";
  *
  * const example = onepassword.getItem({
  *     title: "your-item-title",
@@ -149,7 +149,7 @@ export interface GetItemResult {
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as onepassword from "@1Password/pulumi-onepassword";
+ * import * as onepassword from "@pulumi/onepassword";
  *
  * const example = onepassword.getItem({
  *     title: "your-item-title",
