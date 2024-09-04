@@ -1,5 +1,5 @@
 ---
-title: 1Password: Installation & Configuration
+title: 1Password Provider Installation & Configuration
 meta_desc: Provides an overview on how to configure credentials for the 1Password provider for Pulumi.
 layout: package
 ---
