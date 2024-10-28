@@ -4,21 +4,57 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
     'ItemPasswordRecipeArgs',
+    'ItemPasswordRecipeArgsDict',
     'ItemSectionArgs',
+    'ItemSectionArgsDict',
     'ItemSectionFieldArgs',
+    'ItemSectionFieldArgsDict',
     'ItemSectionFieldPasswordRecipeArgs',
+    'ItemSectionFieldPasswordRecipeArgsDict',
     'GetItemFileArgs',
+    'GetItemFileArgsDict',
     'GetItemSectionArgs',
+    'GetItemSectionArgsDict',
     'GetItemSectionFieldArgs',
+    'GetItemSectionFieldArgsDict',
     'GetItemSectionFileArgs',
+    'GetItemSectionFileArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class ItemPasswordRecipeArgsDict(TypedDict):
+        digits: NotRequired[pulumi.Input[bool]]
+        """
+        Use digits [0-9] when generating the password.
+        """
+        length: NotRequired[pulumi.Input[int]]
+        """
+        The length of the password to be generated.
+        """
+        letters: NotRequired[pulumi.Input[bool]]
+        """
+        Use letters [a-zA-Z] when generating the password.
+        """
+        symbols: NotRequired[pulumi.Input[bool]]
+        """
+        Use symbols [!@.-_*] when generating the password.
+        """
+elif False:
+    ItemPasswordRecipeArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ItemPasswordRecipeArgs:
@@ -91,6 +127,23 @@ class ItemPasswordRecipeArgs:
         pulumi.set(self, "symbols", value)
 
 
+if not MYPY:
+    class ItemSectionArgsDict(TypedDict):
+        label: pulumi.Input[str]
+        """
+        The label for the section.
+        """
+        fields: NotRequired[pulumi.Input[Sequence[pulumi.Input['ItemSectionFieldArgsDict']]]]
+        """
+        A list of custom fields in the section.
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        A unique identifier for the section.
+        """
+elif False:
+    ItemSectionArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ItemSectionArgs:
     def __init__(__self__, *,
@@ -144,6 +197,35 @@ class ItemSectionArgs:
     def id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "id", value)
 
+
+if not MYPY:
+    class ItemSectionFieldArgsDict(TypedDict):
+        label: pulumi.Input[str]
+        """
+        The label for the field.
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        A unique identifier for the field.
+        """
+        password_recipe: NotRequired[pulumi.Input['ItemSectionFieldPasswordRecipeArgsDict']]
+        """
+        The recipe used to generate a new value for a password.
+        """
+        purpose: NotRequired[pulumi.Input[str]]
+        """
+        Purpose indicates this is a special field: a username, password, or notes field. One of ["USERNAME" "PASSWORD" "NOTES"]
+        """
+        type: NotRequired[pulumi.Input[str]]
+        """
+        The type of value stored in the field. One of ["STRING" "CONCEALED" "EMAIL" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+        """
+        value: NotRequired[pulumi.Input[str]]
+        """
+        The value of the field.
+        """
+elif False:
+    ItemSectionFieldArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ItemSectionFieldArgs:
@@ -247,6 +329,27 @@ class ItemSectionFieldArgs:
         pulumi.set(self, "value", value)
 
 
+if not MYPY:
+    class ItemSectionFieldPasswordRecipeArgsDict(TypedDict):
+        digits: NotRequired[pulumi.Input[bool]]
+        """
+        Use digits [0-9] when generating the password.
+        """
+        length: NotRequired[pulumi.Input[int]]
+        """
+        The length of the password to be generated.
+        """
+        letters: NotRequired[pulumi.Input[bool]]
+        """
+        Use letters [a-zA-Z] when generating the password.
+        """
+        symbols: NotRequired[pulumi.Input[bool]]
+        """
+        Use symbols [!@.-_*] when generating the password.
+        """
+elif False:
+    ItemSectionFieldPasswordRecipeArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ItemSectionFieldPasswordRecipeArgs:
     def __init__(__self__, *,
@@ -318,6 +421,27 @@ class ItemSectionFieldPasswordRecipeArgs:
         pulumi.set(self, "symbols", value)
 
 
+if not MYPY:
+    class GetItemFileArgsDict(TypedDict):
+        content: str
+        """
+        The content of the file.
+        """
+        content_base64: str
+        """
+        The content of the file in base64 encoding. (Use this for binary files.)
+        """
+        id: str
+        """
+        The UUID of the file.
+        """
+        name: str
+        """
+        The name of the file.
+        """
+elif False:
+    GetItemFileArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class GetItemFileArgs:
     def __init__(__self__, *,
@@ -385,6 +509,24 @@ class GetItemFileArgs:
         pulumi.set(self, "name", value)
 
 
+if not MYPY:
+    class GetItemSectionArgsDict(TypedDict):
+        id: str
+        """
+        A unique identifier for the section.
+        """
+        label: str
+        """
+        The label for the section.
+        """
+        fields: NotRequired[Sequence['GetItemSectionFieldArgsDict']]
+        files: NotRequired[Sequence['GetItemSectionFileArgsDict']]
+        """
+        A list of files attached to the section.
+        """
+elif False:
+    GetItemSectionArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class GetItemSectionArgs:
     def __init__(__self__, *,
@@ -449,6 +591,31 @@ class GetItemSectionArgs:
     def files(self, value: Optional[Sequence['GetItemSectionFileArgs']]):
         pulumi.set(self, "files", value)
 
+
+if not MYPY:
+    class GetItemSectionFieldArgsDict(TypedDict):
+        id: str
+        """
+        A unique identifier for the field.
+        """
+        label: str
+        """
+        The label for the field.
+        """
+        purpose: str
+        """
+        Purpose indicates this is a special field: a username, password, or notes field. One of ["USERNAME" "PASSWORD" "NOTES"]
+        """
+        type: str
+        """
+        The type of value stored in the field. One of ["STRING" "CONCEALED" "EMAIL" "URL" "OTP" "DATE" "MONTH_YEAR" "MENU"]
+        """
+        value: str
+        """
+        The value of the field.
+        """
+elif False:
+    GetItemSectionFieldArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GetItemSectionFieldArgs:
@@ -531,6 +698,27 @@ class GetItemSectionFieldArgs:
     def value(self, value: str):
         pulumi.set(self, "value", value)
 
+
+if not MYPY:
+    class GetItemSectionFileArgsDict(TypedDict):
+        content: str
+        """
+        The content of the file.
+        """
+        content_base64: str
+        """
+        The content of the file in base64 encoding. (Use this for binary files.)
+        """
+        id: str
+        """
+        The UUID of the file.
+        """
+        name: str
+        """
+        The name of the file.
+        """
+elif False:
+    GetItemSectionFileArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GetItemSectionFileArgs:
