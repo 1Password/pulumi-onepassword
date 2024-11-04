@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as onepassword from "@1Password/pulumi-onepassword";
+ * import * as onepassword from "@pulumi/onepassword";
  *
  * const example = onepassword.getItem({
  *     title: "your-item-title",
@@ -22,7 +22,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getItem(args: GetItemArgs, opts?: pulumi.InvokeOptions): Promise<GetItemResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("onepassword:index/getItem:getItem", {
         "files": args.files,
@@ -149,7 +148,7 @@ export interface GetItemResult {
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as onepassword from "@1Password/pulumi-onepassword";
+ * import * as onepassword from "@pulumi/onepassword";
  *
  * const example = onepassword.getItem({
  *     title: "your-item-title",
@@ -158,7 +157,15 @@ export interface GetItemResult {
  * ```
  */
 export function getItemOutput(args: GetItemOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetItemResult> {
-    return pulumi.output(args).apply((a: any) => getItem(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("onepassword:index/getItem:getItem", {
+        "files": args.files,
+        "noteValue": args.noteValue,
+        "sections": args.sections,
+        "title": args.title,
+        "uuid": args.uuid,
+        "vault": args.vault,
+    }, opts);
 }
 
 /**
