@@ -67,4 +67,4 @@ The following configuration points are available for the `1Password` provider:
 
 <!-- TODO: Confirm that this URL to the API documentation is correct. -->
 
-For detailed reference documentation, please visit [the Pulumi registry](https://www.pulumi.com/registry/packages/1Password/api-docs/).
+For detailed reference documentation, please visit [the Pulumi registry](https://www.pulumi.com/registry/packages/onepassword/).
