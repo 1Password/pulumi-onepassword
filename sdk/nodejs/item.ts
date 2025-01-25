@@ -71,7 +71,7 @@ export class Item extends pulumi.CustomResource {
     }
 
     /**
-     * The category of the item. One of ["login" "password" "database" "secureNote"]
+     * The category of the item. One of ["login" "password" "database" "secure_note"]
      */
     public readonly category!: pulumi.Output<string>;
     /**
@@ -192,7 +192,7 @@ export class Item extends pulumi.CustomResource {
  */
 export interface ItemState {
     /**
-     * The category of the item. One of ["login" "password" "database" "secureNote"]
+     * The category of the item. One of ["login" "password" "database" "secure_note"]
      */
     category?: pulumi.Input<string>;
     /**
@@ -258,7 +258,7 @@ export interface ItemState {
  */
 export interface ItemArgs {
     /**
-     * The category of the item. One of ["login" "password" "database" "secureNote"]
+     * The category of the item. One of ["login" "password" "database" "secure_note"]
      */
     category?: pulumi.Input<string>;
     /**

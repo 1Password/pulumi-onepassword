@@ -68,7 +68,7 @@ import (
 type Item struct {
 	pulumi.CustomResourceState
 
-	// The category of the item. One of ["login" "password" "database" "secureNote"]
+	// The category of the item. One of ["login" "password" "database" "secure_note"]
 	Category pulumi.StringOutput `pulumi:"category"`
 	// (Only applies to the database category) The name of the database.
 	Database pulumi.StringPtrOutput `pulumi:"database"`
@@ -144,7 +144,7 @@ func GetItem(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Item resources.
 type itemState struct {
-	// The category of the item. One of ["login" "password" "database" "secureNote"]
+	// The category of the item. One of ["login" "password" "database" "secure_note"]
 	Category *string `pulumi:"category"`
 	// (Only applies to the database category) The name of the database.
 	Database *string `pulumi:"database"`
@@ -177,7 +177,7 @@ type itemState struct {
 }
 
 type ItemState struct {
-	// The category of the item. One of ["login" "password" "database" "secureNote"]
+	// The category of the item. One of ["login" "password" "database" "secure_note"]
 	Category pulumi.StringPtrInput
 	// (Only applies to the database category) The name of the database.
 	Database pulumi.StringPtrInput
@@ -214,7 +214,7 @@ func (ItemState) ElementType() reflect.Type {
 }
 
 type itemArgs struct {
-	// The category of the item. One of ["login" "password" "database" "secureNote"]
+	// The category of the item. One of ["login" "password" "database" "secure_note"]
 	Category *string `pulumi:"category"`
 	// (Only applies to the database category) The name of the database.
 	Database *string `pulumi:"database"`
@@ -246,7 +246,7 @@ type itemArgs struct {
 
 // The set of arguments for constructing a Item resource.
 type ItemArgs struct {
-	// The category of the item. One of ["login" "password" "database" "secureNote"]
+	// The category of the item. One of ["login" "password" "database" "secure_note"]
 	Category pulumi.StringPtrInput
 	// (Only applies to the database category) The name of the database.
 	Database pulumi.StringPtrInput
@@ -363,7 +363,7 @@ func (o ItemOutput) ToItemOutputWithContext(ctx context.Context) ItemOutput {
 	return o
 }
 
-// The category of the item. One of ["login" "password" "database" "secureNote"]
+// The category of the item. One of ["login" "password" "database" "secure_note"]
 func (o ItemOutput) Category() pulumi.StringOutput {
 	return o.ApplyT(func(v *Item) pulumi.StringOutput { return v.Category }).(pulumi.StringOutput)
 }
