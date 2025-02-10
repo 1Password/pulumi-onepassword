@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -317,9 +322,6 @@ def get_item(files: Optional[Sequence[Union['GetItemFileArgs', 'GetItemFileArgsD
         username=pulumi.get(__ret__, 'username'),
         uuid=pulumi.get(__ret__, 'uuid'),
         vault=pulumi.get(__ret__, 'vault'))
-
-
-@_utilities.lift_output_func(get_item)
 def get_item_output(files: Optional[pulumi.Input[Optional[Sequence[Union['GetItemFileArgs', 'GetItemFileArgsDict']]]]] = None,
                     note_value: Optional[pulumi.Input[Optional[str]]] = None,
                     sections: Optional[pulumi.Input[Optional[Sequence[Union['GetItemSectionArgs', 'GetItemSectionArgsDict']]]]] = None,
@@ -348,4 +350,32 @@ def get_item_output(files: Optional[pulumi.Input[Optional[Sequence[Union['GetIte
     :param str uuid: The UUID of the item to retrieve. This field will be populated with the UUID of the item if the item it looked up by its title.
     :param str vault: The UUID of the vault the item is in.
     """
-    ...
+    __args__ = dict()
+    __args__['files'] = files
+    __args__['noteValue'] = note_value
+    __args__['sections'] = sections
+    __args__['title'] = title
+    __args__['uuid'] = uuid
+    __args__['vault'] = vault
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('onepassword:index/getItem:getItem', __args__, opts=opts, typ=GetItemResult)
+    return __ret__.apply(lambda __response__: GetItemResult(
+        category=pulumi.get(__response__, 'category'),
+        credential=pulumi.get(__response__, 'credential'),
+        database=pulumi.get(__response__, 'database'),
+        files=pulumi.get(__response__, 'files'),
+        hostname=pulumi.get(__response__, 'hostname'),
+        id=pulumi.get(__response__, 'id'),
+        note_value=pulumi.get(__response__, 'note_value'),
+        password=pulumi.get(__response__, 'password'),
+        port=pulumi.get(__response__, 'port'),
+        private_key=pulumi.get(__response__, 'private_key'),
+        public_key=pulumi.get(__response__, 'public_key'),
+        sections=pulumi.get(__response__, 'sections'),
+        tags=pulumi.get(__response__, 'tags'),
+        title=pulumi.get(__response__, 'title'),
+        type=pulumi.get(__response__, 'type'),
+        url=pulumi.get(__response__, 'url'),
+        username=pulumi.get(__response__, 'username'),
+        uuid=pulumi.get(__response__, 'uuid'),
+        vault=pulumi.get(__response__, 'vault')))
