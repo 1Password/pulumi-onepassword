@@ -69,14 +69,20 @@ type GetVaultResult struct {
 
 func GetVaultOutput(ctx *pulumi.Context, args GetVaultOutputArgs, opts ...pulumi.InvokeOption) GetVaultResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetVaultResult, error) {
+		ApplyT(func(v interface{}) (GetVaultResultOutput, error) {
 			args := v.(GetVaultArgs)
-			r, err := GetVault(ctx, &args, opts...)
-			var s GetVaultResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetVaultResult
+			secret, err := ctx.InvokePackageRaw("onepassword:index/getVault:getVault", args, &rv, "", opts...)
+			if err != nil {
+				return GetVaultResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetVaultResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetVaultResultOutput), nil
+			}
+			return output, nil
 		}).(GetVaultResultOutput)
 }
 
