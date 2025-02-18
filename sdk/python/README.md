@@ -57,11 +57,11 @@ dotnet add package 1Password.Pulumi-OnePassword
 
 The following configuration points are available for the `1Password` provider:
 
-- `pulumi-onepassword:url` (environment: `OP_CONNECT_HOST`) - the URL where your 1Password Connect API can be found
-- `pulumi-onepassword:token` (environment: `OP_CONNECT_TOKEN`) - the token for your Connect API.
-- `pulumi-onepassword:service_account_token` (environment: `OP_SERVICE_ACCOUNT_TOKEN`) - The 1Password service account token to use with 1Password CLI.
-- `pulumi-onepassword:account` (environment: `OP_ACCOUNT`) - A valid account's sign-in address or ID to use with 1Password CLI and biometric unlock.
-- `pulumi-onepassword:op_cli_path` (environment: `OP_CLI_PATH`) - The path to the 1Password CLI binary.
+- `onepassword:url` (environment: `OP_CONNECT_HOST`) - the URL where your 1Password Connect API can be found
+- `onepassword:token` (environment: `OP_CONNECT_TOKEN`) - the token for your Connect API.
+- `onepassword:serviceAccountToken` (environment: `OP_SERVICE_ACCOUNT_TOKEN`) - The 1Password service account token to use with 1Password CLI.
+- `onepassword:account` (environment: `OP_ACCOUNT`) - A valid account's sign-in address or ID to use with 1Password CLI and biometric unlock.
+- `onepassword:opCliPath` (environment: `OP_CLI_PATH`) - The path to the 1Password CLI binary.
 
 ## Reference
 
