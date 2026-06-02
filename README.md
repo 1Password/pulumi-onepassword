@@ -2,6 +2,8 @@
 
 Use the 1Password Pulumi provider to access and manage items in your 1Password vaults.
 
+*By accessing or using 1Password Developer Tools, you agree to the [API and SDK Terms of Service](https://1password.com/legal/api-sdk-terms-of-service).*
+
 ## Installing
 
 This package is available for several languages/platforms:
@@ -68,5 +70,3 @@ The following configuration points are available for the `1Password` provider:
 <!-- TODO: Confirm that this URL to the API documentation is correct. -->
 
 For detailed reference documentation, please visit [the Pulumi registry](https://www.pulumi.com/registry/packages/onepassword/).
-
-*By accessing or using 1Password Developer Tools, you agree to the [API and SDK Terms of Service](https://1password.com/legal/api-sdk-terms-of-service).*
