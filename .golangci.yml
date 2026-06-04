@@ -18,6 +18,11 @@ linters:
     paths:
       - schema.go
       - pulumiManifest.go
+  settings:
+    revive:
+      rules:
+        - name: package-comments
+          disabled: true
 formatters:
   enable:
     - gofmt
