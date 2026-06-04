@@ -4,12 +4,11 @@ linters:
   enable:
     - errcheck
     - goconst
-    - gofmt
     - gosec
     - govet
     - ineffassign
     - lll
-    - megacheck
+    - staticcheck
     - misspell
     - nakedret
     - revive
@@ -19,3 +18,6 @@ linters:
     paths:
       - schema.go
       - pulumiManifest.go
+formatters:
+  enable:
+    - gofmt

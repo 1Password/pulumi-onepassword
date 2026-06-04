@@ -4,14 +4,13 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//     http://www.apache.org/licenses/LICENSE-2.0
+//	http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 package onepassword
 
 import (
@@ -53,6 +52,7 @@ var metadata []byte
 
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
+	providerName := "1Password"
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
 		// Instantiate the Terraform provider
@@ -61,12 +61,12 @@ func Provider() tfbridge.ProviderInfo {
 		TFProviderModuleVersion: "v2",
 		// DisplayName is a way to be able to change the casing of the provider
 		// name when being displayed on the Pulumi registry
-		DisplayName: "1Password",
+		DisplayName: providerName,
 		// The default publisher for all packages is Pulumi.
 		// Change this to your personal name (or a company name) that you
 		// would like to be shown in the Pulumi Registry if this package is published
 		// there.
-		Publisher: "1Password",
+		Publisher: providerName,
 		// LogoURL is optional but useful to help identify your package in the Pulumi Registry
 		// if this package is published there.
 		//
@@ -87,7 +87,7 @@ func Provider() tfbridge.ProviderInfo {
 		Repository: "https://github.com/1Password/pulumi-onepassword",
 		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this
 		// should match the TF provider module's require directive, not any replace directives.
-		GitHubOrg:    "1Password",
+		GitHubOrg:    providerName,
 		Version:      version.Version,
 		MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 		// Map the environment variables used in the 1Password Terraform provider schema
