@@ -1,4 +1,6 @@
+version: "2"
 linters:
+  default: none
   enable:
     - errcheck
     - goconst
@@ -13,9 +15,7 @@ linters:
     - revive
     - unconvert
     - unused
-  enable-all: false
-run:
-  skip-files:
-    - schema.go
-    - pulumiManifest.go
-  timeout: 20m
+  exclusions:
+    paths:
+      - schema.go
+      - pulumiManifest.go
