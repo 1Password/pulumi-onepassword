@@ -2,6 +2,8 @@
 
 Use the 1Password Pulumi provider to access and manage items in your 1Password vaults.
 
+*This project is licensed under [Apache-2.0](./LICENSE). Use of the 1Password APIs and services accessed through these tools is governed by the [1Password API Terms of Service](https://1password.com/legal/api-sdk-terms-of-service).*
+
 ## Installing
 
 This package is available for several languages/platforms:
