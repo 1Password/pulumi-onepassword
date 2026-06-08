@@ -41,8 +41,8 @@ func GetOpCliPath(ctx *pulumi.Context) string {
 // A valid 1Password service account token. Can also be sourced from `OP_SERVICE_ACCOUNT_TOKEN` environment variable.
 // Provider will use the 1Password CLI if set.
 func GetServiceAccountToken(ctx *pulumi.Context) string {
+	v, err := config.Try(ctx, "onepassword:serviceAccountToken")
 	if err == nil {
-		v, err := config.Try(ctx, "onepassword:serviceAccountToken")
 		return v
 	}
 	var value string
