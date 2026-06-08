@@ -30,12 +30,12 @@ Replace the version string with your desired version.
 You must configure the 1Password provider for Pulumi with your 1Password credentials before the provider can be used to access and manage items in your 1Password vaults. You can use one of the following:
 
 - [Service account](https://developer.1password.com/docs/service-accounts/get-started)
-  - `pulumi-onepassword:service_account_token` (environment: `OP_SERVICE_ACCOUNT_TOKEN`) - the 1Password service account token. Requires [1Password CLI](https://developer.1password.com/docs/cli/get-started/).
+  - `onepassword:serviceAccountToken` (environment: `OP_SERVICE_ACCOUNT_TOKEN`) - the 1Password service account token. Requires [1Password CLI](https://developer.1password.com/docs/cli/get-started/).
 - [Connect server](https://developer.1password.com/docs/connect/get-started)
-  - `pulumi-onepassword:url` (environment: `OP_CONNECT_HOST`) - the URL where your 1Password Connect API can be found.
-  - `pulumi-onepassword:token` (environment: `OP_CONNECT_TOKEN`) - the token for your Connect API.
+  - `onepassword:url` (environment: `OP_CONNECT_HOST`) - the URL where your 1Password Connect API can be found.
+  - `onepassword:token` (environment: `OP_CONNECT_TOKEN`) - the token for your Connect API.
 - Personal account
-  - `pulumi-onepassword:account` (environment: `OP_ACCOUNT`) - the [sign-in address](https://support.1password.com/1password-glossary/#sign-in-address) or [unique identifier](https://developer.1password.com/docs/cli/reference/#unique-identifiers-ids) for your 1Password account. Requires [1Password CLI](https://developer.1password.com/docs/cli/get-started/) and biometric unlock.
+  - `onepassword:account` (environment: `OP_ACCOUNT`) - the [sign-in address](https://support.1password.com/1password-glossary/#sign-in-address) or [unique identifier](https://developer.1password.com/docs/cli/reference/#unique-identifiers-ids) for your 1Password account. Requires [1Password CLI](https://developer.1password.com/docs/cli/get-started/) and biometric unlock.
 
 After you find your credentials, there are two ways to provide them to Pulumi:
 
@@ -48,8 +48,8 @@ After you find your credentials, there are two ways to provide them to Pulumi:
 2. If you prefer to store your credentials alongside your Pulumi stack for easy multi-user access, use configuration to set them.
 
    ```sh
-   $ pulumi config set pulumi-onepassword:service_account_token --secret
+   $ pulumi config set onepassword:serviceAccountToken --secret
    Value: <paste token here>
    ```
 
-Make sure to pass `--secret` when setting any sensitive data (in this example `pulumi-onepassword:service_account_token`) so that it's properly encrypted. The complete list of configuration parameters is in the [1Password provider for Pulumi README](https://github.com/1Password/pulumi-onepassword/blob/main/README.md#configuration).
+Make sure to pass `--secret` when setting any sensitive data (in this example `onepassword:serviceAccountToken`) so that it's properly encrypted. The complete list of configuration parameters is in the [1Password provider for Pulumi README](https://github.com/1Password/pulumi-onepassword/blob/main/README.md#configuration).
