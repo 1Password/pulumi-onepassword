@@ -15,6 +15,16 @@ VERSION         := $(shell pulumictl get version)
 
 TESTPARALLELISM := 4
 
+# TEMPORARY: Pin the Go toolchain used to build pulumi-tfgen-onepassword.
+# The pulumi codegen in pulumi-terraform-bridge v3.89.1 emits broken relative
+# import paths in the generated Node SDK (e.g. `./utilities` instead of
+# `../utilities`) when compiled with Go 1.26+, which fails `tsc` in build_nodejs.
+# Go <=1.25 generates correct paths. GOTOOLCHAIN's go.mod `toolchain` line is only
+# a floor (auto picks the newer of local vs. floor), so we must pin it here to cap
+# the version. Remove once the bridge is upgraded to a Go 1.26-compatible release.
+# See: OS-215
+export GOTOOLCHAIN := go1.25.8
+
 WORKING_DIR     := $(shell pwd)
 
 OS := $(shell uname)
