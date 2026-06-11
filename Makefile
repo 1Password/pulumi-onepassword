@@ -23,7 +23,7 @@ TESTPARALLELISM := 4
 # a floor (auto picks the newer of local vs. floor), so we must pin it here to cap
 # the version. Remove once the bridge is upgraded to a Go 1.26-compatible release.
 # See: OS-215
-export GOTOOLCHAIN := go1.25.8
+# export GOTOOLCHAIN := go1.25.8
 
 WORKING_DIR     := $(shell pwd)
 

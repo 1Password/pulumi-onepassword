@@ -20,7 +20,7 @@ import (
 	_ "embed"
 
 	onepassword "github.com/1Password/pulumi-onepassword/provider"
-	"github.com/pulumi/pulumi-terraform-bridge/pf/tfbridge"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
 )
 
 //go:embed schema-embed.json
