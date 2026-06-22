@@ -1,6 +1,11 @@
 PROJECT_NAME := onepassword Package
 
 SHELL            := /bin/bash
+
+# TEMPORARY: bridge v3.89.1 codegen emits broken Node SDK import paths when tfgen
+# is built with Go 1.26+. Pin the toolchain to 1.25.8 until the bridge is upgraded.
+export GOTOOLCHAIN := go1.25.8
+
 PACK             := onepassword
 ORG              := 1Password
 PROJECT          := github.com/${ORG}/pulumi-${PACK}
