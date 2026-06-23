@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -107,9 +112,6 @@ def get_vault(name: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         uuid=pulumi.get(__ret__, 'uuid'))
-
-
-@_utilities.lift_output_func(get_vault)
 def get_vault_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                      uuid: Optional[pulumi.Input[Optional[str]]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVaultResult]:
@@ -129,4 +131,13 @@ def get_vault_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     :param str name: The name of the vault to retrieve. This field will be populated with the name of the vault if the vault it looked up by its UUID.
     :param str uuid: The UUID of the vault to retrieve. This field will be populated with the UUID of the vault if the vault it looked up by its name.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['uuid'] = uuid
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('onepassword:index/getVault:getVault', __args__, opts=opts, typ=GetVaultResult)
+    return __ret__.apply(lambda __response__: GetVaultResult(
+        description=pulumi.get(__response__, 'description'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        uuid=pulumi.get(__response__, 'uuid')))

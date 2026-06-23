@@ -108,14 +108,20 @@ type LookupItemResult struct {
 
 func LookupItemOutput(ctx *pulumi.Context, args LookupItemOutputArgs, opts ...pulumi.InvokeOption) LookupItemResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupItemResult, error) {
+		ApplyT(func(v interface{}) (LookupItemResultOutput, error) {
 			args := v.(LookupItemArgs)
-			r, err := LookupItem(ctx, &args, opts...)
-			var s LookupItemResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupItemResult
+			secret, err := ctx.InvokePackageRaw("onepassword:index/getItem:getItem", args, &rv, "", opts...)
+			if err != nil {
+				return LookupItemResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupItemResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupItemResultOutput), nil
+			}
+			return output, nil
 		}).(LookupItemResultOutput)
 }
 
