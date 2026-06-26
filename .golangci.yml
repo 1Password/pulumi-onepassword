@@ -1,21 +1,28 @@
+version: "2"
 linters:
+  default: none
   enable:
     - errcheck
     - goconst
-    - gofmt
     - gosec
     - govet
     - ineffassign
     - lll
-    - megacheck
+    - staticcheck
     - misspell
     - nakedret
     - revive
     - unconvert
     - unused
-  enable-all: false
-run:
-  skip-files:
-    - schema.go
-    - pulumiManifest.go
-  timeout: 20m
+  exclusions:
+    paths:
+      - schema.go
+      - pulumiManifest.go
+  settings:
+    revive:
+      rules:
+        - name: package-comments
+          disabled: true
+formatters:
+  enable:
+    - gofmt
