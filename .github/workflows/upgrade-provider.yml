@@ -6,6 +6,9 @@ on:
     # https://crontab.guru/#00_07_*_*_MON = "At 07:00 (UTC) on Monday."
     - cron: 00 07 * * MON
 
+permissions:
+  contents: read
+
 jobs:
   upgrade_provider:
     name: upgrade_provider
@@ -15,7 +18,12 @@ jobs:
       pull-requests: write
       issues: write
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@b09bb98e06d4d774595224525879c09bc6e98c40 # v2.20.1
+        with:
+          egress-policy: audit
+
       - name: Call upgrade provider action
-        uses: pulumi/pulumi-upgrade-provider-action@v0.0.12
+        uses: pulumi/pulumi-upgrade-provider-action@f399a75a5350242c291cc720eece1c72cb6ea712 # v0.0.12
         env:
           GH_TOKEN: ${{ secrets.PULUMI_1P_UPGRADE_PROVIDER_GH_TOKEN }}
