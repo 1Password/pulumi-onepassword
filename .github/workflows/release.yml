@@ -87,7 +87,7 @@ jobs:
           repo: pulumi/pulumictl
 
       - name: Install pulumi
-        uses: pulumi/actions@cd99a7f8865434dd3532b586a26f9ebea596894f # v5.5.1
+        uses: pulumi/actions@8e5e406f4007fca908480587cb9893c07090f58d # v7.0.0
 
       - name: Setup Node
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
