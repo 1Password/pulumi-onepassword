@@ -10,7 +10,6 @@ env:
   # THE TRUSTED PUBLISHER ON NPMJS.COM IS BOUND TO THIS FILE (release.yml) AND THE
   # `pulumi-onepassword` ENVIRONMENT; RENAMING EITHER BREAKS PUBLISHING.
   PUBLISH_NPM: true
-  NPM_REGISTRY_URL: https://registry.npmjs.org
   # Skip NuGet publishing for now.
   # IF YOU NEED TO PUBLISH A NUGET PACKAGE THEN ENSURE AN NUGET_PUBLISH_KEY
   # SECRET IS SET AND PUBLISH_NUGET: TRUE. IF YOU WANT TO PUBLISH TO AN ALTERNATIVE
@@ -95,7 +94,9 @@ jobs:
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: ${{ matrix.nodeversion }}
-          registry-url: ${{ env.NPM_REGISTRY_URL }}
+          # No registry-url: it writes an .npmrc with `_authToken=${NODE_AUTH_TOKEN}`,
+          # and yarn 1 (`make build_nodejs`) fails when that variable is unset.
+          # npm-publish writes its own .npmrc for registry.npmjs.org.
 
       # Trusted publishing needs npm >= 11.5.1; older npm silently skips OIDC and
       # fails later with ENEEDAUTH, so fail fast with a clear message instead.
