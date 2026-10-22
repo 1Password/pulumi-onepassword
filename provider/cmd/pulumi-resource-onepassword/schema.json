@@ -773,7 +773,12 @@
                     },
                     "privateKey": {
                         "type": "string",
-                        "description": "SSH Private Key for this item.\n",
+                        "description": "SSH Private Key in PKCS#8 for this item.\n",
+                        "secret": true
+                    },
+                    "privateKeyOpenssh": {
+                        "type": "string",
+                        "description": "SSH Private key in OpenSSH format.\n",
                         "secret": true
                     },
                     "publicKey": {
@@ -830,6 +835,7 @@
                     "password",
                     "port",
                     "privateKey",
+                    "privateKeyOpenssh",
                     "publicKey",
                     "tags",
                     "title",

@@ -102,9 +102,13 @@ export interface GetItemResult {
      */
     readonly port: string;
     /**
-     * SSH Private Key for this item.
+     * SSH Private Key in PKCS#8 for this item.
      */
     readonly privateKey: string;
+    /**
+     * SSH Private key in OpenSSH format.
+     */
+    readonly privateKeyOpenssh: string;
     /**
      * SSH Public Key for this item.
      */

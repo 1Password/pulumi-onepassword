@@ -84,8 +84,10 @@ type LookupItemResult struct {
 	Password string `pulumi:"password"`
 	// (Only applies to the database category) The port the database is listening on.
 	Port string `pulumi:"port"`
-	// SSH Private Key for this item.
+	// SSH Private Key in PKCS#8 for this item.
 	PrivateKey string `pulumi:"privateKey"`
+	// SSH Private key in OpenSSH format.
+	PrivateKeyOpenssh string `pulumi:"privateKeyOpenssh"`
 	// SSH Public Key for this item.
 	PublicKey string `pulumi:"publicKey"`
 	// A list of custom sections in an item
@@ -198,9 +200,14 @@ func (o LookupItemResultOutput) Port() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupItemResult) string { return v.Port }).(pulumi.StringOutput)
 }
 
-// SSH Private Key for this item.
+// SSH Private Key in PKCS#8 for this item.
 func (o LookupItemResultOutput) PrivateKey() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupItemResult) string { return v.PrivateKey }).(pulumi.StringOutput)
+}
+
+// SSH Private key in OpenSSH format.
+func (o LookupItemResultOutput) PrivateKeyOpenssh() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupItemResult) string { return v.PrivateKeyOpenssh }).(pulumi.StringOutput)
 }
 
 // SSH Public Key for this item.
