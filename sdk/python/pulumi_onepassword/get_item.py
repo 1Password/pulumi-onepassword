@@ -23,7 +23,7 @@ class GetItemResult:
     """
     A collection of values returned by getItem.
     """
-    def __init__(__self__, category=None, credential=None, database=None, files=None, hostname=None, id=None, note_value=None, password=None, port=None, private_key=None, public_key=None, sections=None, tags=None, title=None, type=None, url=None, username=None, uuid=None, vault=None):
+    def __init__(__self__, category=None, credential=None, database=None, files=None, hostname=None, id=None, note_value=None, password=None, port=None, private_key=None, private_key_openssh=None, public_key=None, sections=None, tags=None, title=None, type=None, url=None, username=None, uuid=None, vault=None):
         if category and not isinstance(category, str):
             raise TypeError("Expected argument 'category' to be a str")
         pulumi.set(__self__, "category", category)
@@ -54,6 +54,9 @@ class GetItemResult:
         if private_key and not isinstance(private_key, str):
             raise TypeError("Expected argument 'private_key' to be a str")
         pulumi.set(__self__, "private_key", private_key)
+        if private_key_openssh and not isinstance(private_key_openssh, str):
+            raise TypeError("Expected argument 'private_key_openssh' to be a str")
+        pulumi.set(__self__, "private_key_openssh", private_key_openssh)
         if public_key and not isinstance(public_key, str):
             raise TypeError("Expected argument 'public_key' to be a str")
         pulumi.set(__self__, "public_key", public_key)
@@ -155,9 +158,17 @@ class GetItemResult:
     @pulumi.getter(name="privateKey")
     def private_key(self) -> str:
         """
-        SSH Private Key for this item.
+        SSH Private Key in PKCS#8 for this item.
         """
         return pulumi.get(self, "private_key")
+
+    @property
+    @pulumi.getter(name="privateKeyOpenssh")
+    def private_key_openssh(self) -> str:
+        """
+        SSH Private key in OpenSSH format.
+        """
+        return pulumi.get(self, "private_key_openssh")
 
     @property
     @pulumi.getter(name="publicKey")
@@ -248,6 +259,7 @@ class AwaitableGetItemResult(GetItemResult):
             password=self.password,
             port=self.port,
             private_key=self.private_key,
+            private_key_openssh=self.private_key_openssh,
             public_key=self.public_key,
             sections=self.sections,
             tags=self.tags,
@@ -308,6 +320,7 @@ def get_item(files: Optional[Sequence[Union['GetItemFileArgs', 'GetItemFileArgsD
         password=pulumi.get(__ret__, 'password'),
         port=pulumi.get(__ret__, 'port'),
         private_key=pulumi.get(__ret__, 'private_key'),
+        private_key_openssh=pulumi.get(__ret__, 'private_key_openssh'),
         public_key=pulumi.get(__ret__, 'public_key'),
         sections=pulumi.get(__ret__, 'sections'),
         tags=pulumi.get(__ret__, 'tags'),

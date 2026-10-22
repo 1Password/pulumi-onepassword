@@ -229,9 +229,13 @@ namespace Pulumi.Onepassword
         /// </summary>
         public readonly string Port;
         /// <summary>
-        /// SSH Private Key for this item.
+        /// SSH Private Key in PKCS#8 for this item.
         /// </summary>
         public readonly string PrivateKey;
+        /// <summary>
+        /// SSH Private key in OpenSSH format.
+        /// </summary>
+        public readonly string PrivateKeyOpenssh;
         /// <summary>
         /// SSH Public Key for this item.
         /// </summary>
@@ -291,6 +295,8 @@ namespace Pulumi.Onepassword
 
             string privateKey,
 
+            string privateKeyOpenssh,
+
             string publicKey,
 
             ImmutableArray<Outputs.GetItemSectionResult> sections,
@@ -319,6 +325,7 @@ namespace Pulumi.Onepassword
             Password = password;
             Port = port;
             PrivateKey = privateKey;
+            PrivateKeyOpenssh = privateKeyOpenssh;
             PublicKey = publicKey;
             Sections = sections;
             Tags = tags;
