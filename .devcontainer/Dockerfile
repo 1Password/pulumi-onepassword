@@ -3,6 +3,7 @@ FROM ubuntu:${UBUNTU_VERSION}
 
 # Update apt-get and install various needed utilities
 RUN apt-get update && \
+    apt-get install -y ca-certificates && \
     apt-get install -y curl && \
     apt-get install -y wget && \
     apt-get install -y xz-utils && \
@@ -14,7 +15,7 @@ RUN apt-get update && \
 # See README.md
 
 # Install go 
-ARG GO_VERSION=1.18.3
+ARG GO_VERSION=1.26.10
 RUN rm -rf /usr/local/go && \
     wget -O ${GO_VERSION}.tar.gz https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz && \
     tar -C /usr/local -xzf ${GO_VERSION}.tar.gz && \
@@ -25,7 +26,7 @@ ENV PATH=$PATH:/usr/local/go/bin
 
 # Install go linter
 RUN mkdir -p $GOPATH/bin && \
-    curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $GOPATH/bin v1.46.2
+    curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $GOPATH/bin v2.15.0
 
 ENV PATH=$PATH:$GOPATH/bin
 
@@ -36,7 +37,7 @@ RUN rm -rf /usr/local/bin/pulumictl && \
     tar -C /usr/local/bin -xzf pulumictl.${PULUMICTL_VERSION}.tar.gz
 
 # Install nodejs
-ARG NODEJS_VERSION=v16.16.0
+ARG NODEJS_VERSION=v24.22.1
 ARG NODEJS_PKG=node-${NODEJS_VERSION}-linux-x64
 ARG NODEJS_TARBALL=${NODEJS_PKG}.tar.xz
 RUN rm -rf /usr/local/node && \

@@ -3,8 +3,9 @@ PROJECT_NAME := onepassword Package
 SHELL            := /bin/bash
 
 # TEMPORARY: bridge v3.89.1 codegen emits broken Node SDK import paths when tfgen
-# is built with Go 1.26+. Pin the toolchain to 1.25.8 until the bridge is upgraded.
-export GOTOOLCHAIN := go1.25.8
+# is built with Go 1.26+. Only tfgen is pinned; the provider binary uses the
+# toolchain from go.work/provider/go.mod (1.26.10+, required for the eMudhra fix).
+TFGEN_GOTOOLCHAIN := go1.25.8
 
 PACK             := onepassword
 ORG              := 1Password
@@ -53,7 +54,7 @@ build:: install_plugins provider build_sdks install_sdks
 only_build:: build
 
 tfgen:: install_plugins
-	(cd provider && go build -o $(WORKING_DIR)/bin/${TFGEN} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${TFGEN})
+	(cd provider && GOTOOLCHAIN=$(TFGEN_GOTOOLCHAIN) go build -o $(WORKING_DIR)/bin/${TFGEN} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" ${PROJECT}/${PROVIDER_PATH}/cmd/${TFGEN})
 	$(WORKING_DIR)/bin/${TFGEN} schema --out provider/cmd/${PROVIDER}
 	(cd provider && VERSION=$(VERSION) go generate cmd/${PROVIDER}/main.go)
 
