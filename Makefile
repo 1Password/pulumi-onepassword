@@ -4,7 +4,7 @@ SHELL            := /bin/bash
 
 # TEMPORARY: bridge v3.89.1 codegen emits broken Node SDK import paths when tfgen
 # is built with Go 1.26+. Only tfgen is pinned; the provider binary uses the
-# toolchain from go.work/provider/go.mod (1.26.10+, required for the eMudhra fix).
+# toolchain from go.work/provider/go.mod (1.26.10+).
 TFGEN_GOTOOLCHAIN := go1.25.8
 
 PACK             := onepassword
